@@ -9,5 +9,5 @@ set_source_files_properties(
   ${CMAKE_CURRENT_SOURCE_DIR}/db.h PROPERTIES GENERATED TRUE)
 
 add_library(SDL_joystickbuttonnames STATIC
-  SDL_joystickbuttonnames.c SDL_joystickbuttonnames.h)
+  SDL_joystickbuttonnames.cpp SDL_joystickbuttonnames.h)
 target_link_libraries(SDL_joystickbuttonnames ${SDL2_LIBRARY})

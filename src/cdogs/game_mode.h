@@ -29,13 +29,13 @@
 
 #include <stdbool.h>
 
-typedef enum
+enum GameMode
 {
 	GAME_MODE_NORMAL,
 	GAME_MODE_DOGFIGHT,
 	GAME_MODE_DEATHMATCH,
 	GAME_MODE_QUICK_PLAY
-} GameMode;
+};
 const char *GameModeStr(const GameMode g);
 
 bool IsIntroNeeded(const GameMode mode);

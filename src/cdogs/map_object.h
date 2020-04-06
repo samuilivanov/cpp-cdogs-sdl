@@ -82,7 +82,7 @@ typedef struct
 } MapObjectDestroySpawn;
 
 // A static map object, taking up an entire tile
-typedef struct
+struct MapObject
 {
 	char *Name;
 	CPic Pic;
@@ -101,13 +101,13 @@ typedef struct
 	MapObjectType Type;
 	union
 	{
-		const PickupClass *PickupClass;
+		const struct PickupClass *PickupClass;
 	} u;
 	CArray DestroySpawn;	// of MapObjectDestroySpawn
 	struct {
 		float HealthThreshold;	// Smoke if map object damaged below this ratio
 	} DamageSmoke;
-} MapObject;
+};
 typedef struct
 {
 	CArray Classes;	// of MapObject

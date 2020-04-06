@@ -12,28 +12,28 @@ if(NOT "${GCW0}")
 	add_subdirectory(cdogsed)
 endif()
 add_subdirectory(json)
-add_subdirectory(tests)
+#add_subdirectory(tests)
 
 set(CDOGS_SDL_SOURCES
-	animated_counter.c
-	autosave.c
-	briefing_screens.c
-	cdogs.c
-	command_line.c
-	credits.c
-	game.c
-	game_loop.c
-	hiscores.c
-	mainmenu.c
-	menu.c
-	menu_utils.c
-	namegen.c
-	password.c
-	player_select_menus.c
-	prep.c
-	prep_equip.c
-	screens_end.c
-	weapon_menu.c)
+	animated_counter.cpp
+	autosave.cpp
+	briefing_screens.cpp
+	cdogs.cpp
+	command_line.cpp
+	credits.cpp
+	game.cpp
+	game_loop.cpp
+	hiscores.cpp
+	mainmenu.cpp
+	menu.cpp
+	menu_utils.cpp
+	namegen.cpp
+	password.cpp
+	player_select_menus.cpp
+	prep.cpp
+	prep_equip.cpp
+	screens_end.cpp
+	weapon_menu.cpp)
 set(CDOGS_SDL_HEADERS
 	animated_counter.h
 	autosave.h
@@ -81,7 +81,7 @@ if(GCW0)
 endif()
 
 if(NOT "${GCW0}")
-  add_executable(cdogs-sdl-editor cdogsed/cdogsed.c ${CDOGS_SDL_EXTRA})
+  add_executable(cdogs-sdl-editor cdogsed/cdogsed.cpp ${CDOGS_SDL_EXTRA})
   if(APPLE)
   	set_target_properties(cdogs-sdl-editor PROPERTIES
   		MACOSX_RPATH 1

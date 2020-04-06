@@ -48,13 +48,12 @@ typedef struct yajl_bytestack_t
     if ((obs).stack) (obs).yaf->free((obs).yaf->ctx, (obs).stack);
 
 #define yajl_bs_current(obs)               \
-    (assert((obs).used > 0), (obs).stack[(obs).used - 1])
+    (assert((obs).used > 0), static_cast<yajl_state>((obs).stack[(obs).used - 1]))
 
 #define yajl_bs_push(obs, byte) {                       \
     if (((obs).size - (obs).used) == 0) {               \
         (obs).size += YAJL_BS_INC;                      \
-        (obs).stack = (obs).yaf->realloc((obs).yaf->ctx,\
-                                         (void *) (obs).stack, (obs).size);\
+        (obs).stack = static_cast<unsigned char *>((obs).yaf->realloc((obs).yaf->ctx, (void *) (obs).stack, (obs).size));\
     }                                                   \
     (obs).stack[((obs).used)++] = (byte);               \
 }

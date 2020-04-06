@@ -16,9 +16,9 @@ SET (YAJL_MAJOR 2)
 SET (YAJL_MINOR 1)
 SET (YAJL_MICRO 1)
 
-SET (SRCS yajl.c yajl_lex.c yajl_parser.c yajl_buf.c
-          yajl_encode.c yajl_gen.c yajl_alloc.c
-          yajl_tree.c yajl_version.c
+SET (SRCS yajl.cpp yajl_lex.cpp yajl_parser.cpp yajl_buf.cpp
+          yajl_encode.cpp yajl_gen.cpp yajl_alloc.cpp
+          yajl_tree.cpp yajl_version.cpp
 )
 SET (HDRS yajl_parser.h yajl_lex.h yajl_buf.h yajl_encode.h yajl_alloc.h)
 SET (PUB_HDRS api/yajl_parse.h api/yajl_gen.h api/yajl_common.h api/yajl_tree.h)

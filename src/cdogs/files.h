@@ -48,7 +48,7 @@
 */
 #pragma once
 
-#include <SDL_endian.h>
+#include <SDL2/SDL_endian.h>
 
 #include "sys_config.h"
 #include "gamedata.h"

@@ -40,7 +40,7 @@ typedef struct
 	union
 	{
 		int ItemIndex;
-		MapObject *MapObject;
+		struct MapObject *MapObject;
 	} u;
 	int Index2;
 } IndexedEditorBrush;
@@ -82,7 +82,7 @@ void CreateCloseLabel(UIObject *c, const struct vec2i pos);
 #define MISSION_CHECK_TYPE_FUNC(_type)\
 static void MissionCheckTypeFunc(UIObject *o, void *data)\
 {\
-	CampaignOptions *co = data;\
+	CampaignOptions *co = static_cast<CampaignOptions*>(data);\
 	const Mission *m = CampaignGetCurrentMission(co);\
 	if (!m || m->Type != (_type))\
 	{\

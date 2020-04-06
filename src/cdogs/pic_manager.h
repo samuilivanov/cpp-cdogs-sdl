@@ -25,13 +25,14 @@
     ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
-#pragma once
+#ifndef SRC_CDOGS_PIC_MANAGER_H_
+#define SRC_CDOGS_PIC_MANAGER_H_
 
 #include "c_hashmap/hashmap.h"
 #include "cpic.h"
 #include "pics.h"
 
-typedef struct
+struct PicManager
 {
 	map_t pics;	// of NamedPic
 	map_t sprites;	// of NamedSprites
@@ -44,7 +45,7 @@ typedef struct
 	CArray exitStyleNames;	// of char *
 	CArray doorStyleNames;	// of char *
 	CArray keyStyleNames;	// of char *
-} PicManager;
+};
 
 extern PicManager gPicManager;
 
@@ -83,3 +84,4 @@ int PicManagerGetTileStyleIndex(PicManager *pm, const char *style);
 int PicManagerGetExitStyleIndex(PicManager *pm, const char *style);
 int PicManagerGetDoorStyleIndex(PicManager *pm, const char *style);
 int PicManagerGetKeyStyleIndex(PicManager *pm, const char *style);
+#endif

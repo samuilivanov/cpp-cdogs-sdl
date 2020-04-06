@@ -25,17 +25,17 @@
 */
 #pragma once
 
-#include <SDL_render.h>
+#include <SDL2/SDL_render.h>
 
 #include "vector.h"
 
-typedef struct
+struct Pic
 {
 	struct vec2i size;
 	struct vec2i offset;
 	Uint32 *Data;
 	SDL_Texture *Tex;
-} Pic;
+};
 
 extern Pic picNone;
 

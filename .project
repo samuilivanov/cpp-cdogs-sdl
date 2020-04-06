@@ -1,0 +1,2754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>cdogs-sdl@cdogs-sdl</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+			<triggers>clean,full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
+			<triggers>full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
+		<nature>org.eclipse.cdt.core.cnature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[Subprojects]</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Subprojects]/cbehave</name>
+			<type>2</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/cbehave</location>
+		</link>
+		<link>
+			<name>[Subprojects]/enet</name>
+			<type>2</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet</location>
+		</link>
+		<link>
+			<name>[Subprojects]/osdialog</name>
+			<type>2</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/osdialog</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl-editor/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] config_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] json_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] minkowski_hex_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] pic_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] player_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] utils_test/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl-editor/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl-editor/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl-editor/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl-editor/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl-editor/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl-editor/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] config_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] config_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] config_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] config_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] config_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] config_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] json_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] json_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] json_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] json_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] json_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] json_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] minkowski_hex_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] minkowski_hex_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] minkowski_hex_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] minkowski_hex_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] minkowski_hex_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] minkowski_hex_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] pic_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] pic_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] pic_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] pic_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] pic_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] pic_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] player_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] player_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] player_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] player_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] player_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] player_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] utils_test/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] utils_test/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] utils_test/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] utils_test/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] utils_test/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] utils_test/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/msg.options</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/msg.options</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/msg.proto</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/msg.proto</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Object Libraries</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/Header Files/animated_counter.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/animated_counter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/Source Files/animated_counter.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/animated_counter.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] animated_counter_test/Source Files/animated_counter_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/animated_counter_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/Header Files/autosave.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/autosave.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/Source Files/autosave.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/autosave.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] autosave_test/Source Files/autosave_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/autosave_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/Header Files/c_array.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/c_array.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/Source Files/c_array.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/c_array.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_array_test/Source Files/c_array_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/c_array_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/Header Files/hashmap.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/c_hashmap/hashmap.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/Source Files/c_hashmap_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/c_hashmap_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] c_hashmap_test/Source Files/hashmap.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/c_hashmap/hashmap.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/animated_counter.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/animated_counter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/autosave.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/autosave.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/briefing_screens.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/briefing_screens.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/command_line.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/command_line.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/credits.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/credits.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/game.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/game.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/game_loop.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/game_loop.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/hiscores.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/hiscores.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/mainmenu.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/mainmenu.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/menu.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/menu.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/menu_utils.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/menu_utils.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/namegen.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/namegen.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/password.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/password.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/player_select_menus.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/player_select_menus.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/prep.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/prep.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/prep_equip.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/prep_equip.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/screens_end.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/screens_end.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Header Files/weapon_menu.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/weapon_menu.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/animated_counter.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/animated_counter.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/autosave.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/autosave.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/briefing_screens.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/briefing_screens.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/cdogs.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/command_line.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/command_line.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/credits.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/credits.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/game.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/game.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/game_loop.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/game_loop.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/hiscores.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/hiscores.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/mainmenu.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/mainmenu.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/menu.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/menu.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/menu_utils.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/menu_utils.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/namegen.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/namegen.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/password.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/password.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/player_select_menus.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/player_select_menus.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/prep.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/prep.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/prep_equip.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/prep_equip.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/screens_end.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/screens_end.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl/Source Files/weapon_menu.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/weapon_menu.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] cdogs-sdl-editor/Source Files/cdogsed.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/cdogsed.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/Header Files/color.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/color.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/Source Files/color.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/color.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] color_test/Source Files/color_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/color_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] config_test/Source Files/config_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/config_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] json_test/Source Files/json_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/json_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] minkowski_hex_test/Source Files/minkowski_hex_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/minkowski_hex_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Header Files/osdialog.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/osdialog/osdialog.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Source Files/osdialog.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/osdialog/osdialog.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Source Files/osdialog_gtk3.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/osdialog/osdialog_gtk3.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] osdialog_test/Source Files/test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/osdialog/test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] pic_test/Source Files/pic_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/pic_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] player_test/Source Files/player_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/player_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] utils_test/Source Files/utils_test.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/utils_test.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/Header Files/SDL_joystickbuttonnames.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/SDL_JoystickButtonNames/SDL_joystickbuttonnames.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] SDL_joystickbuttonnames/Source Files/SDL_joystickbuttonnames.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/SDL_JoystickButtonNames/SDL_joystickbuttonnames.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/Header Files/hashmap.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/c_hashmap/hashmap.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] c_hashmap/Source Files/hashmap.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/c_hashmap/hashmap.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Header Files/apr_ring.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/cbehave/apr_ring.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Header Files/cbehave.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/cbehave/cbehave.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Header Files/rlutil.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/cbehave/rlutil/rlutil.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cbehave/Source Files/cbehave.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/tests/cbehave/cbehave.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/AStar.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/AStar.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/XGetopt.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/XGetopt.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/actor_fire.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/actor_fire.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/actor_placement.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/actor_placement.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/actors.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/actors.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/ai.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ai.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/ai_context.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ai_context.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/ai_coop.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ai_coop.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/ai_utils.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ai_utils.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/algorithms.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/algorithms.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/ammo.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ammo.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/animation.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/animation.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/automap.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/automap.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/blit.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/blit.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/bullet_class.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/bullet_class.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/c_array.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/c_array.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/camera.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/camera.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/campaign_entry.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/campaign_entry.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/campaigns.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/campaigns.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/char_sprites.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/char_sprites.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/character.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/character.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/character_class.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/character_class.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/collision.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/collision/collision.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/color.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/color.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/config.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/config_io.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config_io.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/config_json.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config_json.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/config_old.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config_old.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/cpic.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/cpic.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/damage.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/damage.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/defs.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/defs.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/door.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/door.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/draw.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/draw.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/draw_actor.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/draw_actor.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/draw_buffer.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/draw_buffer.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/drawtools.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/drawtools.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/emitter.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/emitter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/events.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/events.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/files.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/files.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/font.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/font.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/font_utils.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/font_utils.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/fps.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/fps.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/game_events.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/game_events.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/game_mode.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/game_mode.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/gamedata.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/gamedata.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/gauge.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/gauge.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/grafx.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/grafx.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/grafx_bg.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/grafx_bg.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/handle_game_events.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/handle_game_events.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/health_gauge.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/health_gauge.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/hud.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/hud.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/hud_defs.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/hud_defs.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/hud_num_popup.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/hud_num_popup.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/joystick.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/joystick.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/json_utils.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/json_utils.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/keyboard.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/keyboard.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/log.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/log.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/los.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/los.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/map.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/map_archive.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_archive.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/map_build.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_build.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/map_cave.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_cave.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/map_classic.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_classic.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/map_new.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_new.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/map_object.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_object.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/map_static.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_static.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/mathc.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mathc/mathc.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/minkowski_hex.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/collision/minkowski_hex.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/mission.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mission.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/mission_convert.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mission_convert.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/mission_static.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mission_static.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/mouse.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mouse.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/msg.pb.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/msg.pb.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/music.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/music.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/net_client.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/net_client.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/net_server.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/net_server.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/net_util.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/net_util.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/nine_slice.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/nine_slice.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/objective.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/objective.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/objs.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/objs.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/palette.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/palette.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/particle.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/particle.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/path_cache.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/path_cache.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pb.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/nanopb/pb.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pb_common.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/nanopb/pb_common.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pb_decode.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/nanopb/pb_decode.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pb_encode.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/nanopb/pb_encode.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pic.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pic.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pic_manager.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pic_manager.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pickup.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pickup.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pickup_class.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pickup_class.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/pics.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pics.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/player.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/player.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/player_hud.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/player_hud.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/player_template.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/player_template.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/powerup.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/powerup.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/quick_play.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/quick_play.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/screen_shake.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/screen_shake.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/sounds.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/sounds.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/sys_config.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/sys_config.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/sys_specifics.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/sys_specifics.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/texture.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/texture.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/thing.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/thing.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/tile.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/tile.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/tile_class.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/tile_class.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/triggers.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/triggers.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/utils.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/utils.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/vector.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/vector.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/wall_clock.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/wall_clock.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/weapon.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/weapon.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/weapon_class.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/weapon_class.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/window_context.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/window_context.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Header Files/yajl_utils.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl_utils.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/AStar.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/AStar.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/XGetopt.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/XGetopt.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/actor_fire.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/actor_fire.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/actor_placement.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/actor_placement.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/actors.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/actors.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/ai.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ai.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/ai_context.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ai_context.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/ai_coop.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ai_coop.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/ai_utils.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ai_utils.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/algorithms.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/algorithms.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/ammo.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/ammo.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/animation.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/animation.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/automap.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/automap.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/blit.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/blit.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/bullet_class.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/bullet_class.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/c_array.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/c_array.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/camera.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/camera.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/campaign_entry.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/campaign_entry.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/campaigns.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/campaigns.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/char_sprites.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/char_sprites.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/character.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/character.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/character_class.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/character_class.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/collision.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/collision/collision.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/color.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/color.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/config.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/config_apply.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config_apply.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/config_io.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config_io.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/config_json.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config_json.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/config_old.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/config_old.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/cpic.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/cpic.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/damage.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/damage.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/defs.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/defs.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/door.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/door.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/draw.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/draw.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/draw_actor.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/draw_actor.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/draw_buffer.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/draw_buffer.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/drawtools.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/drawtools.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/emitter.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/emitter.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/events.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/events.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/files.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/files.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/font.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/font.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/font_utils.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/font_utils.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/fps.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/fps.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/game_events.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/game_events.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/game_mode.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/game_mode.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/gamedata.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/gamedata.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/gauge.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/gauge.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/grafx.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/grafx.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/grafx_bg.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/grafx_bg.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/handle_game_events.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/handle_game_events.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/health_gauge.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/health_gauge.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/hud.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/hud.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/hud_num_popup.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/hud_num_popup.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/joystick.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/joystick.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/json_utils.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/json_utils.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/keyboard.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/keyboard.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/log.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/log.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/los.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/los.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/map.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/map_archive.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_archive.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/map_build.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_build.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/map_cave.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_cave.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/map_classic.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_classic.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/map_new.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_new.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/map_object.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_object.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/map_static.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/map_static.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/mathc.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mathc/mathc.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/minkowski_hex.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/collision/minkowski_hex.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/mission.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mission.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/mission_convert.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mission_convert.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/mission_static.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mission_static.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/mouse.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/mouse.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/msg.pb.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/msg.pb.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/music.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/music.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/net_client.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/net_client.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/net_server.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/net_server.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/net_util.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/net_util.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/nine_slice.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/draw/nine_slice.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/objective.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/objective.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/objs.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/objs.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/palette.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/palette.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/particle.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/particle.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/path_cache.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/path_cache.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/pb_common.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/nanopb/pb_common.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/pb_decode.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/nanopb/pb_decode.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/pb_encode.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/proto/nanopb/pb_encode.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/pic.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pic.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/pic_manager.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pic_manager.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/pickup.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pickup.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/pickup_class.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pickup_class.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/pics.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/pics.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/player.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/player.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/player_hud.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/player_hud.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/player_template.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/player_template.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/powerup.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/powerup.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/quick_play.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/quick_play.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/screen_shake.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/screen_shake.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/sounds.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/sounds.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/texture.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/texture.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/thing.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/thing.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/tile.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/tile.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/tile_class.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/tile_class.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/triggers.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/triggers.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/utils.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/utils.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/vector.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/vector.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/wall_clock.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/hud/wall_clock.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/weapon.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/weapon.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/weapon_class.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/weapon_class.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/window_context.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/window_context.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogs/Source Files/yajl_utils.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl_utils.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/char_editor.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/char_editor.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_brush.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_brush.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_ui.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_ui_cave.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_cave.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_ui_color.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_color.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_ui_common.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_common.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_ui_objectives.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_objectives.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_ui_static.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_static.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_ui_static_additem.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_static_additem.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/editor_ui_weapons.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_weapons.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/nk_window.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/nk_window.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/tile_brush.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/tile_brush.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Header Files/ui_object.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/ui_object.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/char_editor.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/char_editor.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_brush.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_brush.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_ui.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_ui_cave.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_cave.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_ui_color.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_color.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_ui_common.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_common.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_ui_objectives.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_objectives.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_ui_static.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_static.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_ui_static_additem.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_static_additem.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/editor_ui_weapons.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/editor_ui_weapons.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/nk_window.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/nk_window.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/tile_brush.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/tile_brush.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] cdogsedlib/Source Files/ui_object.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/ui_object.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/callbacks.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/callbacks.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/compress.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/compress.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/host.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/host.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/list.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/list.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/packet.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/packet.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/peer.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/peer.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/protocol.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/protocol.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/unix.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/unix.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] enet/Source Files/win32.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/enet/win32.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/Header Files/json.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/json/json.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] json/Source Files/json.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/json/json.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/Header Files/osdialog.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/osdialog/osdialog.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/Source Files/osdialog.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/osdialog/osdialog.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] osdialog/Source Files/osdialog_gtk3.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogsed/osdialog/osdialog_gtk3.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_alloc.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_alloc.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_buf.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_buf.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_common.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/api/yajl_common.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_encode.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_encode.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_gen.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/api/yajl_gen.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_lex.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_lex.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_parse.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/api/yajl_parse.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_parser.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_parser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Header Files/yajl_tree.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/api/yajl_tree.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl_alloc.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_alloc.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl_buf.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_buf.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl_encode.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_encode.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl_gen.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_gen.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl_lex.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_lex.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl_parser.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_parser.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl_tree.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_tree.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl/Source Files/yajl_version.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_version.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_alloc.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_alloc.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_buf.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_buf.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_common.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/api/yajl_common.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_encode.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_encode.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_gen.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/api/yajl_gen.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_lex.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_lex.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_parse.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/api/yajl_parse.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_parser.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_parser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Header Files/yajl_tree.h</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/api/yajl_tree.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl_alloc.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_alloc.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl_buf.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_buf.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl_encode.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_encode.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl_gen.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_gen.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl_lex.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_lex.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl_parser.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_parser.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl_tree.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_tree.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] yajl_s/Source Files/yajl_version.c</name>
+			<type>1</type>
+			<location>/home/samuil/eclipse-cpp-workspace/cdogs-sdl/src/cdogs/yajl/yajl_version.c</location>
+		</link>
+	</linkedResources>
+</projectDescription>

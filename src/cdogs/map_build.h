@@ -53,7 +53,7 @@
 
 typedef struct
 {
-	Map *Map;
+	struct Map *Map;
 	const Mission *mission;
 	const CampaignOptions *co;
 

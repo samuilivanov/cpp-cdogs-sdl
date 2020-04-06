@@ -179,7 +179,7 @@ typedef struct
 		NGunReload GunReload;
 		NGunState GunState;
 		NAddBullet AddBullet;
-		AddParticle AddParticle;
+		struct AddParticle AddParticle;
 		NTrigger TriggerEvent;
 		NExploreTiles ExploreTiles;
 		NRescueCharacter Rescue;

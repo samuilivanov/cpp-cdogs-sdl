@@ -23,7 +23,8 @@
     ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
-#pragma once
+#ifndef SRC_CDOGS_LOG_H_
+#define SRC_CDOGS_LOG_H_
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -61,7 +62,7 @@ void LogModuleSetLevel(const LogModule m, const LogLevel l);
 const char *LogLevelName(const LogLevel l);
 LogLevel StrLogLevel(const char *s);
 
-FILE *gLogFile;
+extern FILE *gLogFile;
 void LogInit(void);
 void LogOpenFile(const char *filename);
 void LogTerminate(void);
@@ -97,3 +98,4 @@ void LogLine(
 	FILE *stream, const LogModule m, const LogLevel l, const char *filename,
 	const int line, const char *function, const char *fmt, ...);
 void LogFlush(FILE *stream);
+#endif

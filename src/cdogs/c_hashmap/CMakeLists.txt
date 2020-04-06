@@ -1,1 +1,1 @@
-add_library(c_hashmap STATIC hashmap.c hashmap.h)
+add_library(c_hashmap STATIC hashmap.cpp hashmap.h)

@@ -59,7 +59,7 @@ TileClassType StrTileClassType(const char *s);
 typedef struct
 {
 	char *Name;
-	const Pic *Pic;
+	const struct Pic *Pic;
 	char *Style;
 	char *StyleType;
 	color_t Mask;

@@ -1,20 +1,20 @@
-cmake_minimum_required(VERSION 3.12)
-project(osdialog C)
+cmake_minimum_required(VERSION 3.10)
+project(osdialog CXX)
 
-set(SOURCES osdialog.c osdialog.h)
+set(SOURCES osdialog.cpp osdialog.h)
 
 if(WIN32)
-    list(APPEND SOURCES osdialog_win.c)
+    list(APPEND SOURCES osdialog_win.cpp)
 elseif(APPLE)
     list(APPEND SOURCES osdialog_mac.m)
 elseif(UNIX)
-    list(APPEND SOURCES osdialog_gtk3.c)
+    list(APPEND SOURCES osdialog_gtk3.cpp)
 else()
     message(FATAL_ERROR "Cannot detect your system")
 endif()
 
 add_library(osdialog "${SOURCES}")
-add_executable(osdialog_test ${SOURCES} test.c)
+add_executable(osdialog_test ${SOURCES} test.cpp)
 
 if(MSVC)
 	target_compile_options(osdialog PUBLIC -MP -W4 -WX /utf-8 -wd4996)

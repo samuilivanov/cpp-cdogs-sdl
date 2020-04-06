@@ -39,11 +39,11 @@ typedef enum
 	SPECTATE_FREE
 } SpectateMode;
 
-typedef struct
+struct Camera
 {
 	DrawBuffer Buffer;
 	struct vec2 lastPosition;
-	HUD HUD;
+	struct HUD HUD;
 	ScreenShake shake;
 	SpectateMode spectateMode;
 	// UID of actor to follow; only used if camera is in follow mode
@@ -53,7 +53,7 @@ typedef struct
 	// immediately follow the next player to join
 	bool FollowNextPlayer;
 	int NumViews;
-} Camera;
+};
 
 void CameraInit(Camera *camera);
 void CameraReset(Camera *camera);

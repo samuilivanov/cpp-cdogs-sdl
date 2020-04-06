@@ -87,7 +87,7 @@ typedef struct
 	CArray Explored; // of bool
 } LineOfSight;
 
-typedef struct
+struct Map
 {
 	CArray Tiles;	// of Tile
 	struct vec2i Size;
@@ -105,7 +105,7 @@ typedef struct
 	struct vec2i ExitEnd;
 
 	int NumExplorableTiles;
-} Map;
+};
 
 extern Map gMap;
 

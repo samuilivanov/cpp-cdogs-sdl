@@ -49,10 +49,10 @@
 #pragma once
 
 #ifdef __EMSCRIPTEN__
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #else
-#include <SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 #endif
 
 #include "c_array.h"

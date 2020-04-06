@@ -50,7 +50,7 @@
 
 #include <stdbool.h>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "c_array.h"
 #include "color.h"
@@ -68,7 +68,7 @@ typedef struct
 	struct vec2i Res;
 	bool Fullscreen;
 	int ScaleFactor;
-	ScaleMode ScaleMode;
+	enum ScaleMode ScaleMode;
 	int Brightness;
 	bool SecondWindow;
 	bool IsEditor;

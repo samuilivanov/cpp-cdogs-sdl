@@ -65,21 +65,21 @@ typedef enum
 const char *SwitchMoveStyleStr(int s);
 int StrSwitchMoveStyle(const char *s);
 
-typedef enum
+enum ScaleMode
 {
 	SCALE_MODE_NN,
 	SCALE_MODE_BILINEAR
-} ScaleMode;
+};
 const char *ScaleModeStr(int q);
 int StrScaleMode(const char *str);
 
-typedef enum
+enum GoreAmount
 {
 	GORE_NONE,
 	GORE_LOW,
 	GORE_MEDIUM,
 	GORE_HIGH
-} GoreAmount;
+};
 const char *GoreAmountStr(int g);
 int StrGoreAmount(const char *s);
 

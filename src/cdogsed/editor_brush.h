@@ -70,7 +70,7 @@ typedef struct
 	BrushType Type;
 	union {
 		int ItemIndex;
-		MapObject *MapObject;
+		struct MapObject *MapObject;
 	} u;
 	int Index2;
 	int MainType;

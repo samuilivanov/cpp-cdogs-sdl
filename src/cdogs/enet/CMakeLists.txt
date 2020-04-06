@@ -58,13 +58,13 @@ endif()
 include_directories(${PROJECT_SOURCE_DIR}/include)
  
 add_library(enet STATIC
-        callbacks.c
-        compress.c
-        host.c
-        list.c
-        packet.c
-        peer.c
-        protocol.c
-        unix.c
-        win32.c
+        callbacks.cpp
+        compress.cpp
+        host.cpp
+        list.cpp
+        packet.cpp
+        peer.cpp
+        protocol.cpp
+        unix.cpp
+        win32.cpp
     )

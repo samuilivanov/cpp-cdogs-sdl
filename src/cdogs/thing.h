@@ -80,7 +80,7 @@ typedef struct
 	int flags;
 	ThingDrawFunc drawFunc;
 	ThingDrawFuncData drawData;
-	CPic CPic;
+	struct CPic CPic;
 	DrawCPicFunc CPicFunc;
 	struct vec2 drawShake;
 	struct vec2i ShadowSize;

@@ -45,7 +45,7 @@ typedef enum
 } PickupType;
 PickupType StrPickupType(const char *s);
 
-typedef struct
+struct PickupClass
 {
 	char *Name;
 	PickupType Type;
@@ -58,7 +58,7 @@ typedef struct
 		int GunId;
 	} u;
 	CPic Pic;
-} PickupClass;
+};
 typedef struct
 {
 	CArray Classes;			// of PickupClass

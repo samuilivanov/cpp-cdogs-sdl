@@ -29,13 +29,13 @@
 #include <stddef.h>
 
 // dynamic array
-typedef struct
+struct CArray
 {
 	void *data;
 	size_t elemSize;
 	size_t size;
 	size_t capacity;
-} CArray;
+};
 
 void CArrayInit(CArray *a, size_t elemSize);
 void CArrayReserve(CArray *a, size_t capacity);
@@ -44,7 +44,7 @@ void CArrayPushBack(CArray *a, const void *elem);	// insert address
 void CArrayInsert(CArray *a, const size_t index, const void *elem);
 void CArrayDelete(CArray *a, const size_t index);
 void CArrayResize(CArray *a, const size_t size, const void *value);
-void *CArrayGet(const CArray *a, const size_t index);	// gets address
+void* CArrayGet(const CArray *a, const size_t index);	// gets address
 void CArraySet(CArray *a, const size_t idx, const void *elem);
 void CArrayClear(CArray *a);
 void CArrayRemoveIf(CArray *a, bool(*removeIf)(const void *));
@@ -57,5 +57,5 @@ void CArrayTerminate(CArray *a);
 #define CA_FOREACH(_type, _var, _a)\
 	for (int _ca_index = 0; _ca_index < (int)(_a).size; _ca_index++)\
 	{\
-		_type *_var = CArrayGet(&(_a), _ca_index);
+		_type *_var = static_cast<_type *>(CArrayGet(&(_a), _ca_index));
 #define CA_FOREACH_END() }

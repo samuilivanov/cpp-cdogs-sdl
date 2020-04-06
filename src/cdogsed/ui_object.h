@@ -85,7 +85,7 @@ typedef struct _UIObject
 		// Button
 		struct
 		{
-			Pic *Pic;
+			struct Pic *Pic;
 			int (*IsDownFunc)(void *);	// whether the button is down
 		} Button;
 		// Custom

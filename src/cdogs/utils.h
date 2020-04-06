@@ -1,52 +1,53 @@
 /*
-	C-Dogs SDL
-	A port of the legendary (and fun) action/arcade cdogs.
-	Copyright (C) 1995 Ronny Wester
-	Copyright (C) 2003 Jeremy Chin
-	Copyright (C) 2003-2007 Lucas Martin-King
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
+ Copyright (C) 1995 Ronny Wester
+ Copyright (C) 2003 Jeremy Chin
+ Copyright (C) 2003-2007 Lucas Martin-King
 
-	This program is free software; you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation; either version 2 of the License, or
-	(at your option) any later version.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-	This file incorporates work covered by the following copyright and
-	permission notice:
+ This file incorporates work covered by the following copyright and
+ permission notice:
 
-	Copyright (c) 2013-2017, 2019-2020 Cong Xu
-	All rights reserved.
+ Copyright (c) 2013-2017, 2019-2020 Cong Xu
+ All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-	Redistributions of source code must retain the above copyright notice, this
-	list of conditions and the following disclaimer.
-	Redistributions in binary form must reproduce the above copyright notice,
-	this list of conditions and the following disclaimer in the documentation
-	and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
-*/
-#pragma once
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
+#ifndef SRC_CDOGS_UTILS_H_
+#define SRC_CDOGS_UTILS_H_
 
 #include <assert.h>
 #include <stdbool.h>
@@ -69,6 +70,8 @@ extern bool gFalse;
 #else
 #define CHALT()
 #endif
+
+// TODO This was all #define no mans land it will be fixed but for now replaced with functions
 
 #define CASSERT(_x, _errmsg)                                                  \
 	{                                                                         \
@@ -94,17 +97,17 @@ extern bool gFalse;
 
 #define CMALLOC(_var, _size)                                                  \
 	{                                                                         \
-		_var = malloc(_size);                                                 \
+		_var = static_cast<decltype(_var)>(malloc(_size));                    \
 		_CCHECKALLOC("CMALLOC", _var, (_size))                                \
 	}
 #define CCALLOC(_var, _size)                                                  \
 	{                                                                         \
-		_var = calloc(1, _size);                                              \
+		_var = static_cast<decltype(_var)>(calloc(1, _size));                                              \
 		_CCHECKALLOC("CCALLOC", _var, (_size))                                \
 	}
 #define CREALLOC(_var, _size)                                                 \
 	{                                                                         \
-		_var = realloc(_var, _size);                                          \
+		_var = static_cast<decltype(_var)>(realloc(_var, _size));                                          \
 		_CCHECKALLOC("CREALLOC", _var, (_size))                               \
 	}
 #define CSTRDUP(_var, _str)                                                   \
@@ -128,17 +131,17 @@ extern bool gFalse;
 #define SIGN(x) ((x) != 0 ? (x) / abs(x) : 1)
 #define SQUARED(x) ((x) * (x))
 
-const char *StrGetFileExt(const char *filename);
+const char* StrGetFileExt(const char *filename);
 
 void PathGetDirname(char *buf, const char *path);
 // Given /path/to/file, return file
-const char *PathGetBasename(const char *path);
+const char* PathGetBasename(const char *path);
 void PathGetWithoutExtension(char *buf, const char *path);
 void PathGetBasenameWithoutExtension(char *buf, const char *path);
 void RealPath(const char *src, char *dest);
 void RelPath(char *buf, const char *to, const char *from);
 void FixPathSeparator(char *dst, const char *src);
-char *CDogsGetCWD(char *buf);
+char* CDogsGetCWD(char *buf);
 void RelPathFromCWD(char *buf, const char *to);
 void GetDataFilePath(char *buf, const char *path);
 
@@ -146,11 +149,10 @@ double Round(double x);
 
 double ToDegrees(double radians);
 
-struct vec2 CalcClosestPointOnLineSegmentToPoint(
-	const struct vec2 l1, const struct vec2 l2, const struct vec2 p);
+struct vec2 CalcClosestPointOnLineSegmentToPoint(const struct vec2 l1,
+		const struct vec2 l2, const struct vec2 p);
 
-typedef enum
-{
+typedef enum {
 	INPUT_DEVICE_UNSET,
 	INPUT_DEVICE_KEYBOARD,
 	INPUT_DEVICE_MOUSE,
@@ -162,20 +164,17 @@ typedef enum
 	INPUT_DEVICE_COUNT
 } input_device_e;
 
-const char *InputDeviceName(const int d, const int deviceIndex);
+const char* InputDeviceName(const int d, const int deviceIndex);
 
-typedef enum
-{
-	ALLYCOLLISION_NORMAL,
-	ALLYCOLLISION_REPEL,
-	ALLYCOLLISION_NONE
+typedef enum {
+	ALLYCOLLISION_NORMAL, ALLYCOLLISION_REPEL, ALLYCOLLISION_NONE
 } AllyCollision;
-const char *AllyCollisionStr(int a);
+const char* AllyCollisionStr(int a);
 int StrAllyCollision(const char *str);
 
-char *IntStr(int i);
-char *PercentStr(int p);
-char *Div8Str(int i);
+char* IntStr(int i);
+char* PercentStr(int p);
+char* Div8Str(int i);
 void CamelToTitle(char *buf, const char *src);
 bool StrEndsWith(const char *str, const char *suffix);
 int Stricmp(const char *a, const char *b);
@@ -197,29 +196,29 @@ int Stricmp(const char *a, const char *b);
 #define RAND_DOUBLE(_low, _high)                                              \
 	((_low) + ((double)rand() / RAND_MAX * ((_high) - (_low))))
 
-typedef struct
-{
+typedef struct {
 	int Id;
 	int Amount;
 } AddAmmo;
 
-typedef enum
-{
+enum BodyPart {
 	BODY_PART_HEAD,
 	BODY_PART_HAIR,
 	BODY_PART_BODY,
 	BODY_PART_LEGS,
 	BODY_PART_GUN,
 	BODY_PART_COUNT
-} BodyPart;
+};
+
+BodyPart &operator++(BodyPart& d);
 
 BodyPart StrBodyPart(const char *s);
 
-typedef enum
-{
+typedef enum {
 	PLACEMENT_ACCESS_ANY,		// place anywhere
 	PLACEMENT_ACCESS_LOCKED,	// place in locked rooms
 	PLACEMENT_ACCESS_NOT_LOCKED // don't place in locked rooms
 } PlacementAccessFlags;
 
 int Pulse256(const int t);
+#endif

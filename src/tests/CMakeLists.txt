@@ -16,9 +16,9 @@ include_directories(
 	${SDL2_MIXER_INCLUDE_DIRS})
 
 add_executable(animated_counter_test
-	animated_counter_test.c
+	animated_counter_test.cpp
 	../animated_counter.h
-	../animated_counter.c)
+	../animated_counter.cpp)
 target_link_libraries(animated_counter_test
 	cbehave
 	cdogs
@@ -27,9 +27,9 @@ target_link_libraries(animated_counter_test
 add_test(NAME animated_counter_test COMMAND animated_counter_test)
 
 add_executable(autosave_test
-	autosave_test.c
+	autosave_test.cpp
 	../autosave.h
-	../autosave.c)
+	../autosave.cpp)
 target_link_libraries(autosave_test
 	cbehave
 	cdogs
@@ -38,49 +38,49 @@ target_link_libraries(autosave_test
 add_test(NAME autosave_test COMMAND autosave_test)
 
 add_executable(c_hashmap_test
-	c_hashmap_test.c
+	c_hashmap_test.cpp
 	../cdogs/c_hashmap/hashmap.h
-	../cdogs/c_hashmap/hashmap.c)
+	../cdogs/c_hashmap/hashmap.cpp)
 target_link_libraries(c_hashmap_test cbehave ${EXTRA_LIBRARIES})
 add_test(NAME c_hashmap_test COMMAND c_hashmap_test)
 
 add_executable(c_array_test
-	c_array_test.c
+	c_array_test.cpp
 	../cdogs/c_array.h
-	../cdogs/c_array.c)
+	../cdogs/c_array.cpp)
 target_link_libraries(c_array_test
 	cbehave ${EXTRA_LIBRARIES})
 add_test(NAME c_array_test COMMAND c_array_test)
 
 add_executable(color_test
-	color_test.c
-	../cdogs/color.c
+	color_test.cpp
+	../cdogs/color.cpp
 	../cdogs/color.h)
 target_link_libraries(color_test cbehave ${EXTRA_LIBRARIES})
 add_test(NAME color_test COMMAND color_test)
 
-add_executable(config_test config_test.c)
+add_executable(config_test config_test.cpp)
 target_link_libraries(config_test
 	cbehave cdogs
 	${SDL2_LIBRARY}
 	${EXTRA_LIBRARIES})
 add_test(NAME config_test COMMAND config_test)
 
-add_executable(json_test json_test.c)
+add_executable(json_test json_test.cpp)
 target_link_libraries(json_test
 	cbehave cdogs
 	${SDL2_LIBRARY}
 	${EXTRA_LIBRARIES})
 add_test(NAME json_test COMMAND json_test)
 
-add_executable(minkowski_hex_test minkowski_hex_test.c)
+add_executable(minkowski_hex_test minkowski_hex_test.cpp)
 target_link_libraries(minkowski_hex_test
 	cbehave cdogs
 	${SDL2_LIBRARY}
 	${EXTRA_LIBRARIES})
 add_test(NAME minkowski_hex_test COMMAND minkowski_hex_test)
 
-add_executable(pic_test pic_test.c)
+add_executable(pic_test pic_test.cpp)
 target_link_libraries(pic_test
 	cbehave cdogs
 	${SDL2_LIBRARY}
@@ -89,14 +89,14 @@ target_link_libraries(pic_test
 # TODO: test disabled since Travis-CI fails with "No available video device"
 #add_test(NAME pic_test COMMAND pic_test)
 
-add_executable(player_test player_test.c)
+add_executable(player_test player_test.cpp)
 target_link_libraries(player_test
 	cbehave cdogs
 	${SDL2_LIBRARY}
 	${EXTRA_LIBRARIES})
 add_test(NAME player_test COMMAND player_test)
 
-add_executable(utils_test utils_test.c)
+add_executable(utils_test utils_test.cpp)
 target_link_libraries(utils_test
 	cbehave cdogs
 	${SDL2_LIBRARY} ${EXTRA_LIBRARIES})

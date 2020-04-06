@@ -4,4 +4,4 @@ else()
 	add_definitions(-Wno-error)
 endif()
 
-add_library(json STATIC json.c json.h)
+add_library(json STATIC json.cpp json.h)

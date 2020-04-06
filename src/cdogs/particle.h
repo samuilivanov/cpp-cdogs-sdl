@@ -86,7 +86,7 @@ typedef struct
 } Particle;
 extern CArray gParticles;	// of Particle
 
-typedef struct
+struct AddParticle
 {
 	const ParticleClass *Class;
 	int ActorUID;
@@ -99,7 +99,7 @@ typedef struct
 	struct vec2 DrawScale;
 	color_t Mask;
 	char Text[128];
-} AddParticle;
+};
 
 void ParticleClassesInit(ParticleClasses *classes, const char *filename);
 void ParticleClassesLoadJSON(CArray *classes, json_t *root);

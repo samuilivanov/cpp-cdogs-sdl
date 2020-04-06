@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(cbehave C)
+project(cbehave CXX)
 
 include_directories(.)
 
@@ -13,4 +13,4 @@ endif()
 
 #add_subdirectory(examples)
 
-add_library(cbehave STATIC cbehave.h cbehave.c apr_ring.h rlutil/rlutil.h)
+add_library(cbehave STATIC cbehave.h cbehave.cpp apr_ring.h rlutil/rlutil.h)

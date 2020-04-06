@@ -30,9 +30,9 @@
 
 #include <stdbool.h>
 
-#include <SDL_events.h>
-#include <SDL_gamecontroller.h>
-#include <SDL_haptic.h>
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_gamecontroller.h>
+#include <SDL2/SDL_haptic.h>
 
 #include "c_array.h"
 #include "color.h"

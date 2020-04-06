@@ -1,0 +1,6 @@
+doc/original_readme.txt:370:pickup-zone will be highlighted, both on-screen and on the map. The player(s) -
+src/briefing_screens.cpp:875:			&gGraphicsDevice, &o->u.Pickup->Pic,
+src/cdogsed/editor_ui_objectives.cpp:504:	const Pic *newPic = CPicGetPic(&obj->u.Pickup->Pic, 0);
+src/cdogsed/editor_ui_static_additem.cpp:140:		const Pic *p = CPicGetPic(&obj->u.Pickup->Pic, 0);
+src/cdogs/map.cpp:316:	strcpy(e.u.AddPickup.PickupClass, o->u.Pickup->Name);
+src/cdogs/map_archive.cpp:469:			AddStringPair(objNode, "Pickup", o->u.Pickup->Name);

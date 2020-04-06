@@ -28,8 +28,8 @@
 */
 #pragma once
 
-#include <SDL_mouse.h>
-#include <SDL_stdinc.h>
+#include <SDL2/SDL_mouse.h>
+#include <SDL2/SDL_stdinc.h>
 
 #include "pic.h"
 #include "vector.h"

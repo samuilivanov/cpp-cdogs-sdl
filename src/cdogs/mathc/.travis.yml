@@ -1,7 +1,8 @@
-language: c
+language: cxx
 compiler:
   - clang
   - gcc
+  - g++
 
 script:
   - ./run_tests.sh

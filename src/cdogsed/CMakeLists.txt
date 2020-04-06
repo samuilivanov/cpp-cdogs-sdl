@@ -4,19 +4,19 @@ include_directories(
 	${SDL2_IMAGE_INCLUDE_DIRS}
 	${SDL2_MIXER_INCLUDE_DIRS})
 set(CDOGSED_SOURCES
-	char_editor.c
-	editor_brush.c
-	editor_ui.c
-	editor_ui_cave.c
-	editor_ui_color.c
-	editor_ui_common.c
-	editor_ui_objectives.c
-	editor_ui_static.c
-	editor_ui_static_additem.c
-	editor_ui_weapons.c
-	nk_window.c
-	tile_brush.c
-	ui_object.c)
+	char_editor.cpp
+	editor_brush.cpp
+	editor_ui.cpp
+	editor_ui_cave.cpp
+	editor_ui_color.cpp
+	editor_ui_common.cpp
+	editor_ui_objectives.cpp
+	editor_ui_static.cpp
+	editor_ui_static_additem.cpp
+	editor_ui_weapons.cpp
+	nk_window.cpp
+	tile_brush.cpp
+	ui_object.cpp)
 set(CDOGSED_HEADERS
 	char_editor.h
 	editor_brush.h

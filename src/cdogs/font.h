@@ -25,7 +25,7 @@
 */
 #pragma once
 
-#include <SDL_surface.h>
+#include <SDL2/SDL_surface.h>
 
 #include "c_array.h"
 #include "vector.h"

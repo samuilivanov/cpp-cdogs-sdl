@@ -76,14 +76,14 @@ color_t ObjectiveTypeColor(const ObjectiveType t);
 #define OBJECTIVE_UNKNOWNCOUNT	8
 #define OBJECTIVE_NOACCESS		16
 
-typedef struct
+struct Objective
 {
 	char *Description;
 	ObjectiveType Type;
 	union
 	{
 		int Index;
-		MapObject *MapObject;
+		struct MapObject *MapObject;
 		const PickupClass *Pickup;
 	} u;
 	int Count;
@@ -92,7 +92,7 @@ typedef struct
 	color_t color;
 	int placed;
 	int done;
-} Objective;
+};
 
 void ObjectiveLoadJSON(Objective *o, json_t *node, const int version);
 // Setup the objective counters for mission initialisation

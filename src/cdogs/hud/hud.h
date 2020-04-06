@@ -53,7 +53,7 @@ typedef struct
 	int lastHealth;
 } HUDPlayer;
 
-typedef struct
+struct HUD
 {
 	struct MissionOptions *mission;
 	char message[256];
@@ -65,7 +65,7 @@ typedef struct
 	HUDPlayer hudPlayers[MAX_LOCAL_PLAYERS];
 	bool showExit;
 	HUDDrawData DrawData;
-} HUD;
+};
 
 void HUDInit(
 	HUD *hud,

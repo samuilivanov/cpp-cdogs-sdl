@@ -38,11 +38,11 @@ typedef struct
 	Pic pic;
 	char *name;
 } NamedPic;
-typedef struct
+struct NamedSprites
 {
 	CArray pics;	// of Pic
 	char *name;
-} NamedSprites;
+};
 
 typedef enum
 {
@@ -53,12 +53,12 @@ typedef enum
 } PicType;
 PicType StrPicType(const char *s);
 // Abstract drawable pic, can draw multiple types of pics
-typedef struct
+struct CPic
 {
 	PicType Type;
 	union
 	{
-		const Pic *Pic;
+		const struct Pic *Pic;
 		const CArray *Sprites;	// of Pic
 		struct
 		{
@@ -69,7 +69,7 @@ typedef struct
 		} Animated;
 	} u;
 	color_t Mask;
-} CPic;
+};
 typedef struct
 {
 	direction_e Dir;
