@@ -60,9 +60,9 @@
 #define HAS_SOCKLEN_T 1
 #endif
 
-#ifndef HAS_SOCKLEN_T
-typedef int socklen_t;
-#endif
+//#ifndef HAS_SOCKLEN_T
+//typedef int socklen_t;
+//#endif
 
 #ifndef MSG_NOSIGNAL
 #define MSG_NOSIGNAL 0

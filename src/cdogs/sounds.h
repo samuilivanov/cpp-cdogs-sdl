@@ -51,12 +51,8 @@
 
 #include <stdbool.h>
 
-#ifdef __EMSCRIPTEN__
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
-#else
-#include <SDL2/SDL_mixer.h>
-#endif
 
 #include "c_array.h"
 #include "c_hashmap/hashmap.h"
