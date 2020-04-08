@@ -2,6 +2,11 @@
 workspace "cdogs-cdl"
    configurations { "Debug", "Release" }
    
+   	flags
+	{
+		"MultiProcessorCompile"
+	}
+   
 	buildoptions
 	{
 		"`pkg-config --cflags --libs gtk+-3.0`",

@@ -215,7 +215,6 @@ OBJECTS := \
 	$(OBJDIR)/prep.o \
 	$(OBJDIR)/prep_equip.o \
 	$(OBJDIR)/screens_end.o \
-	$(OBJDIR)/testtttt.o \
 	$(OBJDIR)/weapon_menu.o \
 
 RESOURCES := \
@@ -723,9 +722,6 @@ $(OBJDIR)/prep_equip.o: src/prep_equip.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/screens_end.o: src/screens_end.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/testtttt.o: src/testtttt.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/weapon_menu.o: src/weapon_menu.cpp
