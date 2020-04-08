@@ -185,7 +185,6 @@
  */
 #define APR_RING_PREV(ep, link)	(ep)->link.prev
 
-
 /**
  * Initialize a ring
  * @param hp   The head of the ring
@@ -216,7 +215,6 @@
 	APR_RING_NEXT((ep), link) = (ep);				\
 	APR_RING_PREV((ep), link) = (ep);				\
     } while (0)
-
 
 /**
  * Splice the sequence ep1..epN into the ring before element lep
@@ -275,7 +273,6 @@
  */
 #define APR_RING_INSERT_AFTER(lep, nep, link)				\
 	APR_RING_SPLICE_AFTER((lep), (nep), (nep), link)
-
 
 /**
  * Splice the sequence ep1..epN into the ring before the first element
@@ -511,6 +508,6 @@
 #define APR_RING_CHECK_ELEM_CONSISTENCY(ep, elem, link)
 #endif
 
-/** @} */ 
+/** @} */
 
 #endif /* !APR_RING_H */

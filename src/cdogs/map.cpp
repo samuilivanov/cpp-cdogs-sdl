@@ -115,7 +115,8 @@ Tile* MapGetTile(const Map *map, const struct vec2i pos) {
 	if (!MapIsTileIn(map, pos)) {
 		return NULL;
 	}
-	return static_cast<Tile*>(CArrayGet(&map->Tiles, pos.y * map->Size.x + pos.x));
+	return static_cast<Tile*>(CArrayGet(&map->Tiles,
+			pos.y * map->Size.x + pos.x));
 }
 
 bool MapIsTileIn(const Map *map, const struct vec2i pos) {
@@ -276,7 +277,8 @@ bool MapPosIsInLockedRoom(const Map *map, const struct vec2 pos) {
 
 void MapPlaceCollectible(const Mission *m, const int objective,
 		const struct vec2 pos) {
-	const Objective *o = static_cast<const Objective*>(CArrayGet(&m->Objectives, objective));
+	const Objective *o = static_cast<const Objective*>(CArrayGet(&m->Objectives,
+			objective));
 	GameEvent e = GameEventNew(GAME_EVENT_ADD_PICKUP);
 	e.u.AddPickup.UID = PickupsGetNextUID();
 	strcpy(e.u.AddPickup.PickupClass, o->u.Pickup->Name);

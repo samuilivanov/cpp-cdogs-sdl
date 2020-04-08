@@ -64,7 +64,7 @@ enum key_code_e {
 	KEY_CODE_MAP
 };
 
-key_code_e & operator++(key_code_e & d);
+key_code_e& operator++(key_code_e &d);
 const char* KeycodeStr(int k);
 
 typedef enum {

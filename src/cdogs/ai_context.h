@@ -1,30 +1,30 @@
 /*
-    C-Dogs SDL
-    A port of the legendary (and fun) action/arcade cdogs.
-    Copyright (c) 2013-2015, 2019 Cong Xu
-    All rights reserved.
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
+ Copyright (c) 2013-2015, 2019 Cong Xu
+ All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-    Redistributions of source code must retain the above copyright notice, this
-    list of conditions and the following disclaimer.
-    Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #pragma once
 
 #include "config.h"
@@ -36,8 +36,7 @@
 
 // State for what the AI is currently doing
 // Used for AI chatter
-typedef enum
-{
+typedef enum {
 	AI_STATE_NONE,
 	AI_STATE_IDLE,
 	AI_STATE_DIE,
@@ -49,18 +48,15 @@ typedef enum
 	AI_STATE_NEXT_OBJECTIVE
 } AIState;
 // State for what the AI is doing when confused
-typedef enum
-{
+typedef enum {
 	AI_CONFUSION_CONFUSED,	// perform a random action
 	AI_CONFUSION_CORRECT	// perform the right action (correct for confusion)
 } AIConfusionType;
-typedef struct
-{
+typedef struct {
 	AIConfusionType Type;
 	int Cmd;
 } AIConfusionState;
-typedef enum
-{
+typedef enum {
 	AI_OBJECTIVE_TYPE_NORMAL,
 	AI_OBJECTIVE_TYPE_KEY,
 	AI_OBJECTIVE_TYPE_EXIT,
@@ -69,27 +65,23 @@ typedef enum
 } AIObjectiveType;
 // State for AI attempting to complete an objective
 // This is to prevent excessive pathfinding calls
-typedef struct
-{
+typedef struct {
 	AIObjectiveType Type;
 	bool IsDestructible;
-	union
-	{
+	union {
 		const Objective *Obj;
 		int UID;
 	} u;
 	int LastDone;
 	struct vec2 Goal;
 } AIObjectiveState;
-typedef struct
-{
+typedef struct {
 	struct vec2i Goal;
 	CachedPath Path;
 	int PathIndex;
 	bool IsFollowing;
 } AIGotoContext;
-typedef struct
-{
+typedef struct {
 	int LastCmd;
 	// Delay in executing consecutive actions;
 	// Used to let the AI perform one action for a set amount of time
@@ -107,9 +99,9 @@ typedef struct
 	int OnGunId;
 } AIContext;
 
-AIContext *AIContextNew(void);
+AIContext* AIContextNew(void);
 void AIContextDestroy(AIContext *c);
 
-const char *AIStateGetChatterText(const AIState s);
+const char* AIStateGetChatterText(const AIState s);
 bool AIContextShowChatter(const AIChatterFrequency f);
 bool AIContextSetState(AIContext *c, const AIState s);

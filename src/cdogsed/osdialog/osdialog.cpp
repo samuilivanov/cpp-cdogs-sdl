@@ -3,16 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-char *osdialog_strndup(const char *s, size_t n) {
+char* osdialog_strndup(const char *s, size_t n) {
 	char *d = static_cast<char*>(OSDIALOG_MALLOC(n + 1));
 	memcpy(d, s, n);
 	d[n] = '\0';
 	return d;
 }
 
-osdialog_filters *osdialog_filters_parse(const char *str) {
-	osdialog_filters *filters_head = static_cast<osdialog_filters*>(OSDIALOG_MALLOC(sizeof(osdialog_filters)));
+osdialog_filters* osdialog_filters_parse(const char *str) {
+	osdialog_filters *filters_head =
+			static_cast<osdialog_filters*>(OSDIALOG_MALLOC(
+					sizeof(osdialog_filters)));
 	filters_head->next = NULL;
 
 	osdialog_filters *filters = filters_head;
@@ -21,35 +22,45 @@ osdialog_filters *osdialog_filters_parse(const char *str) {
 	const char *text = str;
 	while (1) {
 		switch (*str) {
-			case ':': {
-				filters->name = osdialog_strndup(text, str - text);
-				filters->patterns = static_cast<osdialog_filter_patterns*>(OSDIALOG_MALLOC(sizeof(osdialog_filter_patterns)));
-				patterns = filters->patterns;
-				patterns->next = NULL;
-				text = str + 1;
-			} break;
-			case ',': {
-				assert(patterns);
-				patterns->pattern = osdialog_strndup(text, str - text);
-				patterns->next = static_cast<osdialog_filter_patterns*>(OSDIALOG_MALLOC(sizeof(osdialog_filter_patterns)));
-				patterns = patterns->next;
-				patterns->next = NULL;
-				text = str + 1;
-			} break;
-			case ';': {
-				assert(patterns);
-				patterns->pattern = osdialog_strndup(text, str - text);
-				filters->next = static_cast<osdialog_filters*>(OSDIALOG_MALLOC(sizeof(osdialog_filters)));
-				filters = filters->next;
-				filters->next = NULL;
-				patterns = NULL;
-				text = str + 1;
-			} break;
-			case '\0': {
-				assert(patterns);
-				patterns->pattern = osdialog_strndup(text, str - text);
-			} break;
-			default: break;
+		case ':': {
+			filters->name = osdialog_strndup(text, str - text);
+			filters->patterns =
+					static_cast<osdialog_filter_patterns*>(OSDIALOG_MALLOC(
+							sizeof(osdialog_filter_patterns)));
+			patterns = filters->patterns;
+			patterns->next = NULL;
+			text = str + 1;
+		}
+			break;
+		case ',': {
+			assert(patterns);
+			patterns->pattern = osdialog_strndup(text, str - text);
+			patterns->next =
+					static_cast<osdialog_filter_patterns*>(OSDIALOG_MALLOC(
+							sizeof(osdialog_filter_patterns)));
+			patterns = patterns->next;
+			patterns->next = NULL;
+			text = str + 1;
+		}
+			break;
+		case ';': {
+			assert(patterns);
+			patterns->pattern = osdialog_strndup(text, str - text);
+			filters->next = static_cast<osdialog_filters*>(OSDIALOG_MALLOC(
+					sizeof(osdialog_filters)));
+			filters = filters->next;
+			filters->next = NULL;
+			patterns = NULL;
+			text = str + 1;
+		}
+			break;
+		case '\0': {
+			assert(patterns);
+			patterns->pattern = osdialog_strndup(text, str - text);
+		}
+			break;
+		default:
+			break;
 		}
 		if (!*str)
 			break;

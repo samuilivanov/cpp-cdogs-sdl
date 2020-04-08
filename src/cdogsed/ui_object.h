@@ -37,12 +37,8 @@
 
 #include "editor_brush.h"
 
-typedef enum
-{
-	UITYPE_NONE,
-	UITYPE_LABEL,
-	UITYPE_TEXTBOX,
-	UITYPE_BUTTON,	// click button with picture
+typedef enum {
+	UITYPE_NONE, UITYPE_LABEL, UITYPE_TEXTBOX, UITYPE_BUTTON,// click button with picture
 	UITYPE_CONTEXT_MENU,	// appear on mouse click
 	UITYPE_CUSTOM
 } UIType;
@@ -53,8 +49,7 @@ typedef enum
 #define UI_SELECT_ONLY_FIRST					8
 #define UI_ENABLED_WHEN_PARENT_HIGHLIGHTED_ONLY	16
 
-typedef struct _UIObject
-{
+typedef struct _UIObject {
 	UIType Type;
 	int Id;
 	int Id2;
@@ -69,48 +64,47 @@ typedef struct _UIObject
 	struct _UIObject *Highlighted;
 	bool DoNotHighlight;
 	bool IsBackground;
-	union
-	{
+	union {
 		// Labels
-		const char *(*LabelFunc)(struct _UIObject *, void *);
+		const char* (*LabelFunc)(struct _UIObject*, void*);
 		// Text boxes
-		struct
-		{
-			char *(*TextLinkFunc)(struct _UIObject *, void *);
+		struct {
+			char* (*TextLinkFunc)(struct _UIObject*, void*);
 			int MaxLen;	// Buffer should hold MaxLen + 1
-			char **(*TextSourceFunc)(void *);
+			char** (*TextSourceFunc)(void*);
 			bool IsEditable;
 			char *Hint;
 		} Textbox;
 		// Button
-		struct
-		{
+		struct {
 			struct Pic *Pic;
-			int (*IsDownFunc)(void *);	// whether the button is down
+			int (*IsDownFunc)(void*);	// whether the button is down
 		} Button;
 		// Custom
-		void (*CustomDrawFunc)(struct _UIObject *, GraphicsDevice *g, struct vec2i, void *);
+		void (*CustomDrawFunc)(struct _UIObject*, GraphicsDevice *g,
+				struct vec2i, void*);
 	} u;
 	char *Label;
 	bool IsDynamicLabel;
 	void *Data;
 	int IsDynamicData;
-	EditorResult (*ChangeFunc)(void *, int d);
+	EditorResult (*ChangeFunc)(void*, int d);
 	// Function that's called when the control is activated with shift key held
-	EditorResult (*ChangeFuncAlt)(void *, int d);
+	EditorResult (*ChangeFuncAlt)(void*, int d);
 	// Whether the change func disables parent context menus (default true)
 	bool ChangeDisablesContext;
-	void (*OnFocusFunc)(struct _UIObject *, void *);
+	void (*OnFocusFunc)(struct _UIObject*, void*);
 	// Returns whether mission changed
-	bool (*OnUnfocusFunc)(void *);
+	bool (*OnUnfocusFunc)(void*);
 	// Optional function to check whether this UI object should be visible
-	void (*CheckVisible)(struct _UIObject *, void *);
+	void (*CheckVisible)(struct _UIObject*, void*);
 } UIObject;
 
-UIObject *UIObjectCreate(UIType type, int id, struct vec2i pos, struct vec2i size);
+UIObject* UIObjectCreate(UIType type, int id, struct vec2i pos,
+		struct vec2i size);
 void UIObjectSetDynamicLabel(UIObject *o, const char *label);
 void UIButtonSetPic(UIObject *o, Pic *pic);
-UIObject *UIObjectCopy(const UIObject *o);
+UIObject* UIObjectCopy(const UIObject *o);
 void UIObjectDestroy(UIObject *o);
 void UIObjectAddChild(UIObject *o, UIObject *c);
 void UITabAddChild(UIObject *o, UIObject *c, char *label);
@@ -125,8 +119,8 @@ EditorResult UIObjectChange(UIObject *o, const int d, const bool shift);
 EditorResult UIObjectAddChar(UIObject *o, char c);
 EditorResult UIObjectDelChar(UIObject *o);
 
-void UIObjectDraw(
-	UIObject *o, GraphicsDevice *g, struct vec2i pos, struct vec2i mouse, CArray *drawObjs);
+void UIObjectDraw(UIObject *o, GraphicsDevice *g, struct vec2i pos,
+		struct vec2i mouse, CArray *drawObjs);
 
 // Get the UIObject that is at pos (e.g. for mouse clicks)
 bool UITryGetObject(UIObject *o, struct vec2i pos, UIObject **out);

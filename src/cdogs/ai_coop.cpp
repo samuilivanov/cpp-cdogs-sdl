@@ -134,7 +134,9 @@ static int AICoopGetCmdNormal(TActor *actor) {
 			// Only look for bullets
 				if (tid->Kind != KIND_MOBILEOBJECT)
 					continue;
-				const TMobileObject *mo = static_cast<const TMobileObject*>(CArrayGet(&gMobObjs, tid->Id));
+				const TMobileObject *mo =
+						static_cast<const TMobileObject*>(CArrayGet(&gMobObjs,
+								tid->Id));
 				if (mo->bulletClass->HurtAlways) {
 					dangerBulletPos = mo->thing.Pos;
 					break;

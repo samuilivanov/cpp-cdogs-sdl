@@ -27,69 +27,55 @@
 
 #include "log.h"
 
-
-SDL_Texture *TextureCreate(
-	SDL_Renderer *renderer, const SDL_TextureAccess access, const struct vec2i res,
-	const SDL_BlendMode blend, const Uint8 alpha)
-{
+SDL_Texture* TextureCreate(SDL_Renderer *renderer,
+		const SDL_TextureAccess access, const struct vec2i res,
+		const SDL_BlendMode blend, const Uint8 alpha) {
 	// Don't create 0 sized textures
-	if (svec2i_is_zero(res))
-	{
+	if (svec2i_is_zero(res)) {
 		LOG(LM_GFX, LL_ERROR, "attempting to create 0 sized texture");
 		return NULL;
 	}
-	SDL_Texture *t = SDL_CreateTexture(
-		renderer, SDL_PIXELFORMAT_ARGB8888, access, res.x, res.y);
-	if (t == NULL)
-	{
+	SDL_Texture *t = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
+			access, res.x, res.y);
+	if (t == NULL) {
 		LOG(LM_GFX, LL_ERROR, "cannot create texture: %s", SDL_GetError());
 		return NULL;
 	}
-	if (SDL_SetTextureBlendMode(t, blend) != 0)
-	{
+	if (SDL_SetTextureBlendMode(t, blend) != 0) {
 		LOG(LM_GFX, LL_ERROR, "cannot set blend mode: %s", SDL_GetError());
 		return NULL;
 	}
-	if (SDL_SetTextureAlphaMod(t, alpha) != 0)
-	{
+	if (SDL_SetTextureAlphaMod(t, alpha) != 0) {
 		LOG(LM_GFX, LL_ERROR, "cannot set texture alpha: %s", SDL_GetError());
 		return NULL;
 	}
 	return t;
 }
 
-void TextureRender(
-	SDL_Texture *t, SDL_Renderer *r, const Rect2i src, const Rect2i dest,
-	const color_t mask, const double angle, const SDL_RendererFlip flip)
-{
-	if (SDL_SetTextureColorMod(t, mask.r, mask.g, mask.b) != 0)
-	{
+void TextureRender(SDL_Texture *t, SDL_Renderer *r, const Rect2i src,
+		const Rect2i dest, const color_t mask, const double angle,
+		const SDL_RendererFlip flip) {
+	if (SDL_SetTextureColorMod(t, mask.r, mask.g, mask.b) != 0) {
 		LOG(LM_MAIN, LL_ERROR, "Failed to set texture mask: %s",
-			SDL_GetError());
+				SDL_GetError());
 	}
-	if (mask.a < 255 && SDL_SetTextureAlphaMod(t, mask.a) != 0)
-	{
+	if (mask.a < 255 && SDL_SetTextureAlphaMod(t, mask.a) != 0) {
 		LOG(LM_MAIN, LL_ERROR, "Failed to set texture alpha: %s",
-			SDL_GetError());
+				SDL_GetError());
 	}
-	const SDL_Rect srcRect = {
-		src.Pos.x, src.Pos.y, src.Size.x, src.Size.y
-	};
+	const SDL_Rect srcRect = { src.Pos.x, src.Pos.y, src.Size.x, src.Size.y };
 	const SDL_Rect *srcP = Rect2iIsZero(src) ? NULL : &srcRect;
-	const SDL_Rect destRect = {
-		dest.Pos.x, dest.Pos.y, dest.Size.x, dest.Size.y
-	};
+	const SDL_Rect destRect =
+			{ dest.Pos.x, dest.Pos.y, dest.Size.x, dest.Size.y };
 	const SDL_Rect *dstP = Rect2iIsZero(dest) ? NULL : &destRect;
 
-	if (SDL_RenderCopyEx(r, t, srcP, dstP, angle, NULL, flip) != 0)
-	{
+	if (SDL_RenderCopyEx(r, t, srcP, dstP, angle, NULL, flip) != 0) {
 		LOG(LM_MAIN, LL_ERROR, "Failed to render texture: %s", SDL_GetError());
 	}
 	// Reset
 	// TODO: not sure why this reset is necessary and we can't always set alpha
-	if (mask.a < 255 && SDL_SetTextureAlphaMod(t, 255) != 0)
-	{
+	if (mask.a < 255 && SDL_SetTextureAlphaMod(t, 255) != 0) {
 		LOG(LM_MAIN, LL_ERROR, "Failed to reset texture alpha: %s",
-			SDL_GetError());
+				SDL_GetError());
 	}
 }

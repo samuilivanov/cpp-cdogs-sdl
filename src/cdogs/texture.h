@@ -29,11 +29,10 @@
 
 #include "vector.h"
 
+SDL_Texture* TextureCreate(SDL_Renderer *renderer,
+		const SDL_TextureAccess access, const struct vec2i res,
+		const SDL_BlendMode blend, const Uint8 alpha);
 
-SDL_Texture *TextureCreate(
-	SDL_Renderer *renderer, const SDL_TextureAccess access, const struct vec2i res,
-	const SDL_BlendMode blend, const Uint8 alpha);
-
-void TextureRender(
-	SDL_Texture *t, SDL_Renderer *r, const Rect2i src, const Rect2i dest,
-	const color_t mask, const double angle, const SDL_RendererFlip flip);
+void TextureRender(SDL_Texture *t, SDL_Renderer *r, const Rect2i src,
+		const Rect2i dest, const color_t mask, const double angle,
+		const SDL_RendererFlip flip);

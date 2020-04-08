@@ -94,7 +94,7 @@ enum direction_e {
 	DIRECTION_COUNT
 };
 
-direction_e& operator++(direction_e & d);
+direction_e& operator++(direction_e &d);
 
 typedef enum {
 	SPECIAL_NONE,

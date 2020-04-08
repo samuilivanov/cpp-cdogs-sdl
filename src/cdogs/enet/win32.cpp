@@ -1,7 +1,7 @@
 /** 
  @file  win32.c
  @brief ENet Win32 system specific functions
-*/
+ */
 #ifdef _WIN32
 
 #define ENET_BUILDING_LIB 1

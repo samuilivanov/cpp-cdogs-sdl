@@ -24,8 +24,7 @@ extern "C" {
  * 4) Substreams will modify max_size and bytes_written. Don't use them
  *    to calculate any pointers.
  */
-struct pb_ostream_s
-{
+struct pb_ostream_s {
 #ifdef PB_BUFFER_ONLY
     /* Callback pointer is not used in buffer-only configuration.
      * Having an int pointer here allows binary compatibility but
@@ -35,14 +34,14 @@ struct pb_ostream_s
      */
     int *callback;
 #else
-    bool (*callback)(pb_ostream_t *stream, const uint8_t *buf, size_t count);
+	bool (*callback)(pb_ostream_t *stream, const uint8_t *buf, size_t count);
 #endif
-    void *state;          /* Free field for use by callback implementation. */
-    size_t max_size;      /* Limit number of output bytes written (or use SIZE_MAX). */
-    size_t bytes_written; /* Number of bytes written so far. */
-    
+	void *state; /* Free field for use by callback implementation. */
+	size_t max_size; /* Limit number of output bytes written (or use SIZE_MAX). */
+	size_t bytes_written; /* Number of bytes written so far. */
+
 #ifndef PB_NO_ERRMSG
-    const char *errmsg;
+	const char *errmsg;
 #endif
 };
 
@@ -64,16 +63,19 @@ struct pb_ostream_s
  *    stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
  *    pb_encode(&stream, MyMessage_fields, &msg);
  */
-bool pb_encode(pb_ostream_t *stream, const pb_field_t fields[], const void *src_struct);
+bool pb_encode(pb_ostream_t *stream, const pb_field_t fields[],
+		const void *src_struct);
 
 /* Same as pb_encode, but prepends the length of the message as a varint.
  * Corresponds to writeDelimitedTo() in Google's protobuf API.
  */
-bool pb_encode_delimited(pb_ostream_t *stream, const pb_field_t fields[], const void *src_struct);
+bool pb_encode_delimited(pb_ostream_t *stream, const pb_field_t fields[],
+		const void *src_struct);
 
 /* Encode the message to get the size of the encoded data, but do not store
  * the data. */
-bool pb_get_encoded_size(size_t *size, const pb_field_t fields[], const void *src_struct);
+bool pb_get_encoded_size(size_t *size, const pb_field_t fields[],
+		const void *src_struct);
 
 /**************************************
  * Functions for manipulating streams *
@@ -108,7 +110,6 @@ pb_ostream_t pb_ostream_from_buffer(uint8_t *buf, size_t bufsize);
  */
 bool pb_write(pb_ostream_t *stream, const uint8_t *buf, size_t count);
 
-
 /************************************************
  * Helper functions for writing field callbacks *
  ************************************************/
@@ -119,7 +120,8 @@ bool pb_encode_tag_for_field(pb_ostream_t *stream, const pb_field_t *field);
 
 /* Encode field header by manually specifing wire type. You need to use this
  * if you want to write out packed arrays from a callback field. */
-bool pb_encode_tag(pb_ostream_t *stream, pb_wire_type_t wiretype, uint32_t field_number);
+bool pb_encode_tag(pb_ostream_t *stream, pb_wire_type_t wiretype,
+		uint32_t field_number);
 
 /* Encode an integer in the varint format.
  * This works for bool, enum, int32, int64, uint32 and uint64 field types. */
@@ -145,7 +147,8 @@ bool pb_encode_fixed64(pb_ostream_t *stream, const void *value);
  * with pb_encode(). This internally encodes the submessage twice, first to
  * calculate message size and then to actually write it out.
  */
-bool pb_encode_submessage(pb_ostream_t *stream, const pb_field_t fields[], const void *src_struct);
+bool pb_encode_submessage(pb_ostream_t *stream, const pb_field_t fields[],
+		const void *src_struct);
 
 #ifdef __cplusplus
 } /* extern "C" */

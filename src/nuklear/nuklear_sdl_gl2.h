@@ -14,12 +14,12 @@
 #define NK_SDL_GL2_H_
 
 #include <SDL.h>
-NK_API struct nk_context*   nk_sdl_init(SDL_Window *win);
-NK_API void                 nk_sdl_font_stash_begin(struct nk_font_atlas **atlas);
-NK_API void                 nk_sdl_font_stash_end(void);
-NK_API int                  nk_sdl_handle_event(SDL_Event *evt);
-NK_API void                 nk_sdl_render(enum nk_anti_aliasing);
-NK_API void                 nk_sdl_shutdown(void);
+NK_API struct nk_context* nk_sdl_init(SDL_Window *win);
+NK_API void nk_sdl_font_stash_begin(struct nk_font_atlas **atlas);
+NK_API void nk_sdl_font_stash_end(void);
+NK_API int nk_sdl_handle_event(SDL_Event *evt);
+NK_API void nk_sdl_render(enum nk_anti_aliasing);
+NK_API void nk_sdl_shutdown(void);
 
 #endif
 /*

@@ -1,30 +1,30 @@
 /*
-	C-Dogs SDL
-	A port of the legendary (and fun) action/arcade cdogs.
-	Copyright (c) 2018-2020 Cong Xu
-	All rights reserved.
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
+ Copyright (c) 2018-2020 Cong Xu
+ All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-	Redistributions of source code must retain the above copyright notice, this
-	list of conditions and the following disclaimer.
-	Redistributions in binary form must reproduce the above copyright notice,
-	this list of conditions and the following disclaimer in the documentation
-	and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #pragma once
 
 #include <stdbool.h>
@@ -44,8 +44,7 @@
 #define Y_TILES			((gGraphicsDevice.cachedConfig.Res.y + TILE_HEIGHT - 1) / TILE_HEIGHT + 2)
 #define Y_TILES_HALF    ((Y_TILES + 1 / 2)
 
-typedef enum
-{
+typedef enum {
 	TILE_CLASS_FLOOR,
 	TILE_CLASS_WALL,
 	TILE_CLASS_DOOR,
@@ -53,11 +52,10 @@ typedef enum
 	TILE_CLASS_COUNT,
 } TileClassType;
 
-const char *TileClassTypeStr(const TileClassType t);
+const char* TileClassTypeStr(const TileClassType t);
 TileClassType StrTileClassType(const char *s);
 
-typedef struct
-{
+typedef struct {
 	char *Name;
 	const struct Pic *Pic;
 	char *Style;
@@ -71,8 +69,7 @@ typedef struct
 	TileClassType Type;
 } TileClass;
 
-typedef struct
-{
+typedef struct {
 	map_t classes;	// of TileClass *
 	map_t customClasses;	// of TileClass *
 } TileClasses;
@@ -90,28 +87,24 @@ void TileClassesTerminate(TileClasses *c);
 void TileClassDestroy(any_t data);
 void TileClassTerminate(TileClass *tc);
 
-void TileClassInit(
-	TileClass *t, PicManager *pm, const TileClass *base,
-	const char *style, const char *type,
-	const color_t mask, const color_t maskAlt);
-void TileClassInitDefault(
-	TileClass *t, PicManager *pm, const TileClass *base,
-	const char *forceStyle, const color_t *forceMask);
+void TileClassInit(TileClass *t, PicManager *pm, const TileClass *base,
+		const char *style, const char *type, const color_t mask,
+		const color_t maskAlt);
+void TileClassInitDefault(TileClass *t, PicManager *pm, const TileClass *base,
+		const char *forceStyle, const color_t *forceMask);
 void TileClassReloadPic(TileClass *t, PicManager *pm);
-const char *TileClassBaseStyleType(const TileClassType type);
+const char* TileClassBaseStyleType(const TileClassType type);
 void TileClassCopy(TileClass *dst, const TileClass *src);
-const TileClass *StrTileClass(const char *name);
-const TileClass *TileClassesGetMaskedTile(
-	const TileClass *baseClass, const char *style, const char *type,
-	const color_t mask, const color_t maskAlt);
-TileClass *TileClassesAdd(
-	TileClasses *c, PicManager *pm, const TileClass *baseClass,
-	const char *style, const char *type,
-	const color_t mask, const color_t maskAlt);
-const Pic *TileClassGetPic(const PicManager *pm, const TileClass *tc);
-void TileClassGetName(
-	char *buf, const TileClass *base, const char *style, const char *type,
-	const color_t mask, const color_t maskAlt);
+const TileClass* StrTileClass(const char *name);
+const TileClass* TileClassesGetMaskedTile(const TileClass *baseClass,
+		const char *style, const char *type, const color_t mask,
+		const color_t maskAlt);
+TileClass* TileClassesAdd(TileClasses *c, PicManager *pm,
+		const TileClass *baseClass, const char *style, const char *type,
+		const color_t mask, const color_t maskAlt);
+const Pic* TileClassGetPic(const PicManager *pm, const TileClass *tc);
+void TileClassGetName(char *buf, const TileClass *base, const char *style,
+		const char *type, const color_t mask, const color_t maskAlt);
 void TileClassGetBaseName(char *buf, const TileClass *tc);
-const TileClass *TileClassesGetExit(
-	TileClasses *c, PicManager *pm,	const char *style, const bool isShadow);
+const TileClass* TileClassesGetExit(TileClasses *c, PicManager *pm,
+		const char *style, const bool isShadow);

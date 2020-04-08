@@ -30,9 +30,7 @@
 #include "c_array.h"
 #include "vector.h"
 
-
-typedef struct
-{
+typedef struct {
 	SDL_Window *window;
 	SDL_Renderer *renderer;
 	CArray texturesBkg;	// of SDL_Texture *
@@ -40,21 +38,19 @@ typedef struct
 	color_t bkgMask;
 } WindowContext;
 
-bool WindowContextCreate(
-	WindowContext *wc, const Rect2i windowDim, const int windowFlags,
-	const char *title, SDL_Surface *icon,
-	const struct vec2i rendererLogicalSize);
-bool WindowContextInitTextures(
-	WindowContext *wc, const struct vec2i rendererLogicalSize);
+bool WindowContextCreate(WindowContext *wc, const Rect2i windowDim,
+		const int windowFlags, const char *title, SDL_Surface *icon,
+		const struct vec2i rendererLogicalSize);
+bool WindowContextInitTextures(WindowContext *wc,
+		const struct vec2i rendererLogicalSize);
 void WindowContextDestroy(WindowContext *wc);
 void WindowContextDestroyTextures(WindowContext *wc);
 
 void WindowsAdjustPosition(WindowContext *wc1, WindowContext *wc2);
 
-SDL_Texture *WindowContextCreateTexture(
-	WindowContext *wc, const SDL_TextureAccess texAccess,
-	const struct vec2i res, const SDL_BlendMode blend, const Uint8 alpha,
-	const bool isBkg);
+SDL_Texture* WindowContextCreateTexture(WindowContext *wc,
+		const SDL_TextureAccess texAccess, const struct vec2i res,
+		const SDL_BlendMode blend, const Uint8 alpha, const bool isBkg);
 
 // Render things before game-specific stuff
 void WindowContextPreRender(WindowContext *wc);

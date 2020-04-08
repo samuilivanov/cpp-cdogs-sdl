@@ -73,8 +73,8 @@ static bool IsFacingPlayer(TActor *actor, direction_e d) {
 	// TODO replaced foreach loop
 	for (int _ca_index = 0; _ca_index < (int) (gPlayerDatas).size;
 			_ca_index++) {
-		const PlayerData *p = static_cast<PlayerData*>(CArrayGet(&(gPlayerDatas),
-				_ca_index));
+		const PlayerData *p = static_cast<PlayerData*>(CArrayGet(
+				&(gPlayerDatas), _ca_index));
 		if (!IsPlayerAlive(p)) {
 			continue;
 		}
@@ -99,8 +99,8 @@ static bool CanSeeAPlayer(const TActor *a) {
 	// TODO replaced the foreach loop
 	for (int _ca_index = 0; _ca_index < (int) (gPlayerDatas).size;
 			_ca_index++) {
-		const PlayerData *p = static_cast<PlayerData*>(CArrayGet(&(gPlayerDatas),
-				_ca_index));
+		const PlayerData *p = static_cast<PlayerData*>(CArrayGet(
+				&(gPlayerDatas), _ca_index));
 		if (!IsPlayerAlive(p)) {
 			continue;
 		}

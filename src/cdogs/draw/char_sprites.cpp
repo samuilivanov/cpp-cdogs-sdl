@@ -110,7 +110,7 @@ static CharSprites* CharSpritesLoadJSON(const char *name, const char *path) {
 		LOG(LM_MAIN, LL_ERROR, "Error parsing char sprite JSON '%s'", buf);
 		goto bail;
 	}
-	c = static_cast<CharSprites *>(calloc(1, sizeof *c));
+	c = static_cast<CharSprites*>(calloc(1, sizeof *c));
 	if (c == NULL && sizeof *c > 0) {
 		exit(1);
 	}

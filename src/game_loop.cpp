@@ -1,31 +1,31 @@
 /*
-	C-Dogs SDL
-	A port of the legendary (and fun) action/arcade cdogs.
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
 
-	Copyright (c) 2014, 2016-2018 Cong Xu
-	All rights reserved.
+ Copyright (c) 2014, 2016-2018 Cong Xu
+ All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-	Redistributions of source code must retain the above copyright notice, this
-	list of conditions and the following disclaimer.
-	Redistributions in binary form must reproduce the above copyright notice,
-	this list of conditions and the following disclaimer in the documentation
-	and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #include "game_loop.h"
 
 #include <SDL2/SDL_timer.h>
@@ -121,14 +121,11 @@ bool emscriptenPersistData() {
 }
 #endif
 
-GameLoopData *GameLoopDataNew(
-	void *data,
-	void (*onTerminate)(GameLoopData *),
-	void (*onEnter)(GameLoopData *), void (*onExit)(GameLoopData *),
-	void (*inputFunc)(GameLoopData *),
-	GameLoopResult (*updateFunc)(GameLoopData *, LoopRunner *),
-	void (*drawFunc)(GameLoopData *))
-{
+GameLoopData* GameLoopDataNew(void *data, void (*onTerminate)(GameLoopData*),
+		void (*onEnter)(GameLoopData*), void (*onExit)(GameLoopData*),
+		void (*inputFunc)(GameLoopData*),
+		GameLoopResult (*updateFunc)(GameLoopData*, LoopRunner*),
+		void (*drawFunc)(GameLoopData*)) {
 	GameLoopData *g;
 	CCALLOC(g, sizeof *g);
 	g->Data = data;
@@ -142,23 +139,19 @@ GameLoopData *GameLoopDataNew(
 	return g;
 }
 
-static GameLoopData *GetCurrentLoop(LoopRunner *l);
+static GameLoopData* GetCurrentLoop(LoopRunner *l);
 
-LoopRunner LoopRunnerNew(GameLoopData *newData)
-{
+LoopRunner LoopRunnerNew(GameLoopData *newData) {
 	LoopRunner l;
-	CArrayInit(&l.Loops, sizeof(GameLoopData *));
-	if (newData != NULL)
-	{
+	CArrayInit(&l.Loops, sizeof(GameLoopData*));
+	if (newData != NULL) {
 		LoopRunnerPush(&l, newData);
 	}
 	return l;
 }
 static void GameLoopTerminate(GameLoopData *data);
-void LoopRunnerTerminate(LoopRunner *l)
-{
-	for (int i = (int)l->Loops.size - 1; i >= 0; i--)
-	{
+void LoopRunnerTerminate(LoopRunner *l) {
+	for (int i = (int) l->Loops.size - 1; i >= 0; i--) {
 		GameLoopData *g = static_cast<GameLoopData*>(CArrayGet(&l->Loops, i));
 		GameLoopTerminate(g);
 	}
@@ -168,8 +161,7 @@ void LoopRunnerTerminate(LoopRunner *l)
 static void GameLoopOnEnter(GameLoopData *data);
 static void GameLoopOnExit(GameLoopData *data);
 
-typedef struct
-{
+typedef struct {
 	GameLoopResult Result;
 	Uint32 TicksNow;
 	Uint32 TicksElapsed;
@@ -177,32 +169,27 @@ typedef struct
 	int FramesSkipped;
 	int MaxFrameskip;
 } LoopRunParams;
-typedef struct
-{
+typedef struct {
 	LoopRunner *l;
 	GameLoopData *data;
 	LoopRunParams p;
-}LoopRunInnerData;
+} LoopRunInnerData;
 static LoopRunParams LoopRunParamsNew(const GameLoopData *data);
 static bool LoopRunParamsShouldSleep(LoopRunParams *p);
 static bool LoopRunParamsShouldSkip(LoopRunParams *p);
-bool LoopRunnerRunInner(LoopRunInnerData *ctx)
-{
+bool LoopRunnerRunInner(LoopRunInnerData *ctx) {
 #ifndef __EMSCRIPTEN__
 	// Frame rate control
-	if (LoopRunParamsShouldSleep(&(ctx->p)))
-	{
+	if (LoopRunParamsShouldSleep(&(ctx->p))) {
 		SDL_Delay(1);
 		return true;
 	}
 #endif
 
 	// Input
-	if ((ctx->data->Frames & 1) || !ctx->data->InputEverySecondFrame)
-	{
+	if ((ctx->data->Frames & 1) || !ctx->data->InputEverySecondFrame) {
 		EventPoll(&gEventHandlers, ctx->p.TicksNow, NULL);
-		if (ctx->data->InputFunc)
-		{
+		if (ctx->data->InputFunc) {
 			ctx->data->InputFunc(ctx->data);
 		}
 	}
@@ -213,12 +200,9 @@ bool LoopRunnerRunInner(LoopRunInnerData *ctx)
 	// Update
 	ctx->p.Result = ctx->data->UpdateFunc(ctx->data, ctx->l);
 	GameLoopData *newData = GetCurrentLoop(ctx->l);
-	if (newData == NULL)
-	{
+	if (newData == NULL) {
 		return false;
-	}
-	else if (newData != ctx->data)
-	{
+	} else if (newData != ctx->data) {
 		// State change; restart loop
 		GameLoopOnExit(ctx->data);
 		ctx->data = newData;
@@ -231,8 +215,7 @@ bool LoopRunnerRunInner(LoopRunInnerData *ctx)
 	NetClientFlush(&gNetClient);
 
 	bool draw = !ctx->data->HasDrawnFirst;
-	switch (ctx->p.Result)
-	{
+	switch (ctx->p.Result) {
 	case UPDATE_RESULT_OK:
 		// Do nothing
 		break;
@@ -240,33 +223,29 @@ bool LoopRunnerRunInner(LoopRunInnerData *ctx)
 		draw = true;
 		break;
 	default:
-		CASSERT(false, "Unknown loop result");
+		CASSERT(false, "Unknown loop result")
+		;
 		break;
 	}
 	ctx->data->Frames++;
 #ifndef __EMSCRIPTEN__
 	// frame skip
-	if (LoopRunParamsShouldSkip(&(ctx->p)))
-	{
+	if (LoopRunParamsShouldSkip(&(ctx->p))) {
 		return true;
 	}
 #endif
 
 	// Draw
-	if (draw)
-	{
+	if (draw) {
 		WindowContextPreRender(&gGraphicsDevice.gameWindow);
-		if (gGraphicsDevice.cachedConfig.SecondWindow)
-		{
+		if (gGraphicsDevice.cachedConfig.SecondWindow) {
 			WindowContextPreRender(&gGraphicsDevice.secondWindow);
 		}
-		if (ctx->data->DrawFunc)
-		{
+		if (ctx->data->DrawFunc) {
 			ctx->data->DrawFunc(ctx->data);
 		}
 		WindowContextPostRender(&gGraphicsDevice.gameWindow);
-		if (gGraphicsDevice.cachedConfig.SecondWindow)
-		{
+		if (gGraphicsDevice.cachedConfig.SecondWindow) {
 			WindowContextPostRender(&gGraphicsDevice.secondWindow);
 		}
 		ctx->data->HasDrawnFirst = true;
@@ -284,11 +263,9 @@ void EmscriptenMainLoop(void *arg)
 	LoopRunnerRunInner((LoopRunInnerData *)arg);
 }
 #endif
-void LoopRunnerRun(LoopRunner *l)
-{
+void LoopRunnerRun(LoopRunner *l) {
 	GameLoopData *data = GetCurrentLoop(l);
-	if (data == NULL)
-	{
+	if (data == NULL) {
 		return;
 	}
 	GameLoopOnEnter(data);
@@ -302,18 +279,15 @@ void LoopRunnerRun(LoopRunner *l)
 	// TODO use GameLoopData->FPS instead of FPS_FRAMELIMIT?
 	emscripten_set_main_loop_arg(EmscriptenMainLoop, &ctx, FPS_FRAMELIMIT, 1);
 #else
-	for (;;)
-	{
-		if (!LoopRunnerRunInner(&ctx))
-		{
+	for (;;) {
+		if (!LoopRunnerRunInner(&ctx)) {
 			break;
 		}
 	}
 #endif
 	GameLoopOnExit(ctx.data);
 }
-static LoopRunParams LoopRunParamsNew(const GameLoopData *data)
-{
+static LoopRunParams LoopRunParamsNew(const GameLoopData *data) {
 	LoopRunParams p;
 	p.Result = UPDATE_RESULT_OK;
 	p.TicksNow = SDL_GetTicks();
@@ -323,27 +297,21 @@ static LoopRunParams LoopRunParamsNew(const GameLoopData *data)
 	p.MaxFrameskip = data->FPS / 5;
 	return p;
 }
-static bool LoopRunParamsShouldSleep(LoopRunParams *p)
-{
+static bool LoopRunParamsShouldSleep(LoopRunParams *p) {
 	const Uint32 ticksThen = p->TicksNow;
 	p->TicksNow = SDL_GetTicks();
 	p->TicksElapsed += p->TicksNow - ticksThen;
-	return (int)p->TicksElapsed < p->FrameDurationMs;
+	return (int) p->TicksElapsed < p->FrameDurationMs;
 }
-static bool LoopRunParamsShouldSkip(LoopRunParams *p)
-{
+static bool LoopRunParamsShouldSkip(LoopRunParams *p) {
 	p->TicksElapsed -= p->FrameDurationMs;
 	// frame skip
-	if ((int)p->TicksElapsed > p->FrameDurationMs)
-	{
+	if ((int) p->TicksElapsed > p->FrameDurationMs) {
 		p->FramesSkipped++;
-		if (p->FramesSkipped == p->MaxFrameskip)
-		{
+		if (p->FramesSkipped == p->MaxFrameskip) {
 			// We've skipped too many frames; give up
 			p->TicksElapsed = 0;
-		}
-		else
-		{
+		} else {
 			return true;
 		}
 	}
@@ -351,59 +319,46 @@ static bool LoopRunParamsShouldSkip(LoopRunParams *p)
 	return false;
 }
 
-void LoopRunnerChange(LoopRunner *l, GameLoopData *newData)
-{
+void LoopRunnerChange(LoopRunner *l, GameLoopData *newData) {
 	LoopRunnerPop(l);
 	LoopRunnerPush(l, newData);
 }
-void LoopRunnerPush(LoopRunner *l, GameLoopData *newData)
-{
+void LoopRunnerPush(LoopRunner *l, GameLoopData *newData) {
 	CArrayPushBack(&l->Loops, &newData);
 	newData->IsUsed = true;
 }
-void LoopRunnerPop(LoopRunner *l)
-{
+void LoopRunnerPop(LoopRunner *l) {
 	GameLoopData *data = GetCurrentLoop(l);
 	data->IsUsed = false;
 	CArrayDelete(&l->Loops, l->Loops.size - 1);
 }
 
-static void GameLoopTerminate(GameLoopData *data)
-{
-	if (data->OnTerminate)
-	{
+static void GameLoopTerminate(GameLoopData *data) {
+	if (data->OnTerminate) {
 		data->OnTerminate(data);
 	}
 	CFREE(data);
 }
 
-static void GameLoopOnEnter(GameLoopData *data)
-{
-	if (data->OnEnter)
-	{
+static void GameLoopOnEnter(GameLoopData *data) {
+	if (data->OnEnter) {
 		data->OnEnter(data);
 	}
-	EventReset(
-		&gEventHandlers,
-		gEventHandlers.mouse.cursor, gEventHandlers.mouse.trail);
+	EventReset(&gEventHandlers, gEventHandlers.mouse.cursor,
+			gEventHandlers.mouse.trail);
 }
-static void GameLoopOnExit(GameLoopData *data)
-{
-	if (data->OnExit)
-	{
+static void GameLoopOnExit(GameLoopData *data) {
+	if (data->OnExit) {
 		data->OnExit(data);
 	}
-	if (!data->IsUsed)
-	{
+	if (!data->IsUsed) {
 		GameLoopTerminate(data);
 	}
 }
 
-static GameLoopData *GetCurrentLoop(LoopRunner *l)
-{
-	if (l->Loops.size == 0)
-	{
+static GameLoopData* GetCurrentLoop(LoopRunner *l) {
+	if (l->Loops.size == 0) {
 		return NULL;
 	}
-	return *(GameLoopData **)CArrayGet(&l->Loops, l->Loops.size - 1);
+	return *(GameLoopData**) CArrayGet(&l->Loops, l->Loops.size - 1);
 }

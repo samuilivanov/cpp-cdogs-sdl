@@ -1,51 +1,51 @@
 /*
-    C-Dogs SDL
-    A port of the legendary (and fun) action/arcade cdogs.
-    Copyright (C) 1995 Ronny Wester
-    Copyright (C) 2003 Jeremy Chin
-    Copyright (C) 2003-2007 Lucas Martin-King
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
+ Copyright (C) 1995 Ronny Wester
+ Copyright (C) 2003 Jeremy Chin
+ Copyright (C) 2003-2007 Lucas Martin-King
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    This file incorporates work covered by the following copyright and
-    permission notice:
+ This file incorporates work covered by the following copyright and
+ permission notice:
 
-    Copyright (c) 2013-2017, 2019 Cong Xu
-    All rights reserved.
+ Copyright (c) 2013-2017, 2019 Cong Xu
+ All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-    Redistributions of source code must retain the above copyright notice, this
-    list of conditions and the following disclaimer.
-    Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -94,8 +94,7 @@
 #include <emscripten.h>
 #endif
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 #if defined(_MSC_VER) && !defined(NDEBUG)
 	FreeConsole();
 #endif
@@ -104,7 +103,7 @@ int main(int argc, char *argv[])
 	ENetAddress connectAddr;
 	memset(&connectAddr, 0, sizeof connectAddr);
 
-	srand((unsigned int)time(NULL));
+	srand((unsigned int) time(NULL));
 	LogInit();
 
 	PrintTitle();
@@ -142,8 +141,7 @@ int main(int argc, char *argv[])
 #endif
 
 #ifndef __EMSCRIPTEN__
-	if (enet_initialize() != 0)
-	{
+	if (enet_initialize() != 0) {
 		LOG(LM_MAIN, LL_ERROR, "An error occurred while initializing ENet.");
 		err = EXIT_FAILURE;
 		goto bail;
@@ -155,28 +153,25 @@ int main(int argc, char *argv[])
 	char buf[CDOGS_PATH_MAX];
 	ProcessCommandLine(buf, argc, argv);
 	LOG(LM_MAIN, LL_INFO, "Command line (%d args):%s", argc, buf);
-	if (!ParseArgs(argc, argv, &connectAddr, &loadCampaign))
-	{
+	if (!ParseArgs(argc, argv, &connectAddr, &loadCampaign)) {
 		goto bail;
 	}
 
 #ifndef __EMSCRIPTEN__
 	sdlFlags =
-		SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_HAPTIC |
-		SDL_INIT_GAMECONTROLLER;
+	SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_HAPTIC |
+	SDL_INIT_GAMECONTROLLER;
 #else
     const int sdlFlags = SDL_INIT_AUDIO | SDL_INIT_VIDEO;
 #endif
-	if (SDL_Init(sdlFlags) != 0)
-	{
+	if (SDL_Init(sdlFlags) != 0) {
 		LOG(LM_MAIN, LL_ERROR, "Could not initialise SDL: %s", SDL_GetError());
 		err = EXIT_FAILURE;
 		goto bail;
 	}
-	if (SDLJBN_Init() != 0)
-	{
+	if (SDLJBN_Init() != 0) {
 		LOG(LM_MAIN, LL_ERROR, "Could not initialise SDLJBN: %s",
-			SDLJBN_GetError());
+				SDLJBN_GetError());
 		err = EXIT_FAILURE;
 		goto bail;
 	}
@@ -187,8 +182,7 @@ int main(int argc, char *argv[])
 	LOG(LM_MAIN, LL_INFO, "config dir(%s)", GetConfigFilePath(""));
 
 	SoundInitialize(&gSoundDevice, "sounds");
-	if (!gSoundDevice.isInitialised)
-	{
+	if (!gSoundDevice.isInitialised) {
 		LOG(LM_MAIN, LL_ERROR, "Sound initialization failed!");
 	}
 
@@ -198,15 +192,13 @@ int main(int argc, char *argv[])
 	TileClassesInit(&gTileClasses);
 	GraphicsInit(&gGraphicsDevice, &gConfig);
 	GraphicsInitialize(&gGraphicsDevice);
-	if (!gGraphicsDevice.IsInitialized)
-	{
+	if (!gGraphicsDevice.IsInitialized) {
 		LOG(LM_MAIN, LL_WARN, "Cannot initialise video; trying default config");
 		ConfigResetDefault(ConfigGet(&gConfig, "Graphics"));
 		GraphicsInit(&gGraphicsDevice, &gConfig);
 		GraphicsInitialize(&gGraphicsDevice);
 	}
-	if (!gGraphicsDevice.IsInitialized)
-	{
+	if (!gGraphicsDevice.IsInitialized) {
 		LOG(LM_MAIN, LL_ERROR, "Video didn't init!");
 		err = EXIT_FAILURE;
 		goto bail;
@@ -217,17 +209,17 @@ int main(int argc, char *argv[])
 
 	ParticleClassesInit(&gParticleClasses, "data/particles.json");
 	AmmoInitialize(&gAmmo, "data/ammo.json");
-	BulletAndWeaponInitialize(
-		&gBulletClasses, &gWeaponClasses,
-		"data/bullets.json", "data/guns.json");
-	CharacterClassesInitialize(&gCharacterClasses, "data/character_classes.json");
+	BulletAndWeaponInitialize(&gBulletClasses, &gWeaponClasses,
+			"data/bullets.json", "data/guns.json");
+	CharacterClassesInitialize(&gCharacterClasses,
+			"data/character_classes.json");
 #ifndef __EMSCRIPTEN__
 	PlayerTemplatesLoad(&gPlayerTemplates, &gCharacterClasses);
 #endif
-	PickupClassesInit(
-		&gPickupClasses, "data/pickups.json", &gAmmo, &gWeaponClasses);
-	MapObjectsInit(
-		&gMapObjects, "data/map_objects.json", &gAmmo, &gWeaponClasses);
+	PickupClassesInit(&gPickupClasses, "data/pickups.json", &gAmmo,
+			&gWeaponClasses);
+	MapObjectsInit(&gMapObjects, "data/map_objects.json", &gAmmo,
+			&gWeaponClasses);
 	CollisionSystemInit(&gCollisionSystem);
 	CampaignInit(&gCampaign);
 	PlayerDataInit(&gPlayerDatas);
@@ -235,29 +227,22 @@ int main(int argc, char *argv[])
 	l = LoopRunnerNew(NULL);
 	LoopRunnerPush(&l, MainMenu(&gGraphicsDevice, &l));
 	// Attempt to pre-load campaign if requested
-	if (loadCampaign != NULL)
-	{
-		GrafxMakeRandomBackground(
-			&gGraphicsDevice, &gCampaign, &gMission, &gMap);
+	if (loadCampaign != NULL) {
+		GrafxMakeRandomBackground(&gGraphicsDevice, &gCampaign, &gMission,
+				&gMap);
 		LOG(LM_MAIN, LL_INFO, "Loading campaign %s...", loadCampaign);
 		gCampaign.Entry.Mode =
-			strstr(loadCampaign, "/" CDOGS_DOGFIGHT_DIR "/") != NULL ?
-			GAME_MODE_DOGFIGHT : GAME_MODE_NORMAL;
+				strstr(loadCampaign, "/" CDOGS_DOGFIGHT_DIR "/") != NULL ?
+						GAME_MODE_DOGFIGHT : GAME_MODE_NORMAL;
 		CampaignEntry entry;
-		if (!CampaignEntryTryLoad(&entry, loadCampaign, GAME_MODE_NORMAL) ||
-			!CampaignLoad(&gCampaign, &entry))
-		{
+		if (!CampaignEntryTryLoad(&entry, loadCampaign, GAME_MODE_NORMAL)
+				|| !CampaignLoad(&gCampaign, &entry)) {
 			LOG(LM_MAIN, LL_ERROR, "Failed to load campaign %s", loadCampaign);
 		}
-	}
-	else if (connectAddr.host != 0)
-	{
-		if (NetClientTryScanAndConnect(&gNetClient, connectAddr.host))
-		{
+	} else if (connectAddr.host != 0) {
+		if (NetClientTryScanAndConnect(&gNetClient, connectAddr.host)) {
 			LoopRunnerPush(&l, ScreenWaitForCampaignDef());
-		}
-		else
-		{
+		} else {
 			printf("Failed to connect\n");
 		}
 	}
@@ -265,8 +250,7 @@ int main(int argc, char *argv[])
 	LoopRunnerRun(&l);
 	LoopRunnerTerminate(&l);
 
-bail:
-	NetServerTerminate(&gNetServer);
+	bail: NetServerTerminate(&gNetServer);
 	MapTerminate(&gMap);
 	PlayerDataTerminate(&gPlayerDatas);
 	MapObjectsTerminate(&gMapObjects);

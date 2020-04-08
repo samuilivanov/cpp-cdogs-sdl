@@ -53,7 +53,7 @@ void LoadIntArray(CArray *a, const json_t *node, const char *name);
 
 // remember to free
 void LoadStr(char **value, json_t *node, const char *name);
-char *GetString(const json_t *node, const char *name);
+char* GetString(const json_t *node, const char *name);
 
 void LoadSoundFromNode(Mix_Chunk **value, json_t *node, const char *name);
 // Load a const Pic * based on a name
@@ -64,7 +64,7 @@ void LoadColor(color_t *c, json_t *node, const char *name);
 
 // Try to load a JSON node using a slash-delimited "path"
 // If at any point the path fails, NULL is returned.
-json_t *JSONFindNode(json_t *node, const char *path);
+json_t* JSONFindNode(json_t *node, const char *path);
 
 #define JSON_UTILS_ADD_ENUM_PAIR(parent, name, value, func)\
 	json_insert_pair_into_object(\

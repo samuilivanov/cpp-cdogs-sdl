@@ -38,13 +38,13 @@ CharacterClasses gCharacterClasses;
 // TODO: use map structure?
 const CharacterClass* StrCharacterClass(const char *s) {
 	CA_FOREACH(const CharacterClass, c, gCharacterClasses.CustomClasses)
-		if (strcmp(s, c->Name) == 0) {
-			return c;
-		}CA_FOREACH_END()
+	if (strcmp(s, c->Name) == 0) {
+		return c;
+	}CA_FOREACH_END()
 	CA_FOREACH(const CharacterClass, c, gCharacterClasses.Classes)
-		if (strcmp(s, c->Name) == 0) {
-			return c;
-		}CA_FOREACH_END()
+	if (strcmp(s, c->Name) == 0) {
+		return c;
+	}CA_FOREACH_END()
 	LOG(LM_MAIN, LL_ERROR, "Cannot find character name: %s", s);
 	return NULL;
 }
@@ -360,13 +360,13 @@ int CharacterClassIndex(const CharacterClass *c) {
 		return 0;
 	}
 	CA_FOREACH(const CharacterClass, cc, gCharacterClasses.Classes)
-		if (cc == c) {
-			return _ca_index;
-		}CA_FOREACH_END()
+	if (cc == c) {
+		return _ca_index;
+	}CA_FOREACH_END()
 	CA_FOREACH(const CharacterClass, cc, gCharacterClasses.CustomClasses)
-		if (cc == c) {
-			return _ca_index + (int) gCharacterClasses.Classes.size;
-		}CA_FOREACH_END()
+	if (cc == c) {
+		return _ca_index + (int) gCharacterClasses.Classes.size;
+	}CA_FOREACH_END()
 	CASSERT(false, "cannot find character class");
 	return -1;
 }

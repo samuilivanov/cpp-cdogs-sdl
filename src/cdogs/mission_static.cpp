@@ -505,8 +505,7 @@ static json_t* SaveStaticCSV(const CArray *values, const struct vec2i size) {
 	// and n - 1 commas, so 6n total
 	char *rowBuf;
 	rowBuf = static_cast<char*>(malloc(size.x * 6));
-	if (rowBuf == NULL && size.x * 6 > 0)
-	{
+	if (rowBuf == NULL && size.x * 6 > 0) {
 		exit(1);
 	}
 //	CMALLOC(rowBuf, size.x * 6);
@@ -534,7 +533,8 @@ static json_t* SaveStaticItems(const MissionStatic *m) {
 		AddStringPair(itemNode, "MapObject", mop->M->Name);
 		json_t *positions = json_new_array();
 		for (int j = 0; j < (int) mop->Positions.size; j++) {
-			struct vec2i *pos = static_cast<struct vec2i*>(CArrayGet(&mop->Positions, j));
+			struct vec2i *pos = static_cast<struct vec2i*>(CArrayGet(
+					&mop->Positions, j));
 			json_insert_child(positions, SaveVec2i(*pos));
 		}
 		json_insert_pair_into_object(itemNode, "Positions", positions);
@@ -549,7 +549,8 @@ static json_t* SaveStaticCharacters(const MissionStatic *m) {
 		AddIntPair(charNode, "Index", cp->Index);
 		json_t *positions = json_new_array();
 		for (int j = 0; j < (int) cp->Positions.size; j++) {
-			struct vec2i *pos = static_cast<struct vec2i*>(CArrayGet(&cp->Positions, j));
+			struct vec2i *pos = static_cast<struct vec2i*>(CArrayGet(
+					&cp->Positions, j));
 			json_insert_child(positions, SaveVec2i(*pos));
 		}
 		json_insert_pair_into_object(charNode, "Positions", positions);
@@ -564,7 +565,8 @@ static json_t* SaveStaticObjectives(const MissionStatic *m) {
 		AddIntPair(objNode, "Index", op->Index);
 		json_t *positions = json_new_array();
 		for (int j = 0; j < (int) op->Positions.size; j++) {
-			struct vec2i *pos = static_cast<struct vec2i*>(CArrayGet(&op->Positions, j));
+			struct vec2i *pos = static_cast<struct vec2i*>(CArrayGet(
+					&op->Positions, j));
 			json_insert_child(positions, SaveVec2i(*pos));
 		}
 		json_insert_pair_into_object(objNode, "Positions", positions);
@@ -580,7 +582,8 @@ static json_t* SaveStaticKeys(const MissionStatic *m) {
 		AddIntPair(keyNode, "Index", kp->Index);
 		json_t *positions = json_new_array();
 		for (int j = 0; j < (int) kp->Positions.size; j++) {
-			struct vec2i *pos = static_cast<struct vec2i*>(CArrayGet(&kp->Positions, j));
+			struct vec2i *pos = static_cast<struct vec2i*>(CArrayGet(
+					&kp->Positions, j));
 			json_insert_child(positions, SaveVec2i(*pos));
 		}
 		json_insert_pair_into_object(keyNode, "Positions", positions);
@@ -618,8 +621,7 @@ void MissionStaticCopy(MissionStatic *dst, const MissionStatic *src) {
 static any_t TileClassCopyHashMap(any_t in) {
 	TileClass *tc;
 	tc = static_cast<TileClass*>(malloc(sizeof *tc));
-	if (tc == NULL && sizeof *tc > 0)
-	{
+	if (tc == NULL && sizeof *tc > 0) {
 		exit(1);
 	}
 //	CMALLOC(tc, sizeof *tc);

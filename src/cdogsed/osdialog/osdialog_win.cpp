@@ -6,40 +6,55 @@
 #include <commdlg.h>
 #include <shlobj.h>
 
-
-static char *wchar_to_utf8(const wchar_t *s) {
-	if (!s) return NULL;
+static char* wchar_to_utf8(const wchar_t *s) {
+	if (!s)
+		return NULL;
 	int len = WideCharToMultiByte(CP_UTF8, 0, s, -1, NULL, 0, NULL, NULL);
-	if (!len) return NULL;
+	if (!len)
+		return NULL;
 	char *r = OSDIALOG_MALLOC(len);
 	WideCharToMultiByte(CP_UTF8, 0, s, -1, r, len, NULL, NULL);
 	return r;
 }
 
-static wchar_t *utf8_to_wchar(const char *s) {
-	if (!s) return NULL;
+static wchar_t* utf8_to_wchar(const char *s) {
+	if (!s)
+		return NULL;
 	int len = MultiByteToWideChar(CP_UTF8, 0, s, -1, NULL, 0);
-	if (!len) return NULL;
+	if (!len)
+		return NULL;
 	wchar_t *r = OSDIALOG_MALLOC(len * sizeof(wchar_t));
 	MultiByteToWideChar(CP_UTF8, 0, s, -1, r, len);
 	return r;
 }
 
-
-int osdialog_message(osdialog_message_level level, osdialog_message_buttons buttons, const char *message) {
+int osdialog_message(osdialog_message_level level,
+		osdialog_message_buttons buttons, const char *message) {
 	UINT type = MB_APPLMODAL;
 	switch (level) {
-		default:
-		case OSDIALOG_INFO: type |= MB_ICONINFORMATION; break;
-		case OSDIALOG_WARNING: type |= MB_ICONWARNING; break;
-		case OSDIALOG_ERROR: type |= MB_ICONERROR; break;
+	default:
+	case OSDIALOG_INFO:
+		type |= MB_ICONINFORMATION;
+		break;
+	case OSDIALOG_WARNING:
+		type |= MB_ICONWARNING;
+		break;
+	case OSDIALOG_ERROR:
+		type |= MB_ICONERROR;
+		break;
 	}
 
 	switch (buttons) {
-		default:
-		case OSDIALOG_OK: type |= MB_OK; break;
-		case OSDIALOG_OK_CANCEL: type |= MB_OKCANCEL; break;
-		case OSDIALOG_YES_NO: type |= MB_YESNO; break;
+	default:
+	case OSDIALOG_OK:
+		type |= MB_OK;
+		break;
+	case OSDIALOG_OK_CANCEL:
+		type |= MB_OKCANCEL;
+		break;
+	case OSDIALOG_YES_NO:
+		type |= MB_YESNO;
+		break;
 	}
 
 	HWND window = GetActiveWindow();
@@ -48,16 +63,16 @@ int osdialog_message(osdialog_message_level level, osdialog_message_buttons butt
 	OSDIALOG_FREE(messageW);
 
 	switch (result) {
-		case IDOK:
-		case IDYES:
-			return 1;
-		default:
-			return 0;
+	case IDOK:
+	case IDYES:
+		return 1;
+	default:
+		return 0;
 	}
 }
 
-
-char *osdialog_prompt(osdialog_message_level level, const char *message, const char *text) {
+char* osdialog_prompt(osdialog_message_level level, const char *message,
+		const char *text) {
 	// TODO
 	(void) level;
 	(void) message;
@@ -65,7 +80,6 @@ char *osdialog_prompt(osdialog_message_level level, const char *message, const c
 	assert(0);
 	return NULL;
 }
-
 
 static INT CALLBACK browseCallbackProc(HWND hWnd, UINT Msg, LPARAM lParam, LPARAM lpData) {
 	(void)lParam;
@@ -75,7 +89,8 @@ static INT CALLBACK browseCallbackProc(HWND hWnd, UINT Msg, LPARAM lParam, LPARA
 	return 0;
 }
 
-char *osdialog_file(osdialog_file_action action, const char *path, const char *filename, osdialog_filters *filters) {
+char* osdialog_file(osdialog_file_action action, const char *path,
+		const char *filename, osdialog_filters *filters) {
 	char *result = NULL;
 
 	if (action == OSDIALOG_OPEN_DIR) {
@@ -91,22 +106,22 @@ char *osdialog_file(osdialog_file_action action, const char *path, const char *f
 
 		if (path) {
 			bInfo.lpfn = browseCallbackProc;
-			bInfo.lParam = (LPARAM)path;
+			bInfo.lParam = (LPARAM) path;
 		}
 
 		PIDLIST_ABSOLUTE lpItem = SHBrowseForFolderW(&bInfo);
 		if (lpItem) {
-		  SHGetPathFromIDListW(lpItem, szDir);
-		  result = wchar_to_utf8(szDir);
+			SHGetPathFromIDListW(lpItem, szDir);
+			result = wchar_to_utf8(szDir);
 		}
-	}
-	else {
+	} else {
 		// open or save file dialog
 		OPENFILENAMEW ofn;
 		ZeroMemory(&ofn, sizeof(ofn));
 		ofn.hwndOwner = GetActiveWindow();
 		ofn.lStructSize = sizeof(ofn);
-		ofn.Flags = OFN_EXPLORER | OFN_OVERWRITEPROMPT | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
+		ofn.Flags = OFN_EXPLORER | OFN_OVERWRITEPROMPT | OFN_PATHMUSTEXIST
+				| OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
 
 		// Filename
 		wchar_t strFile[MAX_PATH] = L"";
@@ -132,10 +147,13 @@ char *osdialog_file(osdialog_file_action action, const char *path, const char *f
 			int fLen = 0;
 
 			for (; filters; filters = filters->next) {
-				fLen += snprintf(fBuf + fLen, sizeof(fBuf) - fLen, "%s", filters->name);
+				fLen += snprintf(fBuf + fLen, sizeof(fBuf) - fLen, "%s",
+						filters->name);
 				fBuf[fLen++] = '\0';
-				for (osdialog_filter_patterns *patterns = filters->patterns; patterns; patterns = patterns->next) {
-					fLen += snprintf(fBuf + fLen, sizeof(fBuf) - fLen, "*.%s", patterns->pattern);
+				for (osdialog_filter_patterns *patterns = filters->patterns;
+						patterns; patterns = patterns->next) {
+					fLen += snprintf(fBuf + fLen, sizeof(fBuf) - fLen, "*.%s",
+							patterns->pattern);
 					if (patterns->next)
 						fLen += snprintf(fBuf + fLen, sizeof(fBuf) - fLen, ";");
 				}
@@ -153,8 +171,7 @@ char *osdialog_file(osdialog_file_action action, const char *path, const char *f
 		BOOL success;
 		if (action == OSDIALOG_OPEN) {
 			success = GetOpenFileNameW(&ofn);
-		}
-		else {
+		} else {
 			success = GetSaveFileNameW(&ofn);
 		}
 
@@ -172,7 +189,6 @@ char *osdialog_file(osdialog_file_action action, const char *path, const char *f
 
 	return result;
 }
-
 
 int osdialog_color_picker(osdialog_color *color, int opacity) {
 	(void) opacity;

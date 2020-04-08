@@ -31,11 +31,9 @@
 #include "map.h"
 #include "net_util.h"
 
-
-NVec2 PlaceAwayFromPlayers(
-	Map *map, const bool giveUp, const PlacementAccessFlags paFlags);
+NVec2 PlaceAwayFromPlayers(Map *map, const bool giveUp,
+		const PlacementAccessFlags paFlags);
 NVec2 PlacePrisoner(Map *map);
 
-struct vec2 PlacePlayer(
-	Map *map, const PlayerData *p, const struct vec2 firstPos,
-	const bool pumpEvents);
+struct vec2 PlacePlayer(Map *map, const PlayerData *p,
+		const struct vec2 firstPos, const bool pumpEvents);

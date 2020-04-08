@@ -1,4 +1,5 @@
-const char *db = "# Columns are: GUID, Joystick Name, button:name:r:g:b (repeated)\n\
+const char *db =
+		"# Columns are: GUID, Joystick Name, button:name:r:g:b (repeated)\n\
 # If button name is blank, use default name\n\
 # Note: for ease of parsing, all tokens must end with comma\n\
 \n\

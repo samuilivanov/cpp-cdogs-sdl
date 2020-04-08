@@ -34,7 +34,7 @@ typedef struct hashmap_map *map_t;
 
 /*
  * Return an empty hashmap. Returns NULL if empty.
-*/
+ */
 map_t hashmap_new(void);
 
 map_t hashmap_copy(const map_t in, any_t (*callback)(any_t));
@@ -52,17 +52,17 @@ int hashmap_iterate_keys(map_t in, PFany f, any_t item);
 /*
  * Add an element to the hashmap. Return MAP_OK or MAP_OMEM.
  */
-int hashmap_put(map_t in, const char* key, any_t value);
+int hashmap_put(map_t in, const char *key, any_t value);
 
 /*
  * Get an element from the hashmap. Return MAP_OK or MAP_MISSING.
  */
-int hashmap_get(const map_t in, const char* key, any_t *arg);
+int hashmap_get(const map_t in, const char *key, any_t *arg);
 
 /*
  * Remove an element from the hashmap. Return MAP_OK or MAP_MISSING.
  */
-int hashmap_remove(map_t in, char* key);
+int hashmap_remove(map_t in, char *key);
 
 /*
  * Get any element. Return MAP_OK or MAP_MISSING.
@@ -71,10 +71,10 @@ int hashmap_get_one(map_t m, any_t *arg);
 int hashmap_get_one_key(map_t m, any_t *arg);
 
 /*
-* Remove all elements, with a custom callback to each element, so that they
-* may be deallocated by the callback
-*/
-void hashmap_clear(map_t in, void(*callback)(any_t));
+ * Remove all elements, with a custom callback to each element, so that they
+ * may be deallocated by the callback
+ */
+void hashmap_clear(map_t in, void (*callback)(any_t));
 
 /*
  * Free the hashmap
@@ -82,11 +82,11 @@ void hashmap_clear(map_t in, void(*callback)(any_t));
 void hashmap_free(map_t in);
 
 /*
-* Free the hashmap, as well as a custom callback to each element, so that they
-* may be deallocated by the callback
-* It is a shortcut to hashmap_iterate with a deallocation function followed by
-* hashmap_free.
-*/
+ * Free the hashmap, as well as a custom callback to each element, so that they
+ * may be deallocated by the callback
+ * It is a shortcut to hashmap_iterate with a deallocation function followed by
+ * hashmap_free.
+ */
 void hashmap_destroy(map_t in, void (*callback)(any_t));
 
 /*

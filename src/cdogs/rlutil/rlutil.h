@@ -17,12 +17,10 @@
 /// Define: RLUTIL_USE_ANSI
 /// Define this to use ANSI escape sequences also on Windows
 /// (defaults to using WinAPI instead).
-
 /// Define: RLUTIL_STRING_T
 /// Define/typedef this to your preference to override rlutil's string type.
 ///
 /// Defaults to std::string with C++ and char* with C.
-
 /// Common C++ headers
 #include <iostream>
 #include <cstring>

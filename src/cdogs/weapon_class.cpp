@@ -1,30 +1,30 @@
 /*
-    C-Dogs SDL
-    A port of the legendary (and fun) action/arcade cdogs.
-    Copyright (c) 2013-2019 Cong Xu
-    All rights reserved.
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
+ Copyright (c) 2013-2019 Cong Xu
+ All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-    Redistributions of source code must retain the above copyright notice, this
-    list of conditions and the following disclaimer.
-    Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #include "weapon_class.h"
 
 #include "ammo.h"
@@ -34,89 +34,69 @@
 #include "net_util.h"
 #include "utils.h"
 
-
 WeaponClasses gWeaponClasses;
 
 // Initialise all the static weapon data
 #define VERSION 3
-void WeaponClassesInitialize(WeaponClasses *wcs)
-{
+void WeaponClassesInitialize(WeaponClasses *wcs) {
 	memset(wcs, 0, sizeof *wcs);
 	CArrayInit(&wcs->Guns, sizeof(WeaponClass));
 	CArrayInit(&wcs->CustomGuns, sizeof(WeaponClass));
 }
-static void LoadGunDescription(
-	WeaponClass *wc, json_t *node, const WeaponClass *defaultGun,
-	const int version);
+static void LoadGunDescription(WeaponClass *wc, json_t *node,
+		const WeaponClass *defaultGun, const int version);
 static void GunDescriptionTerminate(WeaponClass *wc);
-void WeaponClassesLoadJSON(WeaponClasses *wcs, CArray *classes, json_t *root)
-{
+void WeaponClassesLoadJSON(WeaponClasses *wcs, CArray *classes, json_t *root) {
 	LOG(LM_MAP, LL_DEBUG, "loading weapons");
 	int version;
 	LoadInt(&version, root, "Version");
-	if (version > VERSION || version <= 0)
-	{
+	if (version > VERSION || version <= 0) {
 		CASSERT(false, "cannot read guns file version");
 		return;
 	}
 
 	WeaponClass *defaultDesc = &wcs->Default;
 	// Only load default gun from main game data
-	if (classes == &wcs->Guns)
-	{
+	if (classes == &wcs->Guns) {
 		json_t *defaultNode = json_find_first_label(root, "DefaultGun");
-		if (defaultNode != NULL)
-		{
+		if (defaultNode != NULL) {
 			LoadGunDescription(defaultDesc, defaultNode->child, NULL, version);
-		}
-		else
-		{
+		} else {
 			memset(defaultDesc, 0, sizeof *defaultDesc);
 		}
 		CASSERT(wcs->Guns.size == 0, "guns not empty");
-		for (int i = 0; i < GUN_COUNT; i++)
-		{
+		for (int i = 0; i < GUN_COUNT; i++) {
 			WeaponClass gd;
-			if (defaultNode != NULL)
-			{
+			if (defaultNode != NULL) {
 				LoadGunDescription(&gd, defaultNode->child, NULL, version);
-			}
-			else
-			{
+			} else {
 				memset(&gd, 0, sizeof gd);
 			}
 			CArrayPushBack(&wcs->Guns, &gd);
 		}
 	}
 	json_t *gunsNode = json_find_first_label(root, "Guns")->child;
-	for (json_t *child = gunsNode->child; child; child = child->next)
-	{
+	for (json_t *child = gunsNode->child; child; child = child->next) {
 		WeaponClass gd;
 		LoadGunDescription(&gd, child, defaultDesc, version);
 		int idx = -1;
 		// Only allow index for non-custom guns
-		if (classes == &wcs->Guns)
-		{
+		if (classes == &wcs->Guns) {
 			LoadInt(&idx, child, "Index");
 		}
-		if (idx >= 0 && idx < GUN_COUNT)
-		{
-			WeaponClass *gExisting = static_cast< WeaponClass*>(CArrayGet(&wcs->Guns, idx));
+		if (idx >= 0 && idx < GUN_COUNT) {
+			WeaponClass *gExisting = static_cast<WeaponClass*>(CArrayGet(
+					&wcs->Guns, idx));
 			GunDescriptionTerminate(gExisting);
 			memcpy(gExisting, &gd, sizeof gd);
-		}
-		else
-		{
+		} else {
 			CArrayPushBack(classes, &gd);
 		}
 	}
 	json_t *pseudoGunsNode = json_find_first_label(root, "PseudoGuns");
-	if (pseudoGunsNode != NULL)
-	{
-		for (json_t *child = pseudoGunsNode->child->child;
-			child;
-			child = child->next)
-		{
+	if (pseudoGunsNode != NULL) {
+		for (json_t *child = pseudoGunsNode->child->child; child;
+				child = child->next) {
 			WeaponClass gd;
 			LoadGunDescription(&gd, child, defaultDesc, version);
 			gd.IsRealGun = false;
@@ -124,25 +104,19 @@ void WeaponClassesLoadJSON(WeaponClasses *wcs, CArray *classes, json_t *root)
 		}
 	}
 }
-static void LoadGunDescription(
-	WeaponClass *wc, json_t *node, const WeaponClass *defaultGun,
-	const int version)
-{
+static void LoadGunDescription(WeaponClass *wc, json_t *node,
+		const WeaponClass *defaultGun, const int version) {
 	memset(wc, 0, sizeof *wc);
 	wc->AmmoId = -1;
-	if (defaultGun)
-	{
+	if (defaultGun) {
 		memcpy(wc, defaultGun, sizeof *wc);
-		if (defaultGun->name)
-		{
+		if (defaultGun->name) {
 			CSTRDUP(wc->name, defaultGun->name);
 		}
-		if (defaultGun->Sprites)
-		{
+		if (defaultGun->Sprites) {
 			CSTRDUP(wc->Sprites, defaultGun->Sprites);
 		}
-		if (defaultGun->Description)
-		{
+		if (defaultGun->Description) {
 			CSTRDUP(wc->Description, defaultGun->Description);
 		}
 		wc->MuzzleHeight /= Z_FACTOR;
@@ -151,12 +125,10 @@ static void LoadGunDescription(
 
 	tmp = NULL;
 	LoadStr(&tmp, node, "Pic");
-	if (tmp != NULL)
-	{
+	if (tmp != NULL) {
 		CFREE(wc->Sprites);
 		wc->Sprites = NULL;
-		if (strlen(tmp) > 0)
-		{
+		if (strlen(tmp) > 0) {
 			char buf[CDOGS_PATH_MAX];
 			sprintf(buf, "chars/guns/%s", tmp);
 			CSTRDUP(wc->Sprites, buf);
@@ -168,42 +140,36 @@ static void LoadGunDescription(
 
 	const Pic *icon = NULL;
 	LoadPic(&icon, node, "Icon");
-	if (icon != NULL)
-	{
+	if (icon != NULL) {
 		wc->Icon = icon;
 	}
 
 	tmp = NULL;
 	LoadStr(&tmp, node, "Name");
-	if (tmp != NULL)
-	{
+	if (tmp != NULL) {
 		CFREE(wc->name);
 		wc->name = tmp;
 	}
 
 	tmp = NULL;
 	LoadStr(&tmp, node, "Description");
-	if (tmp != NULL)
-	{
+	if (tmp != NULL) {
 		CFREE(wc->Description);
 		wc->Description = tmp;
 	}
 
 	tmp = NULL;
 	LoadStr(&tmp, node, "Bullet");
-	if (tmp != NULL)
-	{
+	if (tmp != NULL) {
 		wc->Bullet = StrBulletClass(tmp);
 		CFREE(tmp);
 	}
 
 	tmp = NULL;
 	LoadStr(&tmp, node, "Ammo");
-	if (tmp != NULL)
-	{
+	if (tmp != NULL) {
 		wc->AmmoId = StrAmmoId(tmp);
-		if (wc->IsGrenade)
-		{
+		if (wc->IsGrenade) {
 			// Grenade weapons also allow the ammo pickups to act as gun
 			// pickups
 			Ammo *ammo = AmmoGetById(&gAmmo, wc->AmmoId);
@@ -235,8 +201,7 @@ static void LoadGunDescription(
 
 	LoadInt(&wc->MuzzleHeight, node, "MuzzleHeight");
 	wc->MuzzleHeight *= Z_FACTOR;
-	if (json_find_first_label(node, "Elevation"))
-	{
+	if (json_find_first_label(node, "Elevation")) {
 		LoadInt(&wc->ElevationLow, node, "Elevation");
 		wc->ElevationHigh = wc->ElevationLow;
 	}
@@ -246,16 +211,14 @@ static void LoadGunDescription(
 	wc->ElevationHigh = MAX(wc->ElevationLow, wc->ElevationHigh);
 	tmp = NULL;
 	LoadStr(&tmp, node, "MuzzleFlashParticle");
-	if (tmp != NULL)
-	{
+	if (tmp != NULL) {
 		wc->MuzzleFlash = StrParticleClass(&gParticleClasses, tmp);
 		CFREE(tmp);
 	}
 
 	tmp = NULL;
 	LoadStr(&tmp, node, "Brass");
-	if (tmp != NULL)
-	{
+	if (tmp != NULL) {
 		wc->Brass = StrParticleClass(&gParticleClasses, tmp);
 		CFREE(tmp);
 	}
@@ -264,12 +227,9 @@ static void LoadGunDescription(
 
 	LoadBool(&wc->CanDrop, node, "CanDrop");
 
-	if (version < 3)
-	{
+	if (version < 3) {
 		LoadInt(&wc->Shake.Amount, node, "ShakeAmount");
-	}
-	else if (json_find_first_label(node, "Shake"))
-	{
+	} else if (json_find_first_label(node, "Shake")) {
 		json_t *shake = json_find_first_label(node, "Shake")->child;
 		LoadInt(&wc->Shake.Amount, shake, "Amount");
 		LoadBool(&wc->Shake.CameraSubjectOnly, shake, "CameraSubjectOnly");
@@ -277,53 +237,48 @@ static void LoadGunDescription(
 
 	wc->IsRealGun = true;
 
-	if (version < 2)
-	{
-		if (!wc->CanShoot)
-		{
+	if (version < 2) {
+		if (!wc->CanShoot) {
 			wc->Lock = 0;
 		}
 	}
 
 	LOG(LM_MAP, LL_DEBUG,
-		"loaded %s name(%s) bullet(%s) ammo(%d) cost(%d) lock(%d)...",
-		wc->IsGrenade ? "grenade" : "gun",
-		wc->name, wc->Bullet != NULL ? wc->Bullet->Name : "", wc->AmmoId,
-		wc->Cost, wc->Lock);
+			"loaded %s name(%s) bullet(%s) ammo(%d) cost(%d) lock(%d)...",
+			wc->IsGrenade ? "grenade" : "gun", wc->name,
+			wc->Bullet != NULL ? wc->Bullet->Name : "", wc->AmmoId, wc->Cost,
+			wc->Lock);
+	LOG(LM_MAP, LL_DEBUG, "...reloadLead(%d) soundLockLength(%d) recoil(%f)...",
+			wc->ReloadLead, wc->SoundLockLength, wc->Recoil);
 	LOG(LM_MAP, LL_DEBUG,
-		"...reloadLead(%d) soundLockLength(%d) recoil(%f)...",
-		wc->ReloadLead, wc->SoundLockLength, wc->Recoil);
+			"...spread(%frad x%d) angleOffset(%f) muzzleHeight(%d)...",
+			wc->Spread.Width, wc->Spread.Count, wc->AngleOffset,
+			wc->MuzzleHeight);
 	LOG(LM_MAP, LL_DEBUG,
-		"...spread(%frad x%d) angleOffset(%f) muzzleHeight(%d)...",
-		wc->Spread.Width, wc->Spread.Count, wc->AngleOffset, wc->MuzzleHeight);
+			"...elevation(%d-%d) muzzleFlash(%s) brass(%s) canShoot(%s)...",
+			wc->ElevationLow, wc->ElevationHigh,
+			wc->MuzzleFlash != NULL ? wc->MuzzleFlash->Name : "",
+			wc->Brass != NULL ? wc->Brass->Name : "",
+			wc->CanShoot ? "true" : "false");
 	LOG(LM_MAP, LL_DEBUG,
-		"...elevation(%d-%d) muzzleFlash(%s) brass(%s) canShoot(%s)...",
-		wc->ElevationLow, wc->ElevationHigh,
-		wc->MuzzleFlash != NULL ? wc->MuzzleFlash->Name : "",
-		wc->Brass != NULL ? wc->Brass->Name : "",
-		wc->CanShoot ? "true" : "false");
-	LOG(LM_MAP, LL_DEBUG,
-		"...canDrop(%s) shake{amount(%d), cameraSubjectOnly(%s)",
-		wc->CanDrop ? "true" : "false", wc->Shake.Amount,
-		wc->Shake.CameraSubjectOnly ? "true" : "false");
+			"...canDrop(%s) shake{amount(%d), cameraSubjectOnly(%s)",
+			wc->CanDrop ? "true" : "false", wc->Shake.Amount,
+			wc->Shake.CameraSubjectOnly ? "true" : "false");
 }
-void WeaponClassesTerminate(WeaponClasses *wcs)
-{
+void WeaponClassesTerminate(WeaponClasses *wcs) {
 	WeaponClassesClear(&wcs->Guns);
 	CArrayTerminate(&wcs->Guns);
 	WeaponClassesClear(&wcs->CustomGuns);
 	CArrayTerminate(&wcs->CustomGuns);
 	GunDescriptionTerminate(&wcs->Default);
 }
-void WeaponClassesClear(CArray *classes)
-{
+void WeaponClassesClear(CArray *classes) {
 	CA_FOREACH(WeaponClass, g, *classes)
 		GunDescriptionTerminate(g);
 	CA_FOREACH_END()
 	CArrayClear(classes);
 }
-static void GunDescriptionTerminate(WeaponClass *wc)
-{
+static void GunDescriptionTerminate(WeaponClass *wc) {
 	CFREE(wc->name);
 	CFREE(wc->Sprites);
 	CFREE(wc->Description);
@@ -331,80 +286,66 @@ static void GunDescriptionTerminate(WeaponClass *wc)
 }
 
 // TODO: use map structure?
-const WeaponClass *StrWeaponClass(const char *s)
-{
+const WeaponClass* StrWeaponClass(const char *s) {
 	CA_FOREACH(const WeaponClass, gd, gWeaponClasses.CustomGuns)
-		if (strcmp(s, gd->name) == 0)
-		{
+		if (strcmp(s, gd->name) == 0) {
 			return gd;
-		}
-	CA_FOREACH_END()
+		}CA_FOREACH_END()
 	CA_FOREACH(const WeaponClass, gd, gWeaponClasses.Guns)
-		if (strcmp(s, gd->name) == 0)
-		{
+		if (strcmp(s, gd->name) == 0) {
 			return gd;
-		}
-	CA_FOREACH_END()
+		}CA_FOREACH_END()
 	fprintf(stderr, "Cannot parse gun name: %s\n", s);
 	return NULL;
 }
-WeaponClass *IdWeaponClass(const int i)
-{
+WeaponClass* IdWeaponClass(const int i) {
 	CASSERT(
-		i >= 0 &&
-		i < (int)gWeaponClasses.Guns.size +
-		(int)gWeaponClasses.CustomGuns.size,
-		"Gun index out of bounds");
-	if (i < (int)gWeaponClasses.Guns.size)
-	{
+			i >= 0
+					&& i
+							< (int )gWeaponClasses.Guns.size
+									+ (int )gWeaponClasses.CustomGuns.size,
+			"Gun index out of bounds");
+	if (i < (int) gWeaponClasses.Guns.size) {
 		return static_cast<WeaponClass*>(CArrayGet(&gWeaponClasses.Guns, i));
 	}
-	return static_cast<WeaponClass*>(CArrayGet(
-		&gWeaponClasses.CustomGuns, i - gWeaponClasses.Guns.size));
+	return static_cast<WeaponClass*>(CArrayGet(&gWeaponClasses.CustomGuns,
+			i - gWeaponClasses.Guns.size));
 }
-int WeaponClassId(const WeaponClass *wc)
-{
+int WeaponClassId(const WeaponClass *wc) {
 	int idx = 0;
-	for (int i = 0; i < (int)gWeaponClasses.Guns.size; i++, idx++)
-	{
-		const WeaponClass *wc2 = static_cast<const WeaponClass*>(CArrayGet(&gWeaponClasses.Guns, i));
-		if (wc2 == wc)
-		{
+	for (int i = 0; i < (int) gWeaponClasses.Guns.size; i++, idx++) {
+		const WeaponClass *wc2 = static_cast<const WeaponClass*>(CArrayGet(
+				&gWeaponClasses.Guns, i));
+		if (wc2 == wc) {
 			return idx;
 		}
 	}
-	for (int i = 0; i < (int)gWeaponClasses.CustomGuns.size; i++, idx++)
-	{
-		const WeaponClass *wc2 = static_cast<const WeaponClass*>(CArrayGet(&gWeaponClasses.CustomGuns, i));
-		if (wc2 == wc)
-		{
+	for (int i = 0; i < (int) gWeaponClasses.CustomGuns.size; i++, idx++) {
+		const WeaponClass *wc2 = static_cast<const WeaponClass*>(CArrayGet(
+				&gWeaponClasses.CustomGuns, i));
+		if (wc2 == wc) {
 			return idx;
 		}
 	}
 	CASSERT(false, "cannot find gun");
 	return -1;
 }
-WeaponClass *IndexWeaponClassReal(const int i)
-{
+WeaponClass* IndexWeaponClassReal(const int i) {
 	int j = 0;
 	CA_FOREACH(WeaponClass, wc, gWeaponClasses.Guns)
-		if (!wc->IsRealGun)
-		{
+		if (!wc->IsRealGun) {
 			continue;
 		}
-		if (j == i)
-		{
+		if (j == i) {
 			return wc;
 		}
 		j++;
 	CA_FOREACH_END()
 	CA_FOREACH(WeaponClass, wc, gWeaponClasses.CustomGuns)
-		if (!wc->IsRealGun)
-		{
+		if (!wc->IsRealGun) {
 			continue;
 		}
-		if (j == i)
-		{
+		if (j == i) {
 			return wc;
 		}
 		j++;
@@ -413,31 +354,26 @@ WeaponClass *IndexWeaponClassReal(const int i)
 	return NULL;
 }
 
-void WeaponClassFire(
-	const WeaponClass *wc, const struct vec2 pos, const float z,
-	const double radians,
-	const int flags, const int actorUID,
-	const bool playSound, const bool isGun)
-{
+void WeaponClassFire(const WeaponClass *wc, const struct vec2 pos,
+		const float z, const double radians, const int flags,
+		const int actorUID, const bool playSound, const bool isGun) {
 	GameEvent e = GameEventNew(GAME_EVENT_GUN_FIRE);
 	e.u.GunFire.ActorUID = actorUID;
 	strcpy(e.u.GunFire.Gun, wc->name);
 	e.u.GunFire.MuzzlePos = Vec2ToNet(pos);
 	// TODO: GunFire Z to float
-	e.u.GunFire.Z = (int)z;
-	e.u.GunFire.Angle = (float)radians;
+	e.u.GunFire.Z = (int) z;
+	e.u.GunFire.Angle = (float) radians;
 	e.u.GunFire.Sound = playSound;
 	e.u.GunFire.Flags = flags;
 	e.u.GunFire.IsGun = isGun;
 	GameEventsEnqueue(&gGameEvents, e);
 }
 
-void WeaponClassAddBrass(
-	const WeaponClass *wc, const direction_e d, const struct vec2 pos)
-{
+void WeaponClassAddBrass(const WeaponClass *wc, const direction_e d,
+		const struct vec2 pos) {
 	// Check configuration
-	if (!ConfigGetBool(&gConfig, "Graphics.Brass"))
-	{
+	if (!ConfigGetBool(&gConfig, "Graphics.Brass")) {
 		return;
 	}
 	CASSERT(wc->Brass, "Cannot create brass for no-brass weapon");
@@ -445,99 +381,86 @@ void WeaponClassAddBrass(
 	e.u.AddParticle.Class = wc->Brass;
 	const float radians = dir2radians[d];
 	const struct vec2 ejectionPortOffset = svec2_scale(
-		Vec2FromRadiansScaled(radians), 7);
+			Vec2FromRadiansScaled(radians), 7);
 	e.u.AddParticle.Pos = svec2_subtract(pos, ejectionPortOffset);
-	e.u.AddParticle.Z = (float)wc->MuzzleHeight;
-	e.u.AddParticle.Vel = svec2_scale(
-		Vec2FromRadians(radians + MPI_2), 0.333333f);
+	e.u.AddParticle.Z = (float) wc->MuzzleHeight;
+	e.u.AddParticle.Vel = svec2_scale(Vec2FromRadians(radians + MPI_2),
+			0.333333f);
 	e.u.AddParticle.Vel.x += RAND_FLOAT(-0.25f, 0.25f);
 	e.u.AddParticle.Vel.y += RAND_FLOAT(-0.25f, 0.25f);
 	e.u.AddParticle.Angle = RAND_DOUBLE(0, MPI * 2);
-	e.u.AddParticle.DZ = (float)((rand() % 6) + 6);
+	e.u.AddParticle.DZ = (float) ((rand() % 6) + 6);
 	e.u.AddParticle.Spin = RAND_DOUBLE(-0.1, 0.1);
 	GameEventsEnqueue(&gGameEvents, e);
 }
 
 static struct vec2 GetMuzzleOffset(const direction_e d, const gunstate_e state);
-struct vec2 WeaponClassGetMuzzleOffset(
-	const WeaponClass *desc, const CharSprites *cs,
-	const direction_e dir, const gunstate_e state)
-{
-	if (!WeaponClassHasMuzzle(desc))
-	{
+struct vec2 WeaponClassGetMuzzleOffset(const WeaponClass *desc,
+		const CharSprites *cs, const direction_e dir, const gunstate_e state) {
+	if (!WeaponClassHasMuzzle(desc)) {
 		return svec2_zero();
 	}
 	CASSERT(desc->Sprites != NULL, "Gun has no pic");
 	const struct vec2 gunOffset = cs->Offsets.Dir[BODY_PART_GUN][dir];
 	return svec2_add(gunOffset, GetMuzzleOffset(dir, state));
 }
-static struct vec2 GetMuzzleOffset(const direction_e d, const gunstate_e state)
-{
+static struct vec2 GetMuzzleOffset(const direction_e d,
+		const gunstate_e state) {
 	// TODO: gun-specific muzzle offsets
-	#define BARREL_LENGTH 10
-	#define BARREL_LENGTH_READY 7
+#define BARREL_LENGTH 10
+#define BARREL_LENGTH_READY 7
 	// Barrel slightly shortened when not firing
 	const double barrelLength =
-		state == GUNSTATE_FIRING ? BARREL_LENGTH : BARREL_LENGTH_READY;
-	return svec2_scale(Vec2FromRadians(dir2radians[d]), (float)barrelLength);
+			state == GUNSTATE_FIRING ? BARREL_LENGTH : BARREL_LENGTH_READY;
+	return svec2_scale(Vec2FromRadians(dir2radians[d]), (float) barrelLength);
 }
-float WeaponClassGetMuzzleHeight(const WeaponClass *wc, const gunstate_e state)
-{
+float WeaponClassGetMuzzleHeight(const WeaponClass *wc,
+		const gunstate_e state) {
 	// Muzzle slightly higher when not firing
 	// TODO: convert MuzzleHeight to float
-	return (float)(wc->MuzzleHeight + (state == GUNSTATE_FIRING ? 0 : 4 * Z_FACTOR));
+	return (float) (wc->MuzzleHeight
+			+ (state == GUNSTATE_FIRING ? 0 : 4 * Z_FACTOR));
 }
 
-bool WeaponClassHasMuzzle(const WeaponClass *wc)
-{
+bool WeaponClassHasMuzzle(const WeaponClass *wc) {
 	return wc->Sprites != NULL && wc->CanShoot;
 }
-bool WeaponClassIsHighDPS(const WeaponClass *wc)
-{
-	if (wc->Bullet == NULL)
-	{
+bool WeaponClassIsHighDPS(const WeaponClass *wc) {
+	if (wc->Bullet == NULL) {
 		return false;
 	}
 	// TODO: generalised way of determining explosive bullets
-	return
-		wc->Bullet->Falling.DropGuns.size > 0 ||
-		wc->Bullet->OutOfRangeGuns.size > 0 ||
-		wc->Bullet->HitGuns.size > 0;
+	return wc->Bullet->Falling.DropGuns.size > 0
+			|| wc->Bullet->OutOfRangeGuns.size > 0
+			|| wc->Bullet->HitGuns.size > 0;
 }
-float WeaponClassGetRange(const WeaponClass *wc)
-{
+float WeaponClassGetRange(const WeaponClass *wc) {
 	const BulletClass *b = wc->Bullet;
-	if (b == NULL)
-	{
+	if (b == NULL) {
 		return 0;
 	}
 	const float speed = (b->SpeedLow + b->SpeedHigh) / 2;
 	const int range = (b->RangeLow + b->RangeHigh) / 2;
 	float effectiveRange = speed * range;
-	if (b->Falling.GravityFactor != 0 && b->Falling.DestroyOnDrop)
-	{
+	if (b->Falling.GravityFactor != 0 && b->Falling.DestroyOnDrop) {
 		// Halve effective range
 		// TODO: this assumes a certain bouncing range
 		effectiveRange *= 0.5f;
 	}
 	return effectiveRange;
 }
-bool WeaponClassIsLongRange(const WeaponClass *wc)
-{
+bool WeaponClassIsLongRange(const WeaponClass *wc) {
 	return WeaponClassGetRange(wc) > 130;
 }
-bool WeaponClassIsShortRange(const WeaponClass *wc)
-{
+bool WeaponClassIsShortRange(const WeaponClass *wc) {
 	return WeaponClassGetRange(wc) < 100;
 }
-const Pic *WeaponClassGetIcon(const WeaponClass *wc)
-{
+const Pic* WeaponClassGetIcon(const WeaponClass *wc) {
 	return wc->Icon;
 }
 
-void BulletAndWeaponInitialize(
-	BulletClasses *b, WeaponClasses *wcs, const char *bpath, const char *gpath)
-{
+void BulletAndWeaponInitialize(BulletClasses *b, WeaponClasses *wcs,
+		const char *bpath, const char *gpath) {
 	BulletInitialize(b);
 
 	FILE *bf = NULL;
@@ -551,16 +474,14 @@ void BulletAndWeaponInitialize(
 	char buf[CDOGS_PATH_MAX];
 	GetDataFilePath(buf, bpath);
 	bf = fopen(buf, "r");
-	if (bf == NULL)
-	{
+	if (bf == NULL) {
 		LOG(LM_MAP, LL_ERROR, "Error: cannot load bullets file %s", buf);
 		goto bail;
 	}
 	e = json_stream_parse(bf, &broot);
-	if (e != JSON_OK)
-	{
-		LOG(LM_MAP, LL_ERROR, "Error parsing bullets file %s [error %d]",
-			buf, (int)e);
+	if (e != JSON_OK) {
+		LOG(LM_MAP, LL_ERROR, "Error parsing bullets file %s [error %d]", buf,
+				(int )e);
 		goto bail;
 	}
 	BulletLoadJSON(b, &b->Classes, broot);
@@ -568,16 +489,14 @@ void BulletAndWeaponInitialize(
 	WeaponClassesInitialize(wcs);
 	GetDataFilePath(buf, gpath);
 	gf = fopen(buf, "r");
-	if (gf == NULL)
-	{
+	if (gf == NULL) {
 		LOG(LM_MAP, LL_ERROR, "Error: cannot load guns file %s", buf);
 		goto bail;
 	}
 	e = json_stream_parse(gf, &groot);
-	if (e != JSON_OK)
-	{
-		LOG(LM_MAP, LL_ERROR, "Error parsing guns file %s [error %d]",
-			buf, (int)e);
+	if (e != JSON_OK) {
+		LOG(LM_MAP, LL_ERROR, "Error parsing guns file %s [error %d]", buf,
+				(int )e);
 		goto bail;
 	}
 	WeaponClassesLoadJSON(wcs, &wcs->Guns, groot);
@@ -585,17 +504,13 @@ void BulletAndWeaponInitialize(
 	BulletLoadWeapons(b);
 	freeBRoot = false;
 
-bail:
-	if (bf)
-	{
+	bail: if (bf) {
 		fclose(bf);
 	}
-	if (gf)
-	{
+	if (gf) {
 		fclose(gf);
 	}
-	if (freeBRoot)
-	{
+	if (freeBRoot) {
 		json_free_value(&broot);
 	}
 	json_free_value(&groot);

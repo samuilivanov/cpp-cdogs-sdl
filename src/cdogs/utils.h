@@ -210,7 +210,7 @@ enum BodyPart {
 	BODY_PART_COUNT
 };
 
-BodyPart &operator++(BodyPart& d);
+BodyPart& operator++(BodyPart &d);
 
 BodyPart StrBodyPart(const char *s);
 

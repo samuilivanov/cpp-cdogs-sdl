@@ -319,7 +319,8 @@ bool BulletUpdate(struct MobileObject *obj, const int ticks) {
 static void FireGuns(const TMobileObject *obj, const CArray *guns) {
 	const float angle = svec2_angle(obj->thing.Vel) + MPI_2;
 	for (int i = 0; i < (int) guns->size; i++) {
-		const WeaponClass **wc = static_cast<const WeaponClass **>(CArrayGet(guns, i));
+		const WeaponClass **wc = static_cast<const WeaponClass**>(CArrayGet(
+				guns, i));
 		WeaponClassFire(*wc, obj->thing.Pos, obj->z, angle, obj->flags,
 				obj->ActorUID, true, false);
 	}
@@ -399,7 +400,7 @@ static void SetClosestCollision(HitItemData *data, const struct vec2 col,
 static bool HitItemFunc(Thing *ti, void *data, const struct vec2 colA,
 		const struct vec2 colB, const struct vec2 normal) {
 	UNUSED(colB);
-	HitItemData *hData = static_cast<HitItemData *>(data);
+	HitItemData *hData = static_cast<HitItemData*>(data);
 
 	// Check bullet-to-other collisions
 	if (!CanHit(hData->Obj->flags, hData->Obj->ActorUID, ti)) {
@@ -454,7 +455,7 @@ static bool CheckWall(const struct vec2i tilePos) {
 }
 static bool HitWallFunc(const struct vec2i tilePos, void *data,
 		const struct vec2 col, const struct vec2 normal) {
-	HitItemData *hData = static_cast<HitItemData *>(data);
+	HitItemData *hData = static_cast<HitItemData*>(data);
 
 	SetClosestCollision(hData, col, normal, HIT_WALL, NULL, tilePos);
 

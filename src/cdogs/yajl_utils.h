@@ -30,14 +30,13 @@
 #include "vector.h"
 #include "yajl/api/yajl_tree.h"
 
-
 yajl_val YAJLReadFile(const char *filename);
 /*
-void AddIntPair(json_t *parent, const char *name, int number);
-void AddBoolPair(json_t *parent, const char *name, int value);
-void AddStringPair(json_t *parent, const char *name, const char *s);
-void AddColorPair(json_t *parent, const char *name, const color_t c);
-*/
+ void AddIntPair(json_t *parent, const char *name, int number);
+ void AddBoolPair(json_t *parent, const char *name, int value);
+ void AddStringPair(json_t *parent, const char *name, const char *s);
+ void AddColorPair(json_t *parent, const char *name, const color_t c);
+ */
 void YAJLBool(bool *value, yajl_val node, const char *name);
 void YAJLInt(int *value, yajl_val node, const char *name);
 void YAJLDouble(double *value, yajl_val node, const char *name);
@@ -47,26 +46,26 @@ void YAJLVec2i(struct vec2i *value, yajl_val node, const char *name);
 	(int)YAJL_GET_INTEGER(YAJL_GET_ARRAY(v)->values[1]))
 // remember to free
 void YAJLStr(char **value, yajl_val node, const char *name);
-char *YAJLGetStr(yajl_val node, const char *name);
+char* YAJLGetStr(yajl_val node, const char *name);
 /*
-void LoadSoundFromNode(Mix_Chunk **value, json_t *node, const char *name);
-// Load a const Pic * based on a name
-void LoadPic(const Pic **value, json_t *node, const char *name);
-// Load an array of const WeaponClass *
-void LoadBulletGuns(CArray *guns, json_t *node, const char *name);
-void LoadColor(color_t *c, json_t *node, const char *name);
-*/
+ void LoadSoundFromNode(Mix_Chunk **value, json_t *node, const char *name);
+ // Load a const Pic * based on a name
+ void LoadPic(const Pic **value, json_t *node, const char *name);
+ // Load an array of const WeaponClass *
+ void LoadBulletGuns(CArray *guns, json_t *node, const char *name);
+ void LoadColor(color_t *c, json_t *node, const char *name);
+ */
 // Try to load a JSON node using a slash-delimited "path"
 // If at any point the path fails, NULL is returned.
 yajl_val YAJLFindNode(yajl_val node, const char *path);
 /*
-#define JSON_UTILS_ADD_ENUM_PAIR(parent, name, value, func)\
+ #define JSON_UTILS_ADD_ENUM_PAIR(parent, name, value, func)\
 	json_insert_pair_into_object(\
 		(parent), (name), json_new_string(func(value)));
-*/
+ */
 bool YAJLTryLoadValue(yajl_val *node, const char *name);
 /*
-#define JSON_UTILS_LOAD_ENUM(value, node, name, func)\
+ #define JSON_UTILS_LOAD_ENUM(value, node, name, func)\
 	{\
 		json_t *_node = (node);\
 		if (TryLoadValue(&_node, (name)))\
@@ -74,4 +73,4 @@ bool YAJLTryLoadValue(yajl_val *node, const char *name);
 			(value) = func(_node->text);\
 		}\
 	}
-*/
+ */

@@ -3,28 +3,42 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-
-
-int osdialog_message(osdialog_message_level level, osdialog_message_buttons buttons, const char *message) {
+int osdialog_message(osdialog_message_level level,
+		osdialog_message_buttons buttons, const char *message) {
 	assert(gtk_init_check(NULL, NULL));
 
 	GtkMessageType messageType;
 	switch (level) {
-		default:
-		case OSDIALOG_INFO: messageType = GTK_MESSAGE_INFO; break;
-		case OSDIALOG_WARNING: messageType = GTK_MESSAGE_WARNING; break;
-		case OSDIALOG_ERROR: messageType = GTK_MESSAGE_ERROR; break;
+	default:
+	case OSDIALOG_INFO:
+		messageType = GTK_MESSAGE_INFO;
+		break;
+	case OSDIALOG_WARNING:
+		messageType = GTK_MESSAGE_WARNING;
+		break;
+	case OSDIALOG_ERROR:
+		messageType = GTK_MESSAGE_ERROR;
+		break;
 	}
 
 	GtkButtonsType buttonsType;
 	switch (buttons) {
-		default:
-		case OSDIALOG_OK: buttonsType = GTK_BUTTONS_OK; break;
-		case OSDIALOG_OK_CANCEL: buttonsType = GTK_BUTTONS_OK_CANCEL; break;
-		case OSDIALOG_YES_NO: buttonsType = GTK_BUTTONS_YES_NO; break;
+	default:
+	case OSDIALOG_OK:
+		buttonsType = GTK_BUTTONS_OK;
+		break;
+	case OSDIALOG_OK_CANCEL:
+		buttonsType = GTK_BUTTONS_OK_CANCEL;
+		break;
+	case OSDIALOG_YES_NO:
+		buttonsType = GTK_BUTTONS_YES_NO;
+		break;
 	}
 
-	GtkWidget *dialog = gtk_message_dialog_new(NULL, static_cast<GtkDialogFlags>(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT), messageType, buttonsType, "%s", message);
+	GtkWidget *dialog = gtk_message_dialog_new(NULL,
+			static_cast<GtkDialogFlags>(GTK_DIALOG_MODAL
+					| GTK_DIALOG_DESTROY_WITH_PARENT), messageType, buttonsType,
+			"%s", message);
 
 	gint result = gtk_dialog_run(GTK_DIALOG(dialog));
 	gtk_widget_destroy(dialog);
@@ -35,19 +49,28 @@ int osdialog_message(osdialog_message_level level, osdialog_message_buttons butt
 	return (result == GTK_RESPONSE_OK || result == GTK_RESPONSE_YES);
 }
 
-
-char *osdialog_prompt(osdialog_message_level level, const char *message, const char *text) {
+char* osdialog_prompt(osdialog_message_level level, const char *message,
+		const char *text) {
 	assert(gtk_init_check(NULL, NULL));
 
 	GtkMessageType messageType;
 	switch (level) {
-		default:
-		case OSDIALOG_INFO: messageType = GTK_MESSAGE_INFO; break;
-		case OSDIALOG_WARNING: messageType = GTK_MESSAGE_WARNING; break;
-		case OSDIALOG_ERROR: messageType = GTK_MESSAGE_ERROR; break;
+	default:
+	case OSDIALOG_INFO:
+		messageType = GTK_MESSAGE_INFO;
+		break;
+	case OSDIALOG_WARNING:
+		messageType = GTK_MESSAGE_WARNING;
+		break;
+	case OSDIALOG_ERROR:
+		messageType = GTK_MESSAGE_ERROR;
+		break;
 	}
 
-	GtkWidget *dialog = gtk_message_dialog_new(NULL, static_cast<GtkDialogFlags>(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT), messageType, GTK_BUTTONS_OK_CANCEL, "%s", message);
+	GtkWidget *dialog = gtk_message_dialog_new(NULL,
+			static_cast<GtkDialogFlags>(GTK_DIALOG_MODAL
+					| GTK_DIALOG_DESTROY_WITH_PARENT), messageType,
+			GTK_BUTTONS_OK_CANCEL, "%s", message);
 
 	GtkWidget *entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(entry), text);
@@ -71,8 +94,8 @@ char *osdialog_prompt(osdialog_message_level level, const char *message, const c
 	return result;
 }
 
-
-char *osdialog_file(osdialog_file_action action, const char *path, const char *filename, osdialog_filters *filters) {
+char* osdialog_file(osdialog_file_action action, const char *path,
+		const char *filename, osdialog_filters *filters) {
 	assert(gtk_init_check(NULL, NULL));
 
 	GtkFileChooserAction gtkAction;
@@ -82,30 +105,26 @@ char *osdialog_file(osdialog_file_action action, const char *path, const char *f
 		title = "Open File";
 		acceptText = "Open";
 		gtkAction = GTK_FILE_CHOOSER_ACTION_OPEN;
-	}
-	else if (action == OSDIALOG_OPEN_DIR) {
+	} else if (action == OSDIALOG_OPEN_DIR) {
 		title = "Open Folder";
 		acceptText = "Open Folder";
 		gtkAction = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
-	}
-	else {
+	} else {
 		title = "Save File";
 		acceptText = "Save";
 		gtkAction = GTK_FILE_CHOOSER_ACTION_SAVE;
 	}
 
-	GtkWidget *dialog = gtk_file_chooser_dialog_new(
-		title,
-		NULL,
-		gtkAction,
-		"_Cancel", GTK_RESPONSE_CANCEL,
-		acceptText, GTK_RESPONSE_ACCEPT,
-		NULL);
+	GtkWidget *dialog = gtk_file_chooser_dialog_new(title,
+	NULL, gtkAction, "_Cancel", GTK_RESPONSE_CANCEL, acceptText,
+			GTK_RESPONSE_ACCEPT,
+			NULL);
 
 	for (; filters; filters = filters->next) {
 		GtkFileFilter *fileFilter = gtk_file_filter_new();
 		gtk_file_filter_set_name(fileFilter, filters->name);
-		for (osdialog_filter_patterns *patterns = filters->patterns; patterns; patterns = patterns->next) {
+		for (osdialog_filter_patterns *patterns = filters->patterns; patterns;
+				patterns = patterns->next) {
 			char patternBuf[1024];
 			snprintf(patternBuf, sizeof(patternBuf), "*.%s", patterns->pattern);
 			gtk_file_filter_add_pattern(fileFilter, patternBuf);
@@ -114,7 +133,8 @@ char *osdialog_file(osdialog_file_action action, const char *path, const char *f
 	}
 
 	if (action == OSDIALOG_SAVE)
-		gtk_file_chooser_set_do_overwrite_confirmation(GTK_FILE_CHOOSER(dialog), TRUE);
+		gtk_file_chooser_set_do_overwrite_confirmation(GTK_FILE_CHOOSER(dialog),
+				TRUE);
 
 	if (path)
 		gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
@@ -124,7 +144,8 @@ char *osdialog_file(osdialog_file_action action, const char *path, const char *f
 
 	char *chosen_filename = NULL;
 	if (gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT) {
-		chosen_filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
+		chosen_filename = gtk_file_chooser_get_filename(
+				GTK_FILE_CHOOSER(dialog));
 	}
 	gtk_widget_destroy(dialog);
 
@@ -139,7 +160,6 @@ char *osdialog_file(osdialog_file_action action, const char *path, const char *f
 	return result;
 }
 
-
 int osdialog_color_picker(osdialog_color *color, int opacity) {
 	if (!color)
 		return 0;
@@ -151,7 +171,9 @@ int osdialog_color_picker(osdialog_color *color, int opacity) {
 	gtk_color_chooser_set_use_alpha(colorsel, opacity);
 #else
 	GtkWidget *dialog = gtk_color_selection_dialog_new("Color");
-	GtkColorSelection *colorsel = GTK_COLOR_SELECTION(gtk_color_selection_dialog_get_color_selection(GTK_COLOR_SELECTION_DIALOG(dialog)));
+	GtkColorSelection *colorsel = GTK_COLOR_SELECTION(
+			gtk_color_selection_dialog_get_color_selection(
+					GTK_COLOR_SELECTION_DIALOG(dialog)));
 	gtk_color_selection_set_has_opacity_control(colorsel, opacity);
 #endif
 

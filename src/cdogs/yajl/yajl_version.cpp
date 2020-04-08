@@ -1,7 +1,6 @@
 #include <yajl/yajl_version.h>
 
-int yajl_version(void)
-{
+int yajl_version(void) {
 	return YAJL_VERSION;
 }
 

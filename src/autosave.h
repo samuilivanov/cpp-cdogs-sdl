@@ -25,7 +25,7 @@
  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 #pragma once
 
 #include <stddef.h>
@@ -36,8 +36,7 @@
 #define PASSWORD_MAX 16
 #define AUTOSAVE_FILE "autosave.json"
 
-typedef struct
-{
+typedef struct {
 	CampaignEntry Campaign;
 	char Password[PASSWORD_MAX + 1];
 	int IsValid;
@@ -46,8 +45,7 @@ typedef struct
 
 void MissionSaveInit(MissionSave *ms);
 
-typedef struct
-{
+typedef struct {
 	MissionSave LastMission;
 	CArray Missions;	// of MissionSave
 } Autosave;
@@ -59,5 +57,5 @@ void AutosaveTerminate(Autosave *autosave);
 void AutosaveLoad(Autosave *autosave, const char *filename);
 void AutosaveSave(Autosave *autosave, const char *filename);
 void AutosaveAddMission(Autosave *autosave, MissionSave *mission);
-void AutosaveLoadMission(
-	Autosave *autosave, MissionSave *mission, const char *path);
+void AutosaveLoadMission(Autosave *autosave, MissionSave *mission,
+		const char *path);

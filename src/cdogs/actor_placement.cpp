@@ -34,42 +34,35 @@
 #include "gamedata.h"
 #include "handle_game_events.h"
 
-
-static NVec2 PlaceActor(Map *map)
-{
+static NVec2 PlaceActor(Map *map) {
 	struct vec2 pos;
 
-	if (HasExit(gCampaign.Entry.Mode))
-	{
+	if (HasExit(gCampaign.Entry.Mode)) {
 		// First, try to place at least half the map away from the exit
 		const int halfMap =
-			MAX(map->Size.x * TILE_WIDTH, map->Size.y * TILE_HEIGHT) / 2;
+		MAX(map->Size.x * TILE_WIDTH, map->Size.y * TILE_HEIGHT) / 2;
 		const struct vec2 exitPos = MapGetExitPos(map);
 		// Don't try forever trying to place
-		for (int i = 0; i < 100; i++)
-		{
+		for (int i = 0; i < 100; i++) {
 			pos = MapGetRandomPos(map);
-			if (fabsf(pos.x - exitPos.x) > halfMap &&
-				fabsf(pos.y - exitPos.y) > halfMap &&
-				MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H)))
-			{
+			if (fabsf(pos.x - exitPos.x) > halfMap
+					&& fabsf(pos.y - exitPos.y) > halfMap
+					&& MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H))) {
 				return Vec2ToNet(pos);
 			}
 		}
 	}
 
 	// Try to place randomly
-	do
-	{
+	do {
 		pos = MapGetRandomPos(map);
-	} while (!MapIsPosOKForPlayer(map, pos, false) ||
-		!MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H)));
+	} while (!MapIsPosOKForPlayer(map, pos, false)
+			|| !MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H)));
 	return Vec2ToNet(pos);
 }
 
-static NVec2 PlaceActorNear(
-	Map *map, const struct vec2 nearPos, const bool allowAllTiles)
-{
+static NVec2 PlaceActorNear(Map *map, const struct vec2 nearPos,
+		const bool allowAllTiles) {
 	// Try a concentric rhombus pattern, clockwise from right
 	// That is, start by checking right, below, left, above,
 	// then continue with radius 2 right, below-right, below, below-left...
@@ -90,49 +83,40 @@ static NVec2 PlaceActorNear(
 	struct vec2 pos;
 	TRY_LOCATION();
 	const float inc = 1;
-	for (float radius = 12;; radius += 12)
-	{
+	for (float radius = 12;; radius += 12) {
 		// Going from right to below
-		for (dx = radius, dy = 0; dy < radius; dx -= inc, dy += inc)
-		{
+		for (dx = radius, dy = 0; dy < radius; dx -= inc, dy += inc) {
 			TRY_LOCATION();
 		}
 		// below to left
-		for (dx = 0, dy = radius; dy > 0; dx -= inc, dy -= inc)
-		{
+		for (dx = 0, dy = radius; dy > 0; dx -= inc, dy -= inc) {
 			TRY_LOCATION();
 		}
 		// left to above
-		for (dx = -radius, dy = 0; dx < 0; dx += inc, dy -= inc)
-		{
+		for (dx = -radius, dy = 0; dx < 0; dx += inc, dy -= inc) {
 			TRY_LOCATION();
 		}
 		// above to right
-		for (dx = 0, dy = -radius; dy < 0; dx += inc, dy += inc)
-		{
+		for (dx = 0, dy = -radius; dy < 0; dx += inc, dy += inc) {
 			TRY_LOCATION();
 		}
 	}
 }
 
-static bool TryPlaceOneAwayFromPlayers(
-	Map *map, const struct vec2 pos, void *data);
-NVec2 PlaceAwayFromPlayers(
-	Map *map, const bool giveUp, const PlacementAccessFlags paFlags)
-{
+static bool TryPlaceOneAwayFromPlayers(Map *map, const struct vec2 pos,
+		void *data);
+NVec2 PlaceAwayFromPlayers(Map *map, const bool giveUp,
+		const PlacementAccessFlags paFlags) {
 	NVec2 out;
-	if (MapPlaceRandomPos(map, paFlags, TryPlaceOneAwayFromPlayers, &out))
-	{
+	if (MapPlaceRandomPos(map, paFlags, TryPlaceOneAwayFromPlayers, &out)) {
 		return out;
 	}
 
 	// Keep trying, but this time try spawning anywhere,
 	// even close to player
-	for (int i = 0; i < 10000 || !giveUp; i++)
-	{
+	for (int i = 0; i < 10000 || !giveUp; i++) {
 		const struct vec2 pos = MapGetRandomPos(map);
-		if (MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H)))
-		{
+		if (MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H))) {
 			out = Vec2ToNet(pos);
 			return out;
 		}
@@ -142,69 +126,54 @@ NVec2 PlaceAwayFromPlayers(
 	// TODO: scan map for a safe position, to use as default
 	return Vec2ToNet(svec2(TILE_WIDTH * 3 / 2, TILE_HEIGHT * 3 / 2));
 }
-static bool TryPlaceOneAwayFromPlayers(
-	Map *map, const struct vec2 pos, void *data)
-{
-	NVec2 *out = static_cast<NVec2 *>(data);
+static bool TryPlaceOneAwayFromPlayers(Map *map, const struct vec2 pos,
+		void *data) {
+	NVec2 *out = static_cast<NVec2*>(data);
 	// Try spawning out of players' sights
 	*out = Vec2ToNet(pos);
 
 	const TActor *closestPlayer = AIGetClosestPlayer(pos);
 	if ((closestPlayer == NULL || CHEBYSHEV_DISTANCE(
 			pos.x, pos.y,
-			closestPlayer->Pos.x, closestPlayer->Pos.y) >= 150) &&
-		MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H)))
-	{
+			closestPlayer->Pos.x, closestPlayer->Pos.y) >= 150)
+			&& MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H))) {
 		*out = Vec2ToNet(pos);
 		return true;
 	}
 	return false;
 }
 
-NVec2 PlacePrisoner(Map *map)
-{
+NVec2 PlacePrisoner(Map *map) {
 	struct vec2 pos;
-	do
-	{
-		do
-		{
+	do {
+		do {
 			pos = MapGetRandomPos(map);
 		} while (!MapPosIsInLockedRoom(map, pos));
 	} while (!MapIsTileAreaClear(map, pos, svec2i(ACTOR_W, ACTOR_H)));
 	return Vec2ToNet(pos);
 }
 
-struct vec2 PlacePlayer(
-	Map *map, const PlayerData *p, const struct vec2 firstPos,
-	const bool pumpEvents)
-{
+struct vec2 PlacePlayer(Map *map, const PlayerData *p,
+		const struct vec2 firstPos, const bool pumpEvents) {
 	NActorAdd aa = NActorAdd_init_default;
 	aa.UID = ActorsGetNextUID();
 	aa.Health = p->Char.maxHealth;
 	aa.PlayerUID = p->UID;
 
-	if (IsPVP(gCampaign.Entry.Mode))
-	{
+	if (IsPVP(gCampaign.Entry.Mode)) {
 		// In a PVP mode, always place players apart
 		aa.Pos = PlaceAwayFromPlayers(&gMap, false, PLACEMENT_ACCESS_ANY);
-	}
-	else if (
-		ConfigGetEnum(&gConfig, "Interface.Splitscreen") == SPLITSCREEN_NEVER &&
-		!svec2_is_zero(firstPos))
-	{
+	} else if (ConfigGetEnum(&gConfig, "Interface.Splitscreen")
+			== SPLITSCREEN_NEVER && !svec2_is_zero(firstPos)) {
 		// If never split screen, try to place players near the first player
 		aa.Pos = PlaceActorNear(map, firstPos, true);
-	}
-	else if (gMission.missionData->Type == MAPTYPE_STATIC &&
-		!svec2i_is_zero(gMission.missionData->u.Static.Start))
-	{
+	} else if (gMission.missionData->Type == MAPTYPE_STATIC
+			&& !svec2i_is_zero(gMission.missionData->u.Static.Start)) {
 		// place players near the start point
 		const struct vec2 startPoint = Vec2CenterOfTile(
-			gMission.missionData->u.Static.Start);
+				gMission.missionData->u.Static.Start);
 		aa.Pos = PlaceActorNear(map, startPoint, true);
-	}
-	else
-	{
+	} else {
 		aa.Pos = PlaceActor(map);
 	}
 
@@ -212,8 +181,7 @@ struct vec2 PlacePlayer(
 	e.u.ActorAdd = aa;
 	GameEventsEnqueue(&gGameEvents, e);
 
-	if (pumpEvents)
-	{
+	if (pumpEvents) {
 		// Process the events that actually place the players
 		HandleGameEvents(&gGameEvents, NULL, NULL, NULL);
 	}

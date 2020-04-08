@@ -22,57 +22,55 @@
 #include "yajl_buf.h"
 #include "yajl_lex.h"
 
-
 typedef enum {
-    yajl_state_start = 0,
-    yajl_state_parse_complete,
-    yajl_state_parse_error,
-    yajl_state_lexical_error,
-    yajl_state_map_start,
-    yajl_state_map_sep,
-    yajl_state_map_need_val,
-    yajl_state_map_got_val,
-    yajl_state_map_need_key,
-    yajl_state_array_start,
-    yajl_state_array_got_val,
-    yajl_state_array_need_val,
-    yajl_state_got_value,
+	yajl_state_start = 0,
+	yajl_state_parse_complete,
+	yajl_state_parse_error,
+	yajl_state_lexical_error,
+	yajl_state_map_start,
+	yajl_state_map_sep,
+	yajl_state_map_need_val,
+	yajl_state_map_got_val,
+	yajl_state_map_need_key,
+	yajl_state_array_start,
+	yajl_state_array_got_val,
+	yajl_state_array_need_val,
+	yajl_state_got_value,
 } yajl_state;
 
 struct yajl_handle_t {
-    const yajl_callbacks * callbacks;
-    void * ctx;
-    yajl_lexer lexer;
-    const char * parseError;
-    /* the number of bytes consumed from the last client buffer,
-     * in the case of an error this will be an error offset, in the
-     * case of an error this can be used as the error offset */
-    size_t bytesConsumed;
-    /* temporary storage for decoded strings */
-    yajl_buf decodeBuf;
-    /* a stack of states.  access with yajl_state_XXX routines */
-    yajl_bytestack stateStack;
-    /* memory allocation routines */
-    yajl_alloc_funcs alloc;
-    /* bitfield */
-    unsigned int flags;
+	const yajl_callbacks *callbacks;
+	void *ctx;
+	yajl_lexer lexer;
+	const char *parseError;
+	/* the number of bytes consumed from the last client buffer,
+	 * in the case of an error this will be an error offset, in the
+	 * case of an error this can be used as the error offset */
+	size_t bytesConsumed;
+	/* temporary storage for decoded strings */
+	yajl_buf decodeBuf;
+	/* a stack of states.  access with yajl_state_XXX routines */
+	yajl_bytestack stateStack;
+	/* memory allocation routines */
+	yajl_alloc_funcs alloc;
+	/* bitfield */
+	unsigned int flags;
 };
 
 yajl_status
-yajl_do_parse(yajl_handle handle, const unsigned char * jsonText,
-              size_t jsonTextLen);
+yajl_do_parse(yajl_handle handle, const unsigned char *jsonText,
+		size_t jsonTextLen);
 
 yajl_status
 yajl_do_finish(yajl_handle handle);
 
-unsigned char *
-yajl_render_error_string(yajl_handle hand, const unsigned char * jsonText,
-                         size_t jsonTextLen, int verbose);
+unsigned char*
+yajl_render_error_string(yajl_handle hand, const unsigned char *jsonText,
+		size_t jsonTextLen, int verbose);
 
 /* A little built in integer parsing routine with the same semantics as strtol
  * that's unaffected by LOCALE. */
 long long
 yajl_parse_integer(const unsigned char *number, size_t length);
-
 
 #endif

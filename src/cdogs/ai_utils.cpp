@@ -193,7 +193,8 @@ bool IsTileWalkable(Map *map, const struct vec2i pos) {
 		if (tid->Kind != KIND_OBJECT) {
 			continue;
 		}
-		const TObject *o = static_cast<const TObject*>(CArrayGet(&gObjs, tid->Id));
+		const TObject *o = static_cast<const TObject*>(CArrayGet(&gObjs,
+				tid->Id));
 		if (ObjIsDangerous(o)) {
 			return false;
 		}CA_FOREACH_END()
@@ -211,7 +212,8 @@ bool IsTileWalkableAroundObjects(Map *map, const struct vec2i pos) {
 	CA_FOREACH(ThingId, tid, t->things)
 		if (tid->Kind == KIND_OBJECT) {
 			// Check that the object has hitbox - i.e. health > 0
-			const TObject *o = static_cast<const TObject *>(CArrayGet(&gObjs, tid->Id));
+			const TObject *o = static_cast<const TObject*>(CArrayGet(&gObjs,
+					tid->Id));
 			if (o->Health > 0) {
 				return false;
 			}

@@ -1,38 +1,38 @@
 /*
-    C-Dogs SDL
-    A port of the legendary (and fun) action/arcade cdogs.
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    This file incorporates work covered by the following copyright and
-    permission notice:
+ This file incorporates work covered by the following copyright and
+ permission notice:
 
-    Copyright (c) 2013-2014, 2016-2019 Cong Xu
-    All rights reserved.
+ Copyright (c) 2013-2014, 2016-2019 Cong Xu
+ All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-    Redistributions of source code must retain the above copyright notice, this
-    list of conditions and the following disclaimer.
-    Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #include "thing.h"
 
 #include "actors.h"
@@ -48,21 +48,15 @@
 	RAND_FLOAT(-DRAW_SHAKE_MAX, DRAW_SHAKE_MAX) * 0.7f,\
 	RAND_FLOAT(-DRAW_SHAKE_MAX, DRAW_SHAKE_MAX) * 0.7f)
 
-
-bool IsThingInsideTile(const Thing *i, const struct vec2i tilePos)
-{
-	return
-		i->Pos.x - i->size.x / 2 >= tilePos.x * TILE_WIDTH &&
-		i->Pos.x + i->size.x / 2 < (tilePos.x + 1) * TILE_WIDTH &&
-		i->Pos.y - i->size.y / 2 >= tilePos.y * TILE_HEIGHT &&
-		i->Pos.y + i->size.y / 2 < (tilePos.y + 1) * TILE_HEIGHT;
+bool IsThingInsideTile(const Thing *i, const struct vec2i tilePos) {
+	return i->Pos.x - i->size.x / 2 >= tilePos.x * TILE_WIDTH
+			&& i->Pos.x + i->size.x / 2 < (tilePos.x + 1) * TILE_WIDTH
+			&& i->Pos.y - i->size.y / 2 >= tilePos.y * TILE_HEIGHT
+			&& i->Pos.y + i->size.y / 2 < (tilePos.y + 1) * TILE_HEIGHT;
 }
 
-
-void ThingInit(
-	Thing *t, const int id, const ThingKind kind, const struct vec2i size,
-	const int flags)
-{
+void ThingInit(Thing *t, const int id, const ThingKind kind,
+		const struct vec2i size, const int flags) {
 	memset(t, 0, sizeof *t);
 	t->id = id;
 	t->kind = kind;
@@ -72,14 +66,11 @@ void ThingInit(
 	t->Pos = svec2(-1, -1);
 }
 
-void ThingUpdate(Thing *t, const int ticks)
-{
+void ThingUpdate(Thing *t, const int ticks) {
 	t->SoundLock = MAX(0, t->SoundLock - ticks);
-	for (int i = 0; i < ticks; i++)
-	{
+	for (int i = 0; i < ticks; i++) {
 		t->drawShake = svec2_scale(t->drawShake, -DRAW_SHAKE_DECAY);
-		if (svec2_length_squared(t->drawShake) < 1.0f)
-		{
+		if (svec2_length_squared(t->drawShake) < 1.0f) {
 			t->drawShake = svec2_zero();
 			break;
 		}
@@ -87,26 +78,20 @@ void ThingUpdate(Thing *t, const int ticks)
 	CPicUpdate(&t->CPic, ticks);
 }
 
-void ThingAddDrawShake(Thing *t, const struct vec2 shake)
-{
-	if (svec2_is_zero(shake))
-	{
+void ThingAddDrawShake(Thing *t, const struct vec2 shake) {
+	if (svec2_is_zero(shake)) {
 		t->drawShake = ZERO_DRAW_SHAKE;
-	}
-	else
-	{
+	} else {
 		t->drawShake = svec2_clamp(
-			svec2_add(t->drawShake, svec2_scale(shake, DRAW_SHAKE_FACTOR)),
-			svec2(-DRAW_SHAKE_MAX, -DRAW_SHAKE_MAX),
-			svec2(DRAW_SHAKE_MAX, DRAW_SHAKE_MAX));
+				svec2_add(t->drawShake, svec2_scale(shake, DRAW_SHAKE_FACTOR)),
+				svec2(-DRAW_SHAKE_MAX, -DRAW_SHAKE_MAX),
+				svec2(DRAW_SHAKE_MAX, DRAW_SHAKE_MAX));
 	}
 }
 
-void ThingDamage(const NThingDamage d)
-{
+void ThingDamage(const NThingDamage d) {
 	Thing *ti = ThingGetByUID(static_cast<ThingKind>(d.Kind), d.UID);
-	switch (d.Kind)
-	{
+	switch (d.Kind) {
 	case KIND_CHARACTER:
 		ActorHit(d);
 		break;
@@ -117,17 +102,13 @@ void ThingDamage(const NThingDamage d)
 		// do nothing
 		break;
 	}
-	if (ti != NULL && d.Power > 0)
-	{
+	if (ti != NULL && d.Power > 0) {
 		ThingAddDrawShake(ti, svec2_scale(NetToVec2(d.Vel), d.Mass));
 	}
 }
 
-
-Thing *ThingGetByUID(const ThingKind kind, const int uid)
-{
-	switch (kind)
-	{
+Thing* ThingGetByUID(const ThingKind kind, const int uid) {
+	switch (kind) {
 	case KIND_CHARACTER:
 		return &ActorGetByUID(uid)->thing;
 	case KIND_OBJECT:
@@ -137,40 +118,35 @@ Thing *ThingGetByUID(const ThingKind kind, const int uid)
 	}
 }
 
-
-Thing *ThingIdGetThing(const ThingId *tid)
-{
+Thing* ThingIdGetThing(const ThingId *tid) {
 	Thing *ti = NULL;
-	switch (tid->Kind)
-	{
+	switch (tid->Kind) {
 	case KIND_CHARACTER:
-		ti = &((TActor *)CArrayGet(&gActors, tid->Id))->thing;
+		ti = &((TActor*) CArrayGet(&gActors, tid->Id))->thing;
 		break;
 	case KIND_PARTICLE:
-		ti = &((Particle *)CArrayGet(&gParticles, tid->Id))->thing;
+		ti = &((Particle*) CArrayGet(&gParticles, tid->Id))->thing;
 		break;
 	case KIND_MOBILEOBJECT:
-		ti = &((TMobileObject *)CArrayGet(
-			&gMobObjs, tid->Id))->thing;
+		ti = &((TMobileObject*) CArrayGet(&gMobObjs, tid->Id))->thing;
 		break;
 	case KIND_OBJECT:
-		ti = &((TObject *)CArrayGet(&gObjs, tid->Id))->thing;
+		ti = &((TObject*) CArrayGet(&gObjs, tid->Id))->thing;
 		break;
 	case KIND_PICKUP:
-		ti = &((Pickup *)CArrayGet(&gPickups, tid->Id))->thing;
+		ti = &((Pickup*) CArrayGet(&gPickups, tid->Id))->thing;
 		break;
 	default:
-		CASSERT(false, "unknown tile item to get");
+		CASSERT(false, "unknown tile item to get")
+		;
 		break;
 	}
 	return ti;
 }
 
-bool ThingDrawBelow(const Thing *t)
-{
+bool ThingDrawBelow(const Thing *t) {
 	return t->flags & THING_DRAW_BELOW;
 }
-bool ThingDrawAbove(const Thing *t)
-{
+bool ThingDrawAbove(const Thing *t) {
 	return t->flags & THING_DRAW_ABOVE;
 }

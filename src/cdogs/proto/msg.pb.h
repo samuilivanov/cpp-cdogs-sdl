@@ -16,365 +16,365 @@ extern "C" {
 
 /* Struct definitions */
 typedef struct _NActorAddAmmo {
-    uint32_t UID;
-    int32_t PlayerUID;
-    uint32_t AmmoId;
-    uint32_t Amount;
-    bool IsRandomSpawned;
-/* @@protoc_insertion_point(struct:NActorAddAmmo) */
+	uint32_t UID;
+	int32_t PlayerUID;
+	uint32_t AmmoId;
+	uint32_t Amount;
+	bool IsRandomSpawned;
+	/* @@protoc_insertion_point(struct:NActorAddAmmo) */
 } NActorAddAmmo;
 
 typedef struct _NActorDie {
-    uint32_t UID;
-/* @@protoc_insertion_point(struct:NActorDie) */
+	uint32_t UID;
+	/* @@protoc_insertion_point(struct:NActorDie) */
 } NActorDie;
 
 typedef struct _NActorDir {
-    uint32_t UID;
-    int32_t Dir;
-/* @@protoc_insertion_point(struct:NActorDir) */
+	uint32_t UID;
+	int32_t Dir;
+	/* @@protoc_insertion_point(struct:NActorDir) */
 } NActorDir;
 
 typedef struct _NActorHeal {
-    uint32_t UID;
-    int32_t PlayerUID;
-    int32_t Amount;
-    bool IsRandomSpawned;
-/* @@protoc_insertion_point(struct:NActorHeal) */
+	uint32_t UID;
+	int32_t PlayerUID;
+	int32_t Amount;
+	bool IsRandomSpawned;
+	/* @@protoc_insertion_point(struct:NActorHeal) */
 } NActorHeal;
 
 typedef struct _NActorMelee {
-    uint32_t UID;
-    char BulletClass[128];
-    int32_t HitType;
-    int32_t TargetKind;
-    uint32_t TargetUID;
-/* @@protoc_insertion_point(struct:NActorMelee) */
+	uint32_t UID;
+	char BulletClass[128];
+	int32_t HitType;
+	int32_t TargetKind;
+	uint32_t TargetUID;
+	/* @@protoc_insertion_point(struct:NActorMelee) */
 } NActorMelee;
 
 typedef struct _NActorPickupAll {
-    uint32_t UID;
-    bool PickupAll;
-/* @@protoc_insertion_point(struct:NActorPickupAll) */
+	uint32_t UID;
+	bool PickupAll;
+	/* @@protoc_insertion_point(struct:NActorPickupAll) */
 } NActorPickupAll;
 
 typedef struct _NActorReplaceGun {
-    uint32_t UID;
-    uint32_t GunIdx;
-    char Gun[128];
-/* @@protoc_insertion_point(struct:NActorReplaceGun) */
+	uint32_t UID;
+	uint32_t GunIdx;
+	char Gun[128];
+	/* @@protoc_insertion_point(struct:NActorReplaceGun) */
 } NActorReplaceGun;
 
 typedef struct _NActorState {
-    uint32_t UID;
-    int32_t State;
-/* @@protoc_insertion_point(struct:NActorState) */
+	uint32_t UID;
+	int32_t State;
+	/* @@protoc_insertion_point(struct:NActorState) */
 } NActorState;
 
 typedef struct _NActorSwitchGun {
-    uint32_t UID;
-    uint32_t GunIdx;
-/* @@protoc_insertion_point(struct:NActorSwitchGun) */
+	uint32_t UID;
+	uint32_t GunIdx;
+	/* @@protoc_insertion_point(struct:NActorSwitchGun) */
 } NActorSwitchGun;
 
 typedef struct _NActorUseAmmo {
-    uint32_t UID;
-    int32_t PlayerUID;
-    uint32_t AmmoId;
-    uint32_t Amount;
-/* @@protoc_insertion_point(struct:NActorUseAmmo) */
+	uint32_t UID;
+	int32_t PlayerUID;
+	uint32_t AmmoId;
+	uint32_t Amount;
+	/* @@protoc_insertion_point(struct:NActorUseAmmo) */
 } NActorUseAmmo;
 
 typedef struct _NCampaignDef {
-    char Path[4096];
-    int32_t GameMode;
-    uint32_t Mission;
-/* @@protoc_insertion_point(struct:NCampaignDef) */
+	char Path[4096];
+	int32_t GameMode;
+	uint32_t Mission;
+	/* @@protoc_insertion_point(struct:NCampaignDef) */
 } NCampaignDef;
 
 typedef struct _NClientId {
-    uint32_t Id;
-    uint32_t FirstPlayerUID;
-/* @@protoc_insertion_point(struct:NClientId) */
+	uint32_t Id;
+	uint32_t FirstPlayerUID;
+	/* @@protoc_insertion_point(struct:NClientId) */
 } NClientId;
 
 typedef struct _NColor {
-    int32_t RGBA;
-/* @@protoc_insertion_point(struct:NColor) */
+	int32_t RGBA;
+	/* @@protoc_insertion_point(struct:NColor) */
 } NColor;
 
 typedef struct _NConfig {
-    char Name[128];
-    char Value[128];
-/* @@protoc_insertion_point(struct:NConfig) */
+	char Name[128];
+	char Value[128];
+	/* @@protoc_insertion_point(struct:NConfig) */
 } NConfig;
 
 typedef struct _NGameBegin {
-    int32_t MissionTime;
-/* @@protoc_insertion_point(struct:NGameBegin) */
+	int32_t MissionTime;
+	/* @@protoc_insertion_point(struct:NGameBegin) */
 } NGameBegin;
 
 typedef struct _NGunState {
-    uint32_t ActorUID;
-    int32_t State;
-/* @@protoc_insertion_point(struct:NGunState) */
+	uint32_t ActorUID;
+	int32_t State;
+	/* @@protoc_insertion_point(struct:NGunState) */
 } NGunState;
 
 typedef struct _NMapObjectRemove {
-    uint32_t UID;
-    int32_t ActorUID;
-    uint32_t Flags;
-/* @@protoc_insertion_point(struct:NMapObjectRemove) */
+	uint32_t UID;
+	int32_t ActorUID;
+	uint32_t Flags;
+	/* @@protoc_insertion_point(struct:NMapObjectRemove) */
 } NMapObjectRemove;
 
 typedef struct _NMissionEnd {
-    int32_t Delay;
-    bool IsQuit;
-    char Msg[128];
-/* @@protoc_insertion_point(struct:NMissionEnd) */
+	int32_t Delay;
+	bool IsQuit;
+	char Msg[128];
+	/* @@protoc_insertion_point(struct:NMissionEnd) */
 } NMissionEnd;
 
 typedef struct _NObjectiveUpdate {
-    uint32_t ObjectiveId;
-    int32_t Count;
-/* @@protoc_insertion_point(struct:NObjectiveUpdate) */
+	uint32_t ObjectiveId;
+	int32_t Count;
+	/* @@protoc_insertion_point(struct:NObjectiveUpdate) */
 } NObjectiveUpdate;
 
 typedef struct _NPlayerRemove {
-    uint32_t UID;
-/* @@protoc_insertion_point(struct:NPlayerRemove) */
+	uint32_t UID;
+	/* @@protoc_insertion_point(struct:NPlayerRemove) */
 } NPlayerRemove;
 
 typedef struct _NPlayerStats {
-    int32_t Score;
-    int32_t Kills;
-    int32_t Suicides;
-    int32_t Friendlies;
-/* @@protoc_insertion_point(struct:NPlayerStats) */
+	int32_t Score;
+	int32_t Kills;
+	int32_t Suicides;
+	int32_t Friendlies;
+	/* @@protoc_insertion_point(struct:NPlayerStats) */
 } NPlayerStats;
 
 typedef struct _NRemoveBullet {
-    uint32_t UID;
-/* @@protoc_insertion_point(struct:NRemoveBullet) */
+	uint32_t UID;
+	/* @@protoc_insertion_point(struct:NRemoveBullet) */
 } NRemoveBullet;
 
 typedef struct _NRemovePickup {
-    uint32_t UID;
-    int32_t SpawnerUID;
-/* @@protoc_insertion_point(struct:NRemovePickup) */
+	uint32_t UID;
+	int32_t SpawnerUID;
+	/* @@protoc_insertion_point(struct:NRemovePickup) */
 } NRemovePickup;
 
 typedef struct _NRescueCharacter {
-    uint32_t UID;
-/* @@protoc_insertion_point(struct:NRescueCharacter) */
+	uint32_t UID;
+	/* @@protoc_insertion_point(struct:NRescueCharacter) */
 } NRescueCharacter;
 
 typedef struct _NScore {
-    uint32_t PlayerUID;
-    int32_t Score;
-/* @@protoc_insertion_point(struct:NScore) */
+	uint32_t PlayerUID;
+	int32_t Score;
+	/* @@protoc_insertion_point(struct:NScore) */
 } NScore;
 
 typedef struct _NServerInfo {
-    int32_t ProtocolVersion;
-    uint32_t ENetPort;
-    char Hostname[12];
-    int32_t GameMode;
-    char CampaignName[20];
-    int32_t MissionNumber;
-    int32_t NumPlayers;
-    int32_t MaxPlayers;
-/* @@protoc_insertion_point(struct:NServerInfo) */
+	int32_t ProtocolVersion;
+	uint32_t ENetPort;
+	char Hostname[12];
+	int32_t GameMode;
+	char CampaignName[20];
+	int32_t MissionNumber;
+	int32_t NumPlayers;
+	int32_t MaxPlayers;
+	/* @@protoc_insertion_point(struct:NServerInfo) */
 } NServerInfo;
 
 typedef struct _NVec2 {
-    float x;
-    float y;
-/* @@protoc_insertion_point(struct:NVec2) */
+	float x;
+	float y;
+	/* @@protoc_insertion_point(struct:NVec2) */
 } NVec2;
 
 typedef struct _NVec2i {
-    int32_t x;
-    int32_t y;
-/* @@protoc_insertion_point(struct:NVec2i) */
+	int32_t x;
+	int32_t y;
+	/* @@protoc_insertion_point(struct:NVec2i) */
 } NVec2i;
 
 typedef struct _NActorAdd {
-    uint32_t UID;
-    uint32_t CharId;
-    int32_t Direction;
-    int32_t Health;
-    int32_t PlayerUID;
-    uint32_t ThingFlags;
-    NVec2 Pos;
-/* @@protoc_insertion_point(struct:NActorAdd) */
+	uint32_t UID;
+	uint32_t CharId;
+	int32_t Direction;
+	int32_t Health;
+	int32_t PlayerUID;
+	uint32_t ThingFlags;
+	NVec2 Pos;
+	/* @@protoc_insertion_point(struct:NActorAdd) */
 } NActorAdd;
 
 typedef struct _NActorImpulse {
-    uint32_t UID;
-    NVec2 Vel;
-    NVec2 Pos;
-/* @@protoc_insertion_point(struct:NActorImpulse) */
+	uint32_t UID;
+	NVec2 Vel;
+	NVec2 Pos;
+	/* @@protoc_insertion_point(struct:NActorImpulse) */
 } NActorImpulse;
 
 typedef struct _NActorMove {
-    uint32_t UID;
-    NVec2 Pos;
-    NVec2 MoveVel;
-/* @@protoc_insertion_point(struct:NActorMove) */
+	uint32_t UID;
+	NVec2 Pos;
+	NVec2 MoveVel;
+	/* @@protoc_insertion_point(struct:NActorMove) */
 } NActorMove;
 
 typedef struct _NActorSlide {
-    uint32_t UID;
-    NVec2 Vel;
-/* @@protoc_insertion_point(struct:NActorSlide) */
+	uint32_t UID;
+	NVec2 Vel;
+	/* @@protoc_insertion_point(struct:NActorSlide) */
 } NActorSlide;
 
 typedef struct _NAddBullet {
-    uint32_t UID;
-    char BulletClass[128];
-    NVec2 MuzzlePos;
-    int32_t MuzzleHeight;
-    float Angle;
-    int32_t Elevation;
-    uint32_t Flags;
-    int32_t ActorUID;
-/* @@protoc_insertion_point(struct:NAddBullet) */
+	uint32_t UID;
+	char BulletClass[128];
+	NVec2 MuzzlePos;
+	int32_t MuzzleHeight;
+	float Angle;
+	int32_t Elevation;
+	uint32_t Flags;
+	int32_t ActorUID;
+	/* @@protoc_insertion_point(struct:NAddBullet) */
 } NAddBullet;
 
 typedef struct _NAddKeys {
-    uint32_t KeyFlags;
-    NVec2 Pos;
-/* @@protoc_insertion_point(struct:NAddKeys) */
+	uint32_t KeyFlags;
+	NVec2 Pos;
+	/* @@protoc_insertion_point(struct:NAddKeys) */
 } NAddKeys;
 
 typedef struct _NAddPickup {
-    uint32_t UID;
-    char PickupClass[128];
-    bool IsRandomSpawned;
-    int32_t SpawnerUID;
-    uint32_t ThingFlags;
-    NVec2 Pos;
-/* @@protoc_insertion_point(struct:NAddPickup) */
+	uint32_t UID;
+	char PickupClass[128];
+	bool IsRandomSpawned;
+	int32_t SpawnerUID;
+	uint32_t ThingFlags;
+	NVec2 Pos;
+	/* @@protoc_insertion_point(struct:NAddPickup) */
 } NAddPickup;
 
 typedef struct _NBulletBounce {
-    uint32_t UID;
-    int32_t HitType;
-    bool Spark;
-    NVec2 BouncePos;
-    NVec2 Pos;
-    NVec2 Vel;
-    bool HitSound;
-    bool WallMark;
-/* @@protoc_insertion_point(struct:NBulletBounce) */
+	uint32_t UID;
+	int32_t HitType;
+	bool Spark;
+	NVec2 BouncePos;
+	NVec2 Pos;
+	NVec2 Vel;
+	bool HitSound;
+	bool WallMark;
+	/* @@protoc_insertion_point(struct:NBulletBounce) */
 } NBulletBounce;
 
 typedef struct _NCharColors {
-    NColor Skin;
-    NColor Arms;
-    NColor Body;
-    NColor Legs;
-    NColor Hair;
-/* @@protoc_insertion_point(struct:NCharColors) */
+	NColor Skin;
+	NColor Arms;
+	NColor Body;
+	NColor Legs;
+	NColor Hair;
+	/* @@protoc_insertion_point(struct:NCharColors) */
 } NCharColors;
 
 typedef struct _NExploreTiles_Run {
-    NVec2i Tile;
-    int32_t Run;
-/* @@protoc_insertion_point(struct:NExploreTiles_Run) */
+	NVec2i Tile;
+	int32_t Run;
+	/* @@protoc_insertion_point(struct:NExploreTiles_Run) */
 } NExploreTiles_Run;
 
 typedef struct _NGunFire {
-    int32_t ActorUID;
-    char Gun[128];
-    NVec2 MuzzlePos;
-    int32_t Z;
-    float Angle;
-    bool Sound;
-    uint32_t Flags;
-    bool IsGun;
-/* @@protoc_insertion_point(struct:NGunFire) */
+	int32_t ActorUID;
+	char Gun[128];
+	NVec2 MuzzlePos;
+	int32_t Z;
+	float Angle;
+	bool Sound;
+	uint32_t Flags;
+	bool IsGun;
+	/* @@protoc_insertion_point(struct:NGunFire) */
 } NGunFire;
 
 typedef struct _NGunReload {
-    int32_t PlayerUID;
-    char Gun[128];
-    NVec2 Pos;
-    int32_t Direction;
-/* @@protoc_insertion_point(struct:NGunReload) */
+	int32_t PlayerUID;
+	char Gun[128];
+	NVec2 Pos;
+	int32_t Direction;
+	/* @@protoc_insertion_point(struct:NGunReload) */
 } NGunReload;
 
 typedef struct _NMapObjectAdd {
-    uint32_t UID;
-    char MapObjectClass[128];
-    NVec2 Pos;
-    uint32_t ThingFlags;
-    int32_t Health;
-    NColor Mask;
-/* @@protoc_insertion_point(struct:NMapObjectAdd) */
+	uint32_t UID;
+	char MapObjectClass[128];
+	NVec2 Pos;
+	uint32_t ThingFlags;
+	int32_t Health;
+	NColor Mask;
+	/* @@protoc_insertion_point(struct:NMapObjectAdd) */
 } NMapObjectAdd;
 
 typedef struct _NMissionComplete {
-    bool ShowMsg;
-    NVec2i ExitStart;
-    NVec2i ExitEnd;
-/* @@protoc_insertion_point(struct:NMissionComplete) */
+	bool ShowMsg;
+	NVec2i ExitStart;
+	NVec2i ExitEnd;
+	/* @@protoc_insertion_point(struct:NMissionComplete) */
 } NMissionComplete;
 
 typedef struct _NSound {
-    char Sound[128];
-    NVec2 Pos;
-    bool IsHit;
-/* @@protoc_insertion_point(struct:NSound) */
+	char Sound[128];
+	NVec2 Pos;
+	bool IsHit;
+	/* @@protoc_insertion_point(struct:NSound) */
 } NSound;
 
 typedef struct _NThingDamage {
-    uint32_t UID;
-    int32_t Kind;
-    int32_t SourceActorUID;
-    int32_t Power;
-    NVec2 Vel;
-    float Mass;
-    uint32_t Flags;
-    int32_t Special;
-/* @@protoc_insertion_point(struct:NThingDamage) */
+	uint32_t UID;
+	int32_t Kind;
+	int32_t SourceActorUID;
+	int32_t Power;
+	NVec2 Vel;
+	float Mass;
+	uint32_t Flags;
+	int32_t Special;
+	/* @@protoc_insertion_point(struct:NThingDamage) */
 } NThingDamage;
 
 typedef struct _NTileSet {
-    NVec2i Pos;
-    char ClassName[128];
-    char ClassAltName[128];
-    int32_t RunLength;
-/* @@protoc_insertion_point(struct:NTileSet) */
+	NVec2i Pos;
+	char ClassName[128];
+	char ClassAltName[128];
+	int32_t RunLength;
+	/* @@protoc_insertion_point(struct:NTileSet) */
 } NTileSet;
 
 typedef struct _NTrigger {
-    uint32_t ID;
-    NVec2i Tile;
-/* @@protoc_insertion_point(struct:NTrigger) */
+	uint32_t ID;
+	NVec2i Tile;
+	/* @@protoc_insertion_point(struct:NTrigger) */
 } NTrigger;
 
 typedef struct _NExploreTiles {
-    pb_size_t Runs_count;
-    NExploreTiles_Run Runs[16];
-/* @@protoc_insertion_point(struct:NExploreTiles) */
+	pb_size_t Runs_count;
+	NExploreTiles_Run Runs[16];
+	/* @@protoc_insertion_point(struct:NExploreTiles) */
 } NExploreTiles;
 
 typedef struct _NPlayerData {
-    char Name[20];
-    char CharacterClass[128];
-    char Hair[128];
-    NCharColors Colors;
-    pb_size_t Weapons_count;
-    char Weapons[3][128];
-    uint32_t Lives;
-    NPlayerStats Stats;
-    NPlayerStats Totals;
-    uint32_t MaxHealth;
-    uint32_t LastMission;
-    uint32_t UID;
-/* @@protoc_insertion_point(struct:NPlayerData) */
+	char Name[20];
+	char CharacterClass[128];
+	char Hair[128];
+	NCharColors Colors;
+	pb_size_t Weapons_count;
+	char Weapons[3][128];
+	uint32_t Lives;
+	NPlayerStats Stats;
+	NPlayerStats Totals;
+	uint32_t MaxHealth;
+	uint32_t LastMission;
+	uint32_t UID;
+	/* @@protoc_insertion_point(struct:NPlayerData) */
 } NPlayerData;
 
 /* Default values for struct fields */

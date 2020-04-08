@@ -1,51 +1,51 @@
 /*
-    C-Dogs SDL
-    A port of the legendary (and fun) action/arcade cdogs.
-    Copyright (C) 1995 Ronny Wester
-    Copyright (C) 2003 Jeremy Chin 
-    Copyright (C) 2003-2007 Lucas Martin-King 
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
+ Copyright (C) 1995 Ronny Wester
+ Copyright (C) 2003 Jeremy Chin 
+ Copyright (C) 2003-2007 Lucas Martin-King 
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    This file incorporates work covered by the following copyright and
-    permission notice:
+ This file incorporates work covered by the following copyright and
+ permission notice:
 
-    Copyright (c) 2013-2017, 2019 Cong Xu
-    All rights reserved.
+ Copyright (c) 2013-2017, 2019 Cong Xu
+ All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-    Redistributions of source code must retain the above copyright notice, this
-    list of conditions and the following disclaimer.
-    Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #pragma once
 
 #include <stdbool.h>
@@ -62,14 +62,10 @@
 
 #define KEY_COUNT 4
 
-typedef enum
-{
-	MAPTYPE_CLASSIC,
-	MAPTYPE_STATIC,
-	MAPTYPE_CAVE,
-	MAPTYPE_COUNT
+typedef enum {
+	MAPTYPE_CLASSIC, MAPTYPE_STATIC, MAPTYPE_CAVE, MAPTYPE_COUNT
 } MapType;
-const char *MapTypeStr(MapType t);
+const char* MapTypeStr(MapType t);
 MapType StrMapType(const char *s);
 
 // Keys that have been collected in this level
@@ -80,41 +76,34 @@ MapType StrMapType(const char *s);
 #define FLAGS_KEYCARD_RED		0x8
 int StrKeycard(const char *s);
 
-typedef struct
-{
+typedef struct {
 	TileClass Wall;
 	TileClass Floor;
 	TileClass Room;
 	TileClass Door;
 } MissionTileClasses;
-typedef struct
-{
+typedef struct {
 	const MapObject *M;
 	int Density;
 } MapObjectDensity;
-typedef struct
-{
+typedef struct {
 	const MapObject *M;
 	CArray Positions;	// of struct vec2i
 } MapObjectPositions;
-typedef struct
-{
+typedef struct {
 	int Index;
 	CArray Positions;	// of struct vec2i
 } CharacterPositions;
-typedef struct
-{
+typedef struct {
 	int Index;
 	CArray Positions;	// of struct vec2i
 	CArray Indices;		// of int
 } ObjectivePositions;
-typedef struct
-{
+typedef struct {
 	int Index;
 	CArray Positions;	// of struct vec2i
 } KeyPositions;
-typedef struct
-{
+typedef struct {
 	int Count;
 	int Min;
 	int Max;
@@ -124,8 +113,7 @@ typedef struct
 	int WallLength;
 	int WallPad;
 } RoomParams;
-typedef struct
-{
+typedef struct {
 	char *Title;
 	char *Description;
 	MapType Type;
@@ -145,11 +133,9 @@ typedef struct
 
 	char Song[CDOGS_PATH_MAX];
 
-	union
-	{
+	union {
 		// Classic
-		struct
-		{
+		struct {
 			// TODO: multiple tile classes
 			MissionTileClasses TileClasses;
 			int Walls;
@@ -157,14 +143,12 @@ typedef struct
 			int CorridorWidth;
 			RoomParams Rooms;
 			int Squares;
-			struct
-			{
+			struct {
 				bool Enabled;
 				int Min;
 				int Max;
 			} Doors;
-			struct
-			{
+			struct {
 				int Count;
 				int Min;
 				int Max;
@@ -172,8 +156,7 @@ typedef struct
 		} Classic;
 		MissionStatic Static;
 		// Cave
-		struct
-		{
+		struct {
 			// TODO: multiple tile classes
 			MissionTileClasses TileClasses;
 			int FillPercent;
@@ -188,15 +171,11 @@ typedef struct
 	} u;
 } Mission;
 
-typedef enum
-{
-	MISSION_STATE_WAITING,
-	MISSION_STATE_PLAY,
-	MISSION_STATE_PICKUP
+typedef enum {
+	MISSION_STATE_WAITING, MISSION_STATE_PLAY, MISSION_STATE_PICKUP
 } MissionState;
 
-struct MissionOptions
-{
+struct MissionOptions {
 	int index;
 	int KeyFlags;
 
@@ -220,20 +199,19 @@ void MissionInit(Mission *m);
 void MissionCopy(Mission *dst, const Mission *src);
 void MissionTerminate(Mission *m);
 
-MissionTileClasses *MissionGetTileClasses(Mission *m);
+MissionTileClasses* MissionGetTileClasses(Mission *m);
 
 void SetupMission(Mission *m, struct MissionOptions *mo, int missionIndex);
 void MissionSetupTileClasses(PicManager *pm, const MissionTileClasses *mtc);
 void MissionTileClassesInitDefault(MissionTileClasses *mtc);
-void MissionTileClassesCopy(
-	MissionTileClasses *dst, const MissionTileClasses *src);
+void MissionTileClassesCopy(MissionTileClasses *dst,
+		const MissionTileClasses *src);
 void MissionTileClassesTerminate(MissionTileClasses *mtc);
 
 void MissionSetMessageIfComplete(struct MissionOptions *options);
 // If object is a mission objective, send an update event
-void UpdateMissionObjective(
-	const struct MissionOptions *options,
-	const int flags, const ObjectiveType type, const int count);
+void UpdateMissionObjective(const struct MissionOptions *options,
+		const int flags, const ObjectiveType type, const int count);
 bool MissionCanBegin(void);
 void MissionBegin(struct MissionOptions *m, const NGameBegin gb);
 bool CanCompleteMission(const struct MissionOptions *options);

@@ -1,30 +1,30 @@
 /*
-	C-Dogs SDL
-	A port of the legendary (and fun) action/arcade cdogs.
-	Copyright (c) 2013-2016, 2019-2020 Cong Xu
-	All rights reserved.
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
+ Copyright (c) 2013-2016, 2019-2020 Cong Xu
+ All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-	Redistributions of source code must retain the above copyright notice, this
-	list of conditions and the following disclaimer.
-	Redistributions in binary form must reproduce the above copyright notice,
-	this list of conditions and the following disclaimer in the documentation
-	and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #include "editor_ui_static.h"
 
 #include <assert.h>
@@ -41,17 +41,14 @@
 
 MISSION_CHECK_TYPE_FUNC(MAPTYPE_STATIC)
 
-static const char *BrushGetTypeStr(EditorBrush *brush, int isMain)
-{
+static const char* BrushGetTypeStr(EditorBrush *brush, int isMain) {
 	static char s[128];
 	const int idx = isMain ? brush->MainType : brush->SecondaryType;
 	char tcName[256];
 	sprintf(tcName, "%d", idx);
 	TileClass *tc;
-	if (hashmap_get(
-			gMission.missionData->u.Static.TileClasses, tcName,
-			(any_t *)&tc) != MAP_OK)
-	{
+	if (hashmap_get(gMission.missionData->u.Static.TileClasses, tcName,
+			(any_t*) &tc) != MAP_OK) {
 		LOG(LM_EDIT, LL_ERROR, "cannot find tile class key: %s", tcName);
 		return "";
 	}
@@ -59,223 +56,189 @@ static const char *BrushGetTypeStr(EditorBrush *brush, int isMain)
 	sprintf(s, "Brush %d: %s", isMain ? 1 : 2, tcName);
 	return s;
 }
-static const char *BrushGetMainTypeStr(UIObject *o, void *data)
-{
+static const char* BrushGetMainTypeStr(UIObject *o, void *data) {
 	UNUSED(o);
 	EditorBrush *brush = static_cast<EditorBrush*>(data);
 	return BrushGetTypeStr(brush, 1);
 }
-static const char *BrushGetSecondaryTypeStr(UIObject *o, void *data)
-{
+static const char* BrushGetSecondaryTypeStr(UIObject *o, void *data) {
 	UNUSED(o);
 	EditorBrush *brush = static_cast<EditorBrush*>(data);
 	return BrushGetTypeStr(brush, 0);
 }
-static const char *BrushGetSizeStr(UIObject *o, void *data)
-{
+static const char* BrushGetSizeStr(UIObject *o, void *data) {
 	static char s[128];
 	UNUSED(o);
 	EditorBrush *brush = static_cast<EditorBrush*>(data);
 	sprintf(s, "Brush Size: %d", brush->BrushSize);
 	return s;
 }
-static char *BrushGetGuideImageStr(UIObject *o, void *data)
-{
+static char* BrushGetGuideImageStr(UIObject *o, void *data) {
 	UNUSED(o);
 	EditorBrush *brush = static_cast<EditorBrush*>(data);
 	return brush->GuideImage;
 }
-static const char *BrushGetGuideImageAlphaStr(UIObject *o, void *data)
-{
+static const char* BrushGetGuideImageAlphaStr(UIObject *o, void *data) {
 	static char s[128];
 	UNUSED(o);
 	EditorBrush *brush = static_cast<EditorBrush*>(data);
-	sprintf(s, "Guide Alpha: %d%%", (int)brush->GuideImageAlpha * 100 / 255);
+	sprintf(s, "Guide Alpha: %d%%", (int) brush->GuideImageAlpha * 100 / 255);
 	return s;
 }
 
-static EditorResult BrushChangeMainType(void *data, int d)
-{
+static EditorResult BrushChangeMainType(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return TileBrush(&gPicManager, &gEventHandlers, &gCampaign, &b->MainType);
 }
-static EditorResult BrushChangeSecondaryType(void *data, int d)
-{
+static EditorResult BrushChangeSecondaryType(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
-	return TileBrush(
-		&gPicManager, &gEventHandlers, &gCampaign, &b->SecondaryType);
+	return TileBrush(&gPicManager, &gEventHandlers, &gCampaign,
+			&b->SecondaryType);
 }
-static EditorResult BrushChangeSize(void *data, int d)
-{
+static EditorResult BrushChangeSize(void *data, int d) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->BrushSize = CLAMP(b->BrushSize + d, 1, 5);
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushLoadGuideImage(void *data, int d)
-{
+static EditorResult BrushLoadGuideImage(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	EditorBrushTryLoadGuideImage(b, b->GuideImage);
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushChangeGuideImageAlpha(void *data, int d)
-{
+static EditorResult BrushChangeGuideImageAlpha(void *data, int d) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	d *= 4;
-	if (gEventHandlers.keyboard.modState & KMOD_SHIFT)
-	{
+	if (gEventHandlers.keyboard.modState & KMOD_SHIFT) {
 		d *= 8;
 	}
-	b->GuideImageAlpha = (Uint8)CLAMP((int)b->GuideImageAlpha + d, 0, 255);
+	b->GuideImageAlpha = (Uint8) CLAMP((int )b->GuideImageAlpha + d, 0, 255);
 	return EDITOR_RESULT_NONE;
 }
-static int BrushIsBrushTypePoint(void *data)
-{
+static int BrushIsBrushTypePoint(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_POINT;
 }
-static int BrushIsBrushTypeLine(void *data)
-{
+static int BrushIsBrushTypeLine(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_LINE;
 }
-static int BrushIsBrushTypeBox(void *data)
-{
+static int BrushIsBrushTypeBox(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_BOX;
 }
-static int BrushIsBrushTypeBoxFilled(void *data)
-{
+static int BrushIsBrushTypeBoxFilled(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_BOX_FILLED;
 }
-static int BrushIsBrushTypeBoxAndFill(void *data)
-{
+static int BrushIsBrushTypeBoxAndFill(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_BOX_AND_FILL;
 }
-static int BrushIsBrushTypeSelect(void *data)
-{
+static int BrushIsBrushTypeSelect(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_SELECT;
 }
-static int BrushIsBrushTypeFill(void *data)
-{
+static int BrushIsBrushTypeFill(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_FILL;
 }
-static int BrushIsBrushTypeAddItem(void *data)
-{
+static int BrushIsBrushTypeAddItem(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
-	return b->Type == BRUSHTYPE_SET_PLAYER_START ||
-		   b->Type == BRUSHTYPE_ADD_ITEM ||
-		   b->Type == BRUSHTYPE_ADD_CHARACTER || b->Type == BRUSHTYPE_ADD_KEY;
+	return b->Type == BRUSHTYPE_SET_PLAYER_START
+			|| b->Type == BRUSHTYPE_ADD_ITEM
+			|| b->Type == BRUSHTYPE_ADD_CHARACTER
+			|| b->Type == BRUSHTYPE_ADD_KEY;
 }
-static int BrushIsBrushTypeSetKey(void *data)
-{
+static int BrushIsBrushTypeSetKey(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_SET_KEY;
 }
-static int BrushIsBrushTypeSetExit(void *data)
-{
+static int BrushIsBrushTypeSetExit(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	return b->Type == BRUSHTYPE_SET_EXIT;
 }
-static EditorResult BrushSetBrushTypePoint(void *data, int d)
-{
+static EditorResult BrushSetBrushTypePoint(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->Type = BRUSHTYPE_POINT;
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushSetBrushTypeLine(void *data, int d)
-{
+static EditorResult BrushSetBrushTypeLine(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->Type = BRUSHTYPE_LINE;
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushSetBrushTypeBox(void *data, int d)
-{
+static EditorResult BrushSetBrushTypeBox(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->Type = BRUSHTYPE_BOX;
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushSetBrushTypeBoxFilled(void *data, int d)
-{
+static EditorResult BrushSetBrushTypeBoxFilled(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->Type = BRUSHTYPE_BOX_FILLED;
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushSetBrushTypeBoxAndFill(void *data, int d)
-{
+static EditorResult BrushSetBrushTypeBoxAndFill(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->Type = BRUSHTYPE_BOX_AND_FILL;
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushSetBrushTypeSelect(void *data, int d)
-{
+static EditorResult BrushSetBrushTypeSelect(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->Type = BRUSHTYPE_SELECT;
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushSetBrushTypeFill(void *data, int d)
-{
+static EditorResult BrushSetBrushTypeFill(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->Type = BRUSHTYPE_FILL;
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushSetBrushTypeSetExit(void *data, int d)
-{
+static EditorResult BrushSetBrushTypeSetExit(void *data, int d) {
 	UNUSED(d);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->Type = BRUSHTYPE_SET_EXIT;
 	return EDITOR_RESULT_NONE;
 }
-static EditorResult BrushSetBrushTypeSetKey(void *data, int d)
-{
+static EditorResult BrushSetBrushTypeSetKey(void *data, int d) {
 	UNUSED(d);
 	IndexedEditorBrush *b = static_cast<IndexedEditorBrush*>(data);
 	b->Brush->Type = BRUSHTYPE_SET_KEY;
 	b->Brush->u.ItemIndex = b->u.ItemIndex;
 	return EDITOR_RESULT_NONE;
 }
-static void ActivateBrush(UIObject *o, void *data)
-{
+static void ActivateBrush(UIObject *o, void *data) {
 	UNUSED(o);
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->IsActive = 1;
 }
-static bool DeactivateBrush(void *data)
-{
+static bool DeactivateBrush(void *data) {
 	EditorBrush *b = static_cast<EditorBrush*>(data);
 	b->IsActive = 0;
 	return false;
 }
-static void ActivateIndexedEditorBrush(UIObject *o, void *data)
-{
+static void ActivateIndexedEditorBrush(UIObject *o, void *data) {
 	UNUSED(o);
 	IndexedEditorBrush *b = static_cast<IndexedEditorBrush*>(data);
 	b->Brush->IsActive = true;
 }
-static bool DeactivateIndexedEditorBrush(void *data)
-{
+static bool DeactivateIndexedEditorBrush(void *data) {
 	IndexedEditorBrush *b = static_cast<IndexedEditorBrush*>(data);
 	b->Brush->IsActive = false;
 	return false;
 }
 
-static UIObject *CreateSetKeyObjs(struct vec2i pos, EditorBrush *brush);
-UIObject *CreateStaticMapObjs(
-	struct vec2i pos, CampaignOptions *co, EditorBrush *brush)
-{
+static UIObject* CreateSetKeyObjs(struct vec2i pos, EditorBrush *brush);
+UIObject* CreateStaticMapObjs(struct vec2i pos, CampaignOptions *co,
+		EditorBrush *brush) {
 	int x = pos.x;
 	const int th = FontH();
 	UIObject *c = UIObjectCreate(UITYPE_NONE, 0, svec2i_zero(), svec2i_zero());
@@ -284,8 +247,8 @@ UIObject *CreateStaticMapObjs(
 	c->CheckVisible = MissionCheckTypeFunc;
 	c->Data = co;
 
-	UIObject *o =
-		UIObjectCreate(UITYPE_BUTTON, 0, svec2i_zero(), svec2i_zero());
+	UIObject *o = UIObjectCreate(UITYPE_BUTTON, 0, svec2i_zero(),
+			svec2i_zero());
 	o->Data = brush;
 	o->OnFocusFunc = ActivateBrush;
 	o->OnUnfocusFunc = DeactivateBrush;
@@ -413,7 +376,7 @@ UIObject *CreateStaticMapObjs(
 	pos.y += th;
 	o2 = UIObjectCopy(o);
 	o2->u.Textbox.TextLinkFunc = BrushGetGuideImageStr;
-	o2->u.Textbox.MaxLen = sizeof((EditorBrush *)0)->GuideImage - 1;
+	o2->u.Textbox.MaxLen = sizeof((EditorBrush*) 0)->GuideImage - 1;
 	o2->Data = brush;
 	o2->ChangeFunc = BrushLoadGuideImage;
 	CSTRDUP(o2->u.Textbox.Hint, "(Tracing guide image)");
@@ -435,29 +398,25 @@ UIObject *CreateStaticMapObjs(
 	return c;
 }
 
-static UIObject *CreateSetKeyObjs(struct vec2i pos, EditorBrush *brush)
-{
+static UIObject* CreateSetKeyObjs(struct vec2i pos, EditorBrush *brush) {
 	UIObject *o2;
 	UIObject *c = UIObjectCreate(UITYPE_CONTEXT_MENU, 0, pos, svec2i_zero());
 
-	UIObject *o = UIObjectCreate(
-		UITYPE_CUSTOM, 0, svec2i_zero(),
-		svec2i(TILE_WIDTH + 4, TILE_HEIGHT + 4));
+	UIObject *o = UIObjectCreate(UITYPE_CUSTOM, 0, svec2i_zero(),
+			svec2i(TILE_WIDTH + 4, TILE_HEIGHT + 4));
 	o->ChangeFunc = BrushSetBrushTypeSetKey;
 	o->u.CustomDrawFunc = DrawKey;
 	o->OnFocusFunc = ActivateIndexedEditorBrush;
 	o->OnUnfocusFunc = DeactivateIndexedEditorBrush;
 	pos = svec2i_zero();
-	for (int i = -1; i < KEY_COUNT; i++)
-	{
+	for (int i = -1; i < KEY_COUNT; i++) {
 		o2 = UIObjectCopy(o);
 		o2->IsDynamicData = 1;
 		CMALLOC(o2->Data, sizeof(IndexedEditorBrush));
-		((IndexedEditorBrush *)o2->Data)->Brush = brush;
-		((IndexedEditorBrush *)o2->Data)->u.ItemIndex = i;
+		((IndexedEditorBrush*) o2->Data)->Brush = brush;
+		((IndexedEditorBrush*) o2->Data)->u.ItemIndex = i;
 		o2->Pos = pos;
-		if (i == -1)
-		{
+		if (i == -1) {
 			// -1 means no key
 			CSTRDUP(o2->Tooltip, "no key");
 		}

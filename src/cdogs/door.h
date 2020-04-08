@@ -63,7 +63,7 @@ enum DoorType {
 	DOORTYPE_COUNT
 };
 
-DoorType & operator++(DoorType& d);
+DoorType& operator++(DoorType &d);
 
 void MapAddDoorGroup(MapBuilder *mb, const struct vec2i v, const int keyFlags);
 

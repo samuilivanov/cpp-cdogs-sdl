@@ -26,12 +26,11 @@
 
 #define YAJL_BS_INC 128
 
-typedef struct yajl_bytestack_t
-{
-    unsigned char * stack;
-    size_t size;
-    size_t used;
-    yajl_alloc_funcs * yaf;
+typedef struct yajl_bytestack_t {
+	unsigned char *stack;
+	size_t size;
+	size_t used;
+	yajl_alloc_funcs *yaf;
 } yajl_bytestack;
 
 /* initialize a bytestack */
@@ -63,6 +62,5 @@ typedef struct yajl_bytestack_t
 
 #define yajl_bs_set(obs, byte)                          \
     (obs).stack[((obs).used) - 1] = (byte);
-
 
 #endif

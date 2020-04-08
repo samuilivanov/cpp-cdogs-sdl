@@ -1,31 +1,31 @@
 /*
-    C-Dogs SDL
-    A port of the legendary (and fun) action/arcade cdogs.
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
 
-    Copyright (c) 2013-2017, 2019 Cong Xu
-    All rights reserved.
+ Copyright (c) 2013-2017, 2019 Cong Xu
+ All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-    Redistributions of source code must retain the above copyright notice, this
-    list of conditions and the following disclaimer.
-    Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #include "hud_num_popup.h"
 
 #include "actors.h"
@@ -34,43 +34,35 @@
 #include "hud_defs.h"
 #include "player_hud.h"
 
-
 // Total number of milliseconds that the numeric popup lasts for
 #define TIMER_MS 1000
 #define TIMER_OBJECTIVE_MS 2000
 
-
-void HUDNumPopupsInit(
-	HUDNumPopups *popups, const struct MissionOptions *mission)
-{
+void HUDNumPopupsInit(HUDNumPopups *popups,
+		const struct MissionOptions *mission) {
 	memset(popups, 0, sizeof *popups);
 	CArrayInit(&popups->objective, sizeof(HUDNumPopup));
-	CArrayResize(
-		&popups->objective, mission->missionData->Objectives.size, NULL);
+	CArrayResize(&popups->objective, mission->missionData->Objectives.size,
+			NULL);
 	CArrayFillZero(&popups->objective);
 }
 
-void HUDNumPopupsTerminate(HUDNumPopups *popups)
-{
+void HUDNumPopupsTerminate(HUDNumPopups *popups) {
 	CArrayTerminate(&popups->objective);
 }
 
 static void MergePopups(HUDNumPopup *dst, const HUDNumPopup src);
-void HUDNumPopupsAdd(
-	HUDNumPopups *popups, const HUDNumPopupType type,
-	const int idxOrUID, const int amount)
-{
+void HUDNumPopupsAdd(HUDNumPopups *popups, const HUDNumPopupType type,
+		const int idxOrUID, const int amount) {
 	HUDNumPopup s;
 	memset(&s, 0, sizeof s);
 
 	// Index
 	int localPlayerIdx = -1;
-	switch (type)
-	{
+	switch (type) {
 	case NUMBER_POPUP_SCORE:
 		localPlayerIdx = FindLocalPlayerIndex(idxOrUID);
-		if (localPlayerIdx < 0)
-		{
+		if (localPlayerIdx < 0) {
 			// This popup was for a non-local player; abort
 			return;
 		}
@@ -80,15 +72,15 @@ void HUDNumPopupsAdd(
 		s.u.ObjectiveIndex = idxOrUID;
 		break;
 	default:
-		CASSERT(false, "unknown HUD popup type");
+		CASSERT(false, "unknown HUD popup type")
+		;
 		break;
 	}
 
 	s.Amount = amount;
 
 	// Timers
-	switch (type)
-	{
+	switch (type) {
 	case NUMBER_POPUP_SCORE:
 		s.Timer = TIMER_MS;
 		s.TimerMax = TIMER_MS;
@@ -98,34 +90,33 @@ void HUDNumPopupsAdd(
 		s.TimerMax = TIMER_OBJECTIVE_MS;
 		break;
 	default:
-		CASSERT(false, "unknown HUD popup type");
+		CASSERT(false, "unknown HUD popup type")
+		;
 		break;
 	}
 
 	// Merge with existing popups
-	switch (type)
-	{
+	switch (type) {
 	case NUMBER_POPUP_SCORE:
 		MergePopups(&popups->score[localPlayerIdx], s);
 		break;
 	case NUMBER_POPUP_OBJECTIVE:
-		MergePopups(static_cast<HUDNumPopup *>(CArrayGet(&popups->objective, s.u.ObjectiveIndex)), s);
+		MergePopups(
+				static_cast<HUDNumPopup*>(CArrayGet(&popups->objective,
+						s.u.ObjectiveIndex)), s);
 		break;
 	default:
-		CASSERT(false, "unknown HUD popup type");
+		CASSERT(false, "unknown HUD popup type")
+		;
 		break;
 	}
 }
-static void MergePopups(HUDNumPopup *dst, const HUDNumPopup src)
-{
+static void MergePopups(HUDNumPopup *dst, const HUDNumPopup src) {
 	// Combine popup amounts
-	if (dst->Timer <= 0)
-	{
+	if (dst->Timer <= 0) {
 		// Old popup finished; simply replace with new
 		dst->Amount = src.Amount;
-	}
-	else
-	{
+	} else {
 		// Add the updates
 		dst->Amount += src.Amount;
 	}
@@ -135,49 +126,42 @@ static void MergePopups(HUDNumPopup *dst, const HUDNumPopup src)
 }
 
 static void NumPopupUpdate(HUDNumPopup *p, const int ms);
-void HUDPopupsUpdate(HUDNumPopups *popups, const int ms)
-{
-	for (int i = 0; i < MAX_LOCAL_PLAYERS; i++)
-	{
+void HUDPopupsUpdate(HUDNumPopups *popups, const int ms) {
+	for (int i = 0; i < MAX_LOCAL_PLAYERS; i++) {
 		NumPopupUpdate(&popups->score[i], ms);
 	}
 	CA_FOREACH(HUDNumPopup, p, popups->objective)
 		NumPopupUpdate(p, ms);
 	CA_FOREACH_END()
 }
-static void NumPopupUpdate(HUDNumPopup *p, const int ms)
-{
-	if (p->Timer > 0)
-	{
+static void NumPopupUpdate(HUDNumPopup *p, const int ms) {
+	if (p->Timer > 0) {
 		p->Timer -= ms;
 	}
 }
 
 static void DrawNumUpdate(const HUDNumPopup *p, FontOpts opts);
 
-void HUDNumPopupsDrawPlayer(
-	const HUDNumPopups *popups, const int idx, const int drawFlags,
-	const Rect2i r)
-{
+void HUDNumPopupsDrawPlayer(const HUDNumPopups *popups, const int idx,
+		const int drawFlags, const Rect2i r) {
 	const HUDNumPopup *u = &popups->score[idx];
-	if (!IsScoreNeeded(gCampaign.Entry.Mode))
-	{
+	if (!IsScoreNeeded(gCampaign.Entry.Mode)) {
 		return;
 	}
-	if (u->Amount == 0)
-	{
+	if (u->Amount == 0) {
 		return;
 	}
 	const PlayerData *p = PlayerDataGetByUID(u->u.PlayerUID);
-	if (!IsPlayerAlive(p)) return;
+	if (!IsPlayerAlive(p))
+		return;
 	const FontOpts opts = PlayerHUDGetScorePos(drawFlags, r);
 	DrawNumUpdate(u, opts);
 }
 
-void HUDNumPopupsDrawObjective(
-	const HUDNumPopups *popups, const int idx, const struct vec2i pos)
-{
-	const HUDNumPopup *p = static_cast<const HUDNumPopup*>(CArrayGet(&popups->objective, idx));
+void HUDNumPopupsDrawObjective(const HUDNumPopups *popups, const int idx,
+		const struct vec2i pos) {
+	const HUDNumPopup *p = static_cast<const HUDNumPopup*>(CArrayGet(
+			&popups->objective, idx));
 	FontOpts opts = FontOptsNew();
 	opts.Area = gGraphicsDevice.cachedConfig.Res;
 	opts.Pad = pos;
@@ -192,10 +176,8 @@ void HUDNumPopupsDrawObjective(
 #define NUM_UPDATE_POP_UP_DURATION_MS 100
 #define NUM_UPDATE_FALL_DOWN_DURATION_MS 100
 #define NUM_UPDATE_POP_UP_HEIGHT 5
-static void DrawNumUpdate(const HUDNumPopup *p, FontOpts opts)
-{
-	if (p->Timer <= 0 || p->Amount == 0)
-	{
+static void DrawNumUpdate(const HUDNumPopup *p, FontOpts opts) {
+	if (p->Timer <= 0 || p->Amount == 0) {
 		return;
 	}
 	color_t color = p->Amount > 0 ? colorGreen : colorRed;
@@ -206,29 +188,24 @@ static void DrawNumUpdate(const HUDNumPopup *p, FontOpts opts)
 
 	// Now animate the popup based on its stage
 	int timer = p->TimerMax - p->Timer;
-	if (timer < NUM_UPDATE_POP_UP_DURATION_MS)
-	{
+	if (timer < NUM_UPDATE_POP_UP_DURATION_MS) {
 		// popup is still popping up
 		// calculate height
-		int popupHeight =
-			timer * NUM_UPDATE_POP_UP_HEIGHT / NUM_UPDATE_POP_UP_DURATION_MS;
+		int popupHeight = timer * NUM_UPDATE_POP_UP_HEIGHT
+				/ NUM_UPDATE_POP_UP_DURATION_MS;
 		opts.Pad.y -= popupHeight;
-	}
-	else if (timer <
-		NUM_UPDATE_POP_UP_DURATION_MS + NUM_UPDATE_FALL_DOWN_DURATION_MS)
-	{
+	} else if (timer <
+	NUM_UPDATE_POP_UP_DURATION_MS + NUM_UPDATE_FALL_DOWN_DURATION_MS) {
 		// popup is falling down
 		// calculate height
 		timer -= NUM_UPDATE_POP_UP_DURATION_MS;
 		timer = NUM_UPDATE_FALL_DOWN_DURATION_MS - timer;
-		int popupHeight =
-			timer * NUM_UPDATE_POP_UP_HEIGHT / NUM_UPDATE_FALL_DOWN_DURATION_MS;
+		int popupHeight = timer * NUM_UPDATE_POP_UP_HEIGHT
+				/ NUM_UPDATE_FALL_DOWN_DURATION_MS;
 		opts.Pad.y -= popupHeight;
-	}
-	else
-	{
+	} else {
 		// Change alpha so that the popup fades away
-		color.a = (uint8_t)CLAMP(p->Timer * 255 * 2 / p->TimerMax, 0, 255);
+		color.a = (uint8_t) CLAMP(p->Timer * 255 * 2 / p->TimerMax, 0, 255);
 	}
 
 	opts.Mask = color;

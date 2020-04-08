@@ -1,30 +1,30 @@
 /*
-	C-Dogs SDL
-	A port of the legendary (and fun) action/arcade cdogs.
-	Copyright (c) 2019-2020 Cong Xu
-	All rights reserved.
+ C-Dogs SDL
+ A port of the legendary (and fun) action/arcade cdogs.
+ Copyright (c) 2019-2020 Cong Xu
+ All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-	Redistributions of source code must retain the above copyright notice, this
-	list of conditions and the following disclaimer.
-	Redistributions in binary form must reproduce the above copyright notice,
-	this list of conditions and the following disclaimer in the documentation
-	and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
 #include "tile_brush.h"
 
 #include "editor_ui_common.h"
@@ -36,8 +36,7 @@
 #define SIDE_WIDTH (WIDTH - MAIN_WIDTH)
 #define ROW_HEIGHT 25
 
-typedef struct
-{
+typedef struct {
 	struct nk_context *ctx;
 	PicManager *pm;
 	Mission *m;
@@ -55,26 +54,23 @@ typedef struct
 } TileBrushData;
 
 static void ResetTexIds(TileBrushData *data);
-static const char *IndexFloorStyleName(const int idx);
-static const char *IndexWallStyleName(const int idx);
-static const char *IndexDoorStyleName(const int idx);
-static const char *IndexTileStyleName(const TileClassType type, const int idx);
+static const char* IndexFloorStyleName(const int idx);
+static const char* IndexWallStyleName(const int idx);
+static const char* IndexDoorStyleName(const int idx);
+static const char* IndexTileStyleName(const TileClassType type, const int idx);
 static int FloorStyleIndex(const char *style);
 static int WallStyleIndex(const char *style);
 static int DoorStyleIndex(const char *style);
-static const TileClass *GetOrAddTileClass(
-	const TileClass *base, PicManager *pm, const char *style,
-	const color_t mask, const color_t maskAlt);
+static const TileClass* GetOrAddTileClass(const TileClass *base, PicManager *pm,
+		const char *style, const color_t mask, const color_t maskAlt);
 static bool Draw(SDL_Window *win, struct nk_context *ctx, void *data);
-EditorResult TileBrush(
-	PicManager *pm, EventHandlers *handlers, CampaignOptions *co,
-	int *brushIdx)
-{
+EditorResult TileBrush(PicManager *pm, EventHandlers *handlers,
+		CampaignOptions *co, int *brushIdx) {
 	NKWindowConfig cfg;
 	memset(&cfg, 0, sizeof cfg);
 	cfg.Title = "Tile Brush";
 	cfg.Size = svec2i(WIDTH, HEIGHT);
-	color_t bg = {41, 26, 26, 255};
+	color_t bg = { 41, 26, 26, 255 };
 	cfg.BG = bg;
 	cfg.Handlers = handlers;
 	cfg.Draw = Draw;
@@ -91,44 +87,43 @@ EditorResult TileBrush(
 	ResetTexIds(&data);
 	cfg.DrawData = &data;
 	data.ctx = cfg.ctx;
-	data.tcTypes = GetClassNames(
-		TILE_CLASS_COUNT, (const char *(*)(const int))TileClassTypeStr);
-	data.floorStyles =
-		GetClassNames(pm->tileStyleNames.size, IndexFloorStyleName);
-	data.wallStyles =
-		GetClassNames(pm->wallStyleNames.size, IndexWallStyleName);
-	data.doorStyles =
-		GetClassNames(pm->doorStyleNames.size, IndexDoorStyleName);
+	data.tcTypes = GetClassNames(TILE_CLASS_COUNT,
+			(const char* (*)(const int)) TileClassTypeStr);
+	data.floorStyles = GetClassNames(pm->tileStyleNames.size,
+			IndexFloorStyleName);
+	data.wallStyles = GetClassNames(pm->wallStyleNames.size,
+			IndexWallStyleName);
+	data.doorStyles = GetClassNames(pm->doorStyleNames.size,
+			IndexDoorStyleName);
 	// TODO: tile previews show wrong icons; possibly due to clashes between
 	// SDL2 textures and OGL textures. Load SDL2 textures first and in a second
 	// run, load OGL textures
 	TexArrayInit(&data.texIdsFloorStyles, pm->tileStyleNames.size);
 	CA_FOREACH(const GLuint, texid, data.texIdsFloorStyles)
-	const char *style = *(char **)CArrayGet(&pm->tileStyleNames, _ca_index);
-	const TileClass *styleClass = GetOrAddTileClass(
-		&gTileFloor, pm, style, colorBattleshipGrey, colorOfficeGreen);
-	LoadTexFromPic(*texid, styleClass->Pic);
+		const char *style = *(char**) CArrayGet(&pm->tileStyleNames, _ca_index);
+		const TileClass *styleClass = GetOrAddTileClass(&gTileFloor, pm, style,
+				colorBattleshipGrey, colorOfficeGreen);
+		LoadTexFromPic(*texid, styleClass->Pic);
 	CA_FOREACH_END()
 	TexArrayInit(&data.texIdsWallStyles, pm->wallStyleNames.size);
 	CA_FOREACH(const GLuint, texid, data.texIdsWallStyles)
-	const char *style = *(char **)CArrayGet(&pm->wallStyleNames, _ca_index);
-	const TileClass *styleClass = GetOrAddTileClass(
-		&gTileWall, pm, style, colorGravel, colorOfficeGreen);
-	LoadTexFromPic(*texid, styleClass->Pic);
+		const char *style = *(char**) CArrayGet(&pm->wallStyleNames, _ca_index);
+		const TileClass *styleClass = GetOrAddTileClass(&gTileWall, pm, style,
+				colorGravel, colorOfficeGreen);
+		LoadTexFromPic(*texid, styleClass->Pic);
 	CA_FOREACH_END()
 	TexArrayInit(&data.texIdsDoorStyles, pm->doorStyleNames.size);
 	CA_FOREACH(const GLuint, texid, data.texIdsDoorStyles)
-	const char *style = *(char **)CArrayGet(&pm->doorStyleNames, _ca_index);
-	const TileClass *styleClass =
-		GetOrAddTileClass(&gTileDoor, pm, style, colorWhite, colorOfficeGreen);
-	LoadTexFromPic(*texid, styleClass->Pic);
+		const char *style = *(char**) CArrayGet(&pm->doorStyleNames, _ca_index);
+		const TileClass *styleClass = GetOrAddTileClass(&gTileDoor, pm, style,
+				colorWhite, colorOfficeGreen);
+		LoadTexFromPic(*texid, styleClass->Pic);
 	CA_FOREACH_END()
 
 	NKWindow(cfg);
 
-	glDeleteTextures(
-		(GLsizei)data.texIdsTileClasses.size,
-		(const GLuint *)data.texIdsTileClasses.data);
+	glDeleteTextures((GLsizei) data.texIdsTileClasses.size,
+			(const GLuint*) data.texIdsTileClasses.data);
 	CArrayTerminate(&data.texIdsTileClasses);
 	CFREE(data.tcTypes);
 	CFREE(data.floorStyles);
@@ -140,45 +135,36 @@ EditorResult TileBrush(
 	return data.result;
 }
 
-static void DrawTileOpsRow(
-	struct nk_context *ctx, TileBrushData *tbData, TileClass *selectedTC,
-	bool *result);
-static void DrawTilePropsSidebar(
-	struct nk_context *ctx, TileBrushData *tbData, TileClass *selectedTC);
-static int DrawTileType(
-	TileBrushData *tbData, TileClass *tc, const int tileId);
-static bool Draw(SDL_Window *win, struct nk_context *ctx, void *data)
-{
+static void DrawTileOpsRow(struct nk_context *ctx, TileBrushData *tbData,
+		TileClass *selectedTC, bool *result);
+static void DrawTilePropsSidebar(struct nk_context *ctx, TileBrushData *tbData,
+		TileClass *selectedTC);
+static int DrawTileType(TileBrushData *tbData, TileClass *tc, const int tileId);
+static bool Draw(SDL_Window *win, struct nk_context *ctx, void *data) {
 	UNUSED(win);
 	bool result = true;
 	TileBrushData *tbData = static_cast<TileBrushData*>(data);
-	TileClass *selectedTC =
-		MissionStaticIdTileClass(&tbData->m->u.Static, *tbData->brushIdx);
+	TileClass *selectedTC = MissionStaticIdTileClass(&tbData->m->u.Static,
+			*tbData->brushIdx);
 
-	if (nk_begin(
-			ctx, "Properties", nk_rect(0, 0, SIDE_WIDTH, HEIGHT),
-			NK_WINDOW_BORDER | NK_WINDOW_TITLE) &&
-		selectedTC != NULL)
-	{
+	if (nk_begin(ctx, "Properties", nk_rect(0, 0, SIDE_WIDTH, HEIGHT),
+			NK_WINDOW_BORDER | NK_WINDOW_TITLE) && selectedTC != NULL) {
 		DrawTilePropsSidebar(ctx, tbData, selectedTC);
 	}
 	nk_end(ctx);
 
-	if (nk_begin(
-			ctx, "", nk_rect(SIDE_WIDTH, 0, MAIN_WIDTH, HEIGHT),
-			NK_WINDOW_BORDER))
-	{
+	if (nk_begin(ctx, "", nk_rect(SIDE_WIDTH, 0, MAIN_WIDTH, HEIGHT),
+			NK_WINDOW_BORDER)) {
 		DrawTileOpsRow(ctx, tbData, selectedTC, &result);
 
 		nk_layout_row_dynamic(ctx, 40 * PIC_SCALE, MAIN_WIDTH / 120);
 		tbData->tileIdx = 0;
 		int tilesDrawn = 0;
 		for (int i = 0;
-			 tilesDrawn < hashmap_length(tbData->m->u.Static.TileClasses); i++)
-		{
+				tilesDrawn < hashmap_length(tbData->m->u.Static.TileClasses);
+				i++) {
 			TileClass *tc = MissionStaticIdTileClass(&tbData->m->u.Static, i);
-			if (tc != NULL)
-			{
+			if (tc != NULL) {
 				DrawTileType(tbData, tc, i);
 				tilesDrawn++;
 			}
@@ -187,125 +173,109 @@ static bool Draw(SDL_Window *win, struct nk_context *ctx, void *data)
 	nk_end(ctx);
 	return result;
 }
-static void DrawTileOpsRow(
-	struct nk_context *ctx, TileBrushData *tbData, TileClass *selectedTC,
-	bool *result)
-{
+static void DrawTileOpsRow(struct nk_context *ctx, TileBrushData *tbData,
+		TileClass *selectedTC, bool *result) {
 	nk_layout_row_dynamic(ctx, ROW_HEIGHT, 4);
-	if (nk_button_label(ctx, "Done"))
-	{
+	if (nk_button_label(ctx, "Done")) {
 		*result = false;
 	}
-	if (nk_button_label(ctx, "Add"))
-	{
+	if (nk_button_label(ctx, "Add")) {
 		TileClass tc;
-		TileClassInit(
-			&tc, &gPicManager, &gTileFloor, "tile", "normal", colorGray,
-			colorGray);
-		if (MissionStaticAddTileClass(&tbData->m->u.Static, &tc) != NULL)
-		{
+		TileClassInit(&tc, &gPicManager, &gTileFloor, "tile", "normal",
+				colorGray, colorGray);
+		if (MissionStaticAddTileClass(&tbData->m->u.Static, &tc) != NULL) {
 			ResetTexIds(tbData);
 		}
 		TileClassTerminate(&tc);
-		tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED);
+		tbData->result = static_cast<EditorResult>(tbData->result
+				| EDITOR_RESULT_CHANGED);
 	}
-	if (nk_button_label(ctx, "Duplicate"))
-	{
+	if (nk_button_label(ctx, "Duplicate")) {
 		if (MissionStaticAddTileClass(&tbData->m->u.Static, selectedTC) !=
-			NULL)
-		{
+		NULL) {
 			ResetTexIds(tbData);
 		}
-		tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED);
+		tbData->result = static_cast<EditorResult>(tbData->result
+				| EDITOR_RESULT_CHANGED);
 	}
-	if (hashmap_length(tbData->m->u.Static.TileClasses) > 0 &&
-		nk_button_label(ctx, "Remove"))
-	{
-		if (MissionStaticRemoveTileClass(
-				&tbData->m->u.Static, *tbData->brushIdx))
-		{
+	if (hashmap_length(tbData->m->u.Static.TileClasses) > 0
+			&& nk_button_label(ctx, "Remove")) {
+		if (MissionStaticRemoveTileClass(&tbData->m->u.Static,
+				*tbData->brushIdx)) {
 			ResetTexIds(tbData);
 			// Set selected tile index to an existing tile
-			if (hashmap_length(tbData->m->u.Static.TileClasses) > 0)
-			{
+			if (hashmap_length(tbData->m->u.Static.TileClasses) > 0) {
 				for (*tbData->brushIdx = 0;
-					 MissionStaticIdTileClass(
-						 &tbData->m->u.Static, *tbData->brushIdx) == NULL;
-					 (*tbData->brushIdx)++)
+						MissionStaticIdTileClass(&tbData->m->u.Static,
+								*tbData->brushIdx) == NULL;
+						(*tbData->brushIdx)++)
 					;
 			}
 		}
-		tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+		tbData->result = static_cast<EditorResult>(tbData->result
+				| EDITOR_RESULT_CHANGED_AND_RELOAD);
 	}
 }
-static void DrawTileTypeSelect(
-	struct nk_context *ctx, TileBrushData *tbData, TileClass *selectedTC);
-static void DrawTileStyleSelect(
-	struct nk_context *ctx, TileBrushData *tbData, TileClass *selectedTC);
-static bool DrawCheckbox(
-	struct nk_context *ctx, const char *label, const char *tooltip,
-	bool *value);
-static void DrawTilePropsSidebar(
-	struct nk_context *ctx, TileBrushData *tbData, TileClass *selectedTC)
-{
+static void DrawTileTypeSelect(struct nk_context *ctx, TileBrushData *tbData,
+		TileClass *selectedTC);
+static void DrawTileStyleSelect(struct nk_context *ctx, TileBrushData *tbData,
+		TileClass *selectedTC);
+static bool DrawCheckbox(struct nk_context *ctx, const char *label,
+		const char *tooltip, bool *value);
+static void DrawTilePropsSidebar(struct nk_context *ctx, TileBrushData *tbData,
+		TileClass *selectedTC) {
 	nk_layout_row_dynamic(ctx, ROW_HEIGHT, 1);
 
 	DrawTileTypeSelect(ctx, tbData, selectedTC);
 
-	if (selectedTC->Type != TILE_CLASS_NOTHING)
-	{
+	if (selectedTC->Type != TILE_CLASS_NOTHING) {
 		DrawTileStyleSelect(ctx, tbData, selectedTC);
 		// Changing colour requires regenerating tile mask pics
-		if (ColorPicker(ctx, ROW_HEIGHT, "Primary Color", &selectedTC->Mask))
-		{
-			tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+		if (ColorPicker(ctx, ROW_HEIGHT, "Primary Color", &selectedTC->Mask)) {
+			tbData->result = static_cast<EditorResult>(tbData->result
+					| EDITOR_RESULT_CHANGED_AND_RELOAD);
 		}
-		if (ColorPicker(ctx, ROW_HEIGHT, "Alt Color", &selectedTC->MaskAlt))
-		{
-			tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+		if (ColorPicker(ctx, ROW_HEIGHT, "Alt Color", &selectedTC->MaskAlt)) {
+			tbData->result = static_cast<EditorResult>(tbData->result
+					| EDITOR_RESULT_CHANGED_AND_RELOAD);
 		}
 
 		// Changing tile props can affect map object placement
-		if (DrawCheckbox(
-				ctx, "Can Walk", "Whether actors can walk through this tile",
-				&selectedTC->canWalk))
-		{
-			tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+		if (DrawCheckbox(ctx, "Can Walk",
+				"Whether actors can walk through this tile",
+				&selectedTC->canWalk)) {
+			tbData->result = static_cast<EditorResult>(tbData->result
+					| EDITOR_RESULT_CHANGED_AND_RELOAD);
 		}
-		if (DrawCheckbox(
-				ctx, "Opaque", "Whether this tile cannot be seen through",
-				&selectedTC->isOpaque))
-		{
-			tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+		if (DrawCheckbox(ctx, "Opaque",
+				"Whether this tile cannot be seen through",
+				&selectedTC->isOpaque)) {
+			tbData->result = static_cast<EditorResult>(tbData->result
+					| EDITOR_RESULT_CHANGED_AND_RELOAD);
 		}
-		if (DrawCheckbox(
-				ctx, "Shootable", "Whether bullets will hit this tile",
-				&selectedTC->shootable))
-		{
-			tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+		if (DrawCheckbox(ctx, "Shootable", "Whether bullets will hit this tile",
+				&selectedTC->shootable)) {
+			tbData->result = static_cast<EditorResult>(tbData->result
+					| EDITOR_RESULT_CHANGED_AND_RELOAD);
 		}
-		if (DrawCheckbox(
-				ctx, "IsRoom",
+		if (DrawCheckbox(ctx, "IsRoom",
 				"Affects random placement of indoor/outdoor map objects",
-				&selectedTC->IsRoom))
-		{
-			tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+				&selectedTC->IsRoom)) {
+			tbData->result = static_cast<EditorResult>(tbData->result
+					| EDITOR_RESULT_CHANGED_AND_RELOAD);
 		}
 	}
 }
-static void DrawTileTypeSelect(
-	struct nk_context *ctx, TileBrushData *tbData, TileClass *selectedTC)
-{
+static void DrawTileTypeSelect(struct nk_context *ctx, TileBrushData *tbData,
+		TileClass *selectedTC) {
 	nk_label(ctx, "Type:", NK_TEXT_LEFT);
 	const TileClassType newType = static_cast<TileClassType>(nk_combo_separator(
-		ctx, tbData->tcTypes, '\0', selectedTC->Type, TILE_CLASS_COUNT,
-		ROW_HEIGHT, nk_vec2(nk_widget_width(ctx), 8 * ROW_HEIGHT)));
-	if (newType != selectedTC->Type)
-	{
+			ctx, tbData->tcTypes, '\0', selectedTC->Type, TILE_CLASS_COUNT,
+			ROW_HEIGHT, nk_vec2(nk_widget_width(ctx), 8 * ROW_HEIGHT)));
+	if (newType != selectedTC->Type) {
 		TileClassTerminate(selectedTC);
 		const TileClass *base = &gTileFloor;
-		switch (newType)
-		{
+		switch (newType) {
 		case TILE_CLASS_FLOOR:
 			break;
 		case TILE_CLASS_WALL:
@@ -318,24 +288,24 @@ static void DrawTileTypeSelect(
 			base = &gTileNothing;
 			break;
 		default:
-			CASSERT(false, "unknown tile class");
+			CASSERT(false, "unknown tile class")
+			;
 			break;
 		}
-		TileClassInitDefault(
-			selectedTC, tbData->pm, base, NULL, &selectedTC->Mask);
-		tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+		TileClassInitDefault(selectedTC, tbData->pm, base, NULL,
+				&selectedTC->Mask);
+		tbData->result = static_cast<EditorResult>(tbData->result
+				| EDITOR_RESULT_CHANGED_AND_RELOAD);
 	}
 }
-static void DrawTileStyleSelect(
-	struct nk_context *ctx, TileBrushData *tbData, TileClass *selectedTC)
-{
+static void DrawTileStyleSelect(struct nk_context *ctx, TileBrushData *tbData,
+		TileClass *selectedTC) {
 	nk_label(ctx, "Style:", NK_TEXT_LEFT);
 	const GLuint *styleTexIds = NULL;
 	const char *styles = "";
 	int styleSelected = -1;
 	int styleCount = 0;
-	switch (selectedTC->Type)
-	{
+	switch (selectedTC->Type) {
 	case TILE_CLASS_FLOOR:
 		styles = tbData->floorStyles;
 		styleSelected = FloorStyleIndex(selectedTC->Style);
@@ -357,60 +327,51 @@ static void DrawTileStyleSelect(
 	default:
 		break;
 	}
-	const int newStyle = nk_combo_separator_image(
-		ctx, styleTexIds, styles, '\0', styleSelected, styleCount, ROW_HEIGHT,
-		nk_vec2(nk_widget_width(ctx), 8 * ROW_HEIGHT));
-	if (newStyle != styleSelected)
-	{
+	const int newStyle = nk_combo_separator_image(ctx, styleTexIds, styles,
+			'\0', styleSelected, styleCount, ROW_HEIGHT,
+			nk_vec2(nk_widget_width(ctx), 8 * ROW_HEIGHT));
+	if (newStyle != styleSelected) {
 		CFREE(selectedTC->Style);
-		CSTRDUP(
-			selectedTC->Style, IndexTileStyleName(selectedTC->Type, newStyle));
+		CSTRDUP(selectedTC->Style,
+				IndexTileStyleName(selectedTC->Type, newStyle));
 		TileClassReloadPic(selectedTC, tbData->pm);
-		tbData->result = static_cast<EditorResult>(tbData->result | EDITOR_RESULT_CHANGED_AND_RELOAD);
+		tbData->result = static_cast<EditorResult>(tbData->result
+				| EDITOR_RESULT_CHANGED_AND_RELOAD);
 	}
 }
-static bool DrawCheckbox(
-	struct nk_context *ctx, const char *label, const char *tooltip,
-	bool *value)
-{
+static bool DrawCheckbox(struct nk_context *ctx, const char *label,
+		const char *tooltip, bool *value) {
 	struct nk_rect bounds = nk_widget_bounds(ctx);
-	int iValue = (int)*value;
+	int iValue = (int) *value;
 	const bool changed = nk_checkbox_label(ctx, label, &iValue);
-	*value = (bool)iValue;
-	if (tooltip && nk_input_is_mouse_hovering_rect(&ctx->input, bounds))
-	{
+	*value = (bool) iValue;
+	if (tooltip && nk_input_is_mouse_hovering_rect(&ctx->input, bounds)) {
 		nk_tooltip(ctx, tooltip);
 	}
 	return changed;
 }
 
-static void DrawTileClass(
-	struct nk_context *ctx, PicManager *pm, TileClass *tc,
-	const struct vec2i pos, const GLuint texid);
-static int DrawTileType(TileBrushData *tbData, TileClass *tc, const int tileId)
-{
+static void DrawTileClass(struct nk_context *ctx, PicManager *pm, TileClass *tc,
+		const struct vec2i pos, const GLuint texid);
+static int DrawTileType(TileBrushData *tbData, TileClass *tc,
+		const int tileId) {
 	char name[256];
 	TileClassGetBrushName(name, tc);
 	const int selected = *tbData->brushIdx == tileId;
-	if (nk_select_label(
-			tbData->ctx, name, NK_TEXT_ALIGN_BOTTOM | NK_TEXT_ALIGN_CENTERED,
-			selected))
-	{
+	if (nk_select_label(tbData->ctx, name,
+			NK_TEXT_ALIGN_BOTTOM | NK_TEXT_ALIGN_CENTERED, selected)) {
 		*tbData->brushIdx = tileId;
 	}
-	const GLuint *texid =
-		static_cast<GLuint*>(CArrayGet(&tbData->texIdsTileClasses, tbData->tileIdx));
+	const GLuint *texid = static_cast<GLuint*>(CArrayGet(
+			&tbData->texIdsTileClasses, tbData->tileIdx));
 	DrawTileClass(tbData->ctx, tbData->pm, tc, svec2i(-40, 5), *texid);
 	tbData->tileIdx++;
 	return MAP_OK;
 }
-static void DrawTileClass(
-	struct nk_context *ctx, PicManager *pm, TileClass *tc,
-	const struct vec2i pos, const GLuint texid)
-{
+static void DrawTileClass(struct nk_context *ctx, PicManager *pm, TileClass *tc,
+		const struct vec2i pos, const GLuint texid) {
 	const Pic *pic = TileClassGetPic(pm, tc);
-	if (pic == NULL)
-	{
+	if (pic == NULL) {
 		// Attempt to reload pic (we may have changed its colour for example)
 		TileClassReloadPic(tc, pm);
 		pic = TileClassGetPic(pm, tc);
@@ -418,35 +379,27 @@ static void DrawTileClass(
 	DrawPic(ctx, pic, texid, pos, PIC_SCALE);
 }
 
-static void ResetTexIds(TileBrushData *data)
-{
-	if (data->texIdsTileClasses.size > 0)
-	{
-		glDeleteTextures(
-			(GLsizei)data->texIdsTileClasses.size,
-			(const GLuint *)data->texIdsTileClasses.data);
+static void ResetTexIds(TileBrushData *data) {
+	if (data->texIdsTileClasses.size > 0) {
+		glDeleteTextures((GLsizei) data->texIdsTileClasses.size,
+				(const GLuint*) data->texIdsTileClasses.data);
 	}
 	const int nTileClasses = hashmap_length(data->m->u.Static.TileClasses);
 	CArrayResize(&data->texIdsTileClasses, nTileClasses, NULL);
-	glGenTextures(nTileClasses, (GLuint *)data->texIdsTileClasses.data);
+	glGenTextures(nTileClasses, (GLuint*) data->texIdsTileClasses.data);
 }
 
-static const char *IndexFloorStyleName(const int idx)
-{
-	return *(const char **)CArrayGet(&gPicManager.tileStyleNames, idx);
+static const char* IndexFloorStyleName(const int idx) {
+	return *(const char**) CArrayGet(&gPicManager.tileStyleNames, idx);
 }
-static const char *IndexWallStyleName(const int idx)
-{
-	return *(const char **)CArrayGet(&gPicManager.wallStyleNames, idx);
+static const char* IndexWallStyleName(const int idx) {
+	return *(const char**) CArrayGet(&gPicManager.wallStyleNames, idx);
 }
-static const char *IndexDoorStyleName(const int idx)
-{
-	return *(const char **)CArrayGet(&gPicManager.doorStyleNames, idx);
+static const char* IndexDoorStyleName(const int idx) {
+	return *(const char**) CArrayGet(&gPicManager.doorStyleNames, idx);
 }
-static const char *IndexTileStyleName(const TileClassType type, const int idx)
-{
-	switch (type)
-	{
+static const char* IndexTileStyleName(const TileClassType type, const int idx) {
+	switch (type) {
 	case TILE_CLASS_FLOOR:
 		return IndexFloorStyleName(idx);
 	case TILE_CLASS_WALL:
@@ -457,44 +410,33 @@ static const char *IndexTileStyleName(const TileClassType type, const int idx)
 		return NULL;
 	}
 }
-static int TileStyleIndex(const CArray *styles, const char *style)
-{
-	if (style == NULL)
-	{
+static int TileStyleIndex(const CArray *styles, const char *style) {
+	if (style == NULL) {
 		return -1;
 	}
 	CA_FOREACH(const char *, styleName, *styles)
-	if (strcmp(*styleName, style) == 0)
-	{
-		return _ca_index;
-	}
-	CA_FOREACH_END()
+		if (strcmp(*styleName, style) == 0) {
+			return _ca_index;
+		}CA_FOREACH_END()
 	return -1;
 }
-static int FloorStyleIndex(const char *style)
-{
+static int FloorStyleIndex(const char *style) {
 	return TileStyleIndex(&gPicManager.tileStyleNames, style);
 }
-static int WallStyleIndex(const char *style)
-{
+static int WallStyleIndex(const char *style) {
 	return TileStyleIndex(&gPicManager.wallStyleNames, style);
 }
-static int DoorStyleIndex(const char *style)
-{
+static int DoorStyleIndex(const char *style) {
 	return TileStyleIndex(&gPicManager.doorStyleNames, style);
 }
 
-static const TileClass *GetOrAddTileClass(
-	const TileClass *base, PicManager *pm, const char *style,
-	const color_t mask, const color_t maskAlt)
-{
-	const TileClass *styleClass = TileClassesGetMaskedTile(
-		base, style, TileClassBaseStyleType(base->Type), mask, maskAlt);
-	if (styleClass == &gTileNothing)
-	{
-		styleClass = TileClassesAdd(
-			&gTileClasses, pm, base, style, TileClassBaseStyleType(base->Type),
-			mask, maskAlt);
+static const TileClass* GetOrAddTileClass(const TileClass *base, PicManager *pm,
+		const char *style, const color_t mask, const color_t maskAlt) {
+	const TileClass *styleClass = TileClassesGetMaskedTile(base, style,
+			TileClassBaseStyleType(base->Type), mask, maskAlt);
+	if (styleClass == &gTileNothing) {
+		styleClass = TileClassesAdd(&gTileClasses, pm, base, style,
+				TileClassBaseStyleType(base->Type), mask, maskAlt);
 	}
 	return styleClass;
 }

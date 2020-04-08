@@ -25,8 +25,7 @@ extern "C" {
  *    is different than from the main stream. Don't use bytes_left to compute
  *    any pointers.
  */
-struct pb_istream_s
-{
+struct pb_istream_s {
 #ifdef PB_BUFFER_ONLY
     /* Callback pointer is not used in buffer-only configuration.
      * Having an int pointer here allows binary compatibility but
@@ -34,21 +33,21 @@ struct pb_istream_s
      */
     int *callback;
 #else
-    bool (*callback)(pb_istream_t *stream, uint8_t *buf, size_t count);
+	bool (*callback)(pb_istream_t *stream, uint8_t *buf, size_t count);
 #endif
 
-    void *state; /* Free field for use by callback implementation */
-    size_t bytes_left;
-    
+	void *state; /* Free field for use by callback implementation */
+	size_t bytes_left;
+
 #ifndef PB_NO_ERRMSG
-    const char *errmsg;
+	const char *errmsg;
 #endif
 };
 
 /***************************
  * Main decoding functions *
  ***************************/
- 
+
 /* Decode a single protocol buffers message from input stream into a C structure.
  * Returns true on success, false on any failure.
  * The actual struct pointed to by dest must match the description in fields.
@@ -65,7 +64,8 @@ struct pb_istream_s
  *    stream = pb_istream_from_buffer(buffer, count);
  *    pb_decode(&stream, MyMessage_fields, &msg);
  */
-bool pb_decode(pb_istream_t *stream, const pb_field_t fields[], void *dest_struct);
+bool pb_decode(pb_istream_t *stream, const pb_field_t fields[],
+		void *dest_struct);
 
 /* Same as pb_decode, except does not initialize the destination structure
  * to default values. This is slightly faster if you need no default values
@@ -77,13 +77,15 @@ bool pb_decode(pb_istream_t *stream, const pb_field_t fields[], void *dest_struc
  * Note: If this function returns with an error, it will not release any
  * dynamically allocated fields. You will need to call pb_release() yourself.
  */
-bool pb_decode_noinit(pb_istream_t *stream, const pb_field_t fields[], void *dest_struct);
+bool pb_decode_noinit(pb_istream_t *stream, const pb_field_t fields[],
+		void *dest_struct);
 
 /* Same as pb_decode, except expects the stream to start with the message size
  * encoded as varint. Corresponds to parseDelimitedFrom() in Google's
  * protobuf API.
  */
-bool pb_decode_delimited(pb_istream_t *stream, const pb_field_t fields[], void *dest_struct);
+bool pb_decode_delimited(pb_istream_t *stream, const pb_field_t fields[],
+		void *dest_struct);
 
 #ifdef PB_ENABLE_MALLOC
 /* Release any allocated pointer fields. If you use dynamic allocation, you should
@@ -92,7 +94,6 @@ bool pb_decode_delimited(pb_istream_t *stream, const pb_field_t fields[], void *
  */
 void pb_release(const pb_field_t fields[], void *dest_struct);
 #endif
-
 
 /**************************************
  * Functions for manipulating streams *
@@ -110,14 +111,14 @@ pb_istream_t pb_istream_from_buffer(uint8_t *buf, size_t bufsize);
  */
 bool pb_read(pb_istream_t *stream, uint8_t *buf, size_t count);
 
-
 /************************************************
  * Helper functions for writing field callbacks *
  ************************************************/
 
 /* Decode the tag for the next field in the stream. Gives the wire type and
  * field tag. At end of the message, returns false and sets eof to true. */
-bool pb_decode_tag(pb_istream_t *stream, pb_wire_type_t *wire_type, uint32_t *tag, bool *eof);
+bool pb_decode_tag(pb_istream_t *stream, pb_wire_type_t *wire_type,
+		uint32_t *tag, bool *eof);
 
 /* Skip the field payload data, given the wire type. */
 bool pb_skip_field(pb_istream_t *stream, pb_wire_type_t wire_type);

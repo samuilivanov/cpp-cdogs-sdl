@@ -39,10 +39,10 @@ extern "C" {
 #define CBEHAVE_MAX_NAME_LEN 128
 
 typedef struct cbehave_state {
-    int total_features;
-    int failed_features;
-    int total_scenarios;
-    int failed_scenarios;
+	int total_features;
+	int failed_features;
+	int total_scenarios;
+	int failed_scenarios;
 } cbehave_state;
 
 typedef enum {
@@ -169,30 +169,23 @@ int main(void) {\
     _cbehave_runner(str, features, sizeof(features)/sizeof(features[0]))
 
 typedef struct cbehave_feature {
-    void (*func)(void *state);
+	void (*func)(void *state);
 } cbehave_feature;
 
-int _cbehave_runner(const char *description, const cbehave_feature *features, int count);
-void should_int_equal(int actual, int expected, 
-                      void *state,
-                      const char *file, int line);
-void should_int_gt(int val1, int val2,
-                   void *state,
-                   const char *file, int line);
-void should_int_lt(int val1, int val2,
-                   void *state,
-                   const char *file, int line);
-void should_int_ge(int val1, int val2,
-                   void *state,
-                   const char *file, int line);
-void should_int_le(int val1, int val2,
-                   void *state,
-                   const char *file, int line);
+int _cbehave_runner(const char *description, const cbehave_feature *features,
+		int count);
+void should_int_equal(int actual, int expected, void *state, const char *file,
+		int line);
+void should_int_gt(int val1, int val2, void *state, const char *file, int line);
+void should_int_lt(int val1, int val2, void *state, const char *file, int line);
+void should_int_ge(int val1, int val2, void *state, const char *file, int line);
+void should_int_le(int val1, int val2, void *state, const char *file, int line);
 void should_str_equal(const char *actual, const char *expected, void *state,
-                      const char *file, int line);
-void should_mem_equal(const void *actual, const void *expected, size_t size, void *state,
-                      const char *file, int line);
-void should_be_bool(bool actual, bool expected, void *state, const char *file, int line);
+		const char *file, int line);
+void should_mem_equal(const void *actual, const void *expected, size_t size,
+		void *state, const char *file, int line);
+void should_be_bool(bool actual, bool expected, void *state, const char *file,
+		int line);
 
 void cbehave_given_entry(const char *prompt, const char *str, void *state);
 void cbehave_when_entry(const char *prompt, const char *str, void *state);
@@ -224,24 +217,28 @@ void cbehave_feature_return(const char *file, int line, int ret, void *state);
  */
 
 typedef struct cbehave_value_t {
-    APR_RING_ENTRY(cbehave_value_t)    link;
-    void                               *value;
+	APR_RING_ENTRY(cbehave_value_t)
+	link;
+	void *value;
 } cbehave_value_t;
 typedef APR_RING_HEAD(cbehave_value_head_t, cbehave_value_t) cbehave_value_head_t;
 
 typedef struct cbehave_symbol_t {
-    APR_RING_ENTRY(cbehave_symbol_t)   link;
-    char                               desc[CBEHAVE_MAX_NAME_LEN];
-    int                                obj_type;
-    int                                always_return_flag; /* 1: always return the same value; 0(default) */
-    void*                              value;
-    cbehave_value_head_t               value_list;
+	APR_RING_ENTRY(cbehave_symbol_t)
+	link;
+	char desc[CBEHAVE_MAX_NAME_LEN];
+	int obj_type;
+	int always_return_flag; /* 1: always return the same value; 0(default) */
+	void *value;
+	cbehave_value_head_t value_list;
 } cbehave_symbol_t;
 typedef APR_RING_HEAD(cbehave_symbol_head_t, cbehave_symbol_t) cbehave_symbol_head_t;
 
-void* cbehave_mock_obj(const char *fcname, int lineno, const char *fname, int obj_type);
-void cbehave_mock_obj_return(const char *symbol_name, void *value, const char *fcname,
-                             int lineno, const char *fname, int obj_type, int count);
+void* cbehave_mock_obj(const char *fcname, int lineno, const char *fname,
+		int obj_type);
+void cbehave_mock_obj_return(const char *symbol_name, void *value,
+		const char *fcname, int lineno, const char *fname, int obj_type,
+		int count);
 
 #define MOCK_ARG     0x0
 #define MOCK_RETV    0x1
@@ -264,7 +261,6 @@ void cbehave_mock_obj_return(const char *symbol_name, void *value, const char *f
 #define CBEHAVE_RETV_RETURN_COUNT(fcname, value, count) do { \
     cbehave_mock_obj_return(#fcname, (void*)value, __func__, __LINE__, __FILE__, MOCK_RETV, count); \
 } while(0);
-
 
 #ifdef __cplusplus
 }

@@ -307,7 +307,8 @@ void ConvertCharacter(Character *c, TBadGuy *b) {
 	c->bot->probabilityToTrack = b->probabilityToTrack;
 	c->bot->probabilityToShoot = b->probabilityToShoot;
 	c->bot->actionDelay = b->actionDelay;
-	c->Gun = static_cast<const WeaponClass*>(CArrayGet(&gWeaponClasses.Guns, b->gun));
+	c->Gun = static_cast<const WeaponClass*>(CArrayGet(&gWeaponClasses.Guns,
+			b->gun));
 	ConvertCharacterColors(b->skinColor, b->armColor, b->bodyColor, b->legColor,
 			b->hairColor, &c->Colors);
 	ConvertHairColors(c);
@@ -315,7 +316,8 @@ void ConvertCharacter(Character *c, TBadGuy *b) {
 	c->flags = b->flags;
 }
 static void ConvertObjective(Objective *dest, struct MissionObjectiveOld *src) {
-	dest->Description = static_cast<char*>(malloc(strlen(src->description) + 1));
+	dest->Description =
+			static_cast<char*>(malloc(strlen(src->description) + 1));
 	if (dest->Description == NULL && (strlen(src->description) + 1) > 0) {
 		exit(1);
 	}
@@ -355,7 +357,8 @@ static void ConvertMission(Mission *dest, struct MissionOld *src,
 	strcpy(dest->Title, src->title);
 //	CSTRDUP(dest->Title, src->title);
 	CFREE(dest->Description);
-	dest->Description = static_cast<char*>(malloc(strlen(src->description) + 1));
+	dest->Description =
+			static_cast<char*>(malloc(strlen(src->description) + 1));
 	if (dest->Description == NULL && (strlen(src->description) + 1) > 0) {
 		exit(1);
 	}
@@ -389,7 +392,8 @@ static void ConvertMission(Mission *dest, struct MissionOld *src,
 	CArrayClear(&dest->Weapons);
 	for (int i = 0; i < WEAPON_MAX; i++) {
 		if ((src->weaponSelection & (1 << i)) || !src->weaponSelection) {
-			WeaponClass *wc = static_cast<WeaponClass*>(CArrayGet(&gWeaponClasses.Guns, i));
+			WeaponClass *wc = static_cast<WeaponClass*>(CArrayGet(
+					&gWeaponClasses.Guns, i));
 			CArrayPushBack(&dest->Weapons, &wc);
 		}
 	}
@@ -438,7 +442,8 @@ void ConvertCampaignSetting(CampaignSetting *dest, CampaignSettingOld *src) {
 	strcpy(dest->Author, src->author);
 //	CSTRDUP(dest->Author, src->author);
 	CFREE(dest->Description);
-	dest->Description = static_cast<char*>(malloc(strlen(src->description) + 1));
+	dest->Description =
+			static_cast<char*>(malloc(strlen(src->description) + 1));
 	if (dest->Description == NULL && (strlen(src->description) + 1) > 0) {
 		exit(1);
 	}

@@ -1,31 +1,31 @@
 /*
-Copyright (c) 2013-2018, tinydir authors:
-- Cong Xu
-- Lautis Sun
-- Baudouin Feildel
-- Andargor <andargor@yahoo.com>
-All rights reserved.
+ Copyright (c) 2013-2018, tinydir authors:
+ - Cong Xu
+ - Lautis Sun
+ - Baudouin Feildel
+ - Andargor <andargor@yahoo.com>
+ All rights reserved.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
 
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
+ 1. Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 #ifndef TINYDIR_H
 #define TINYDIR_H
 
@@ -61,7 +61,6 @@ extern "C" {
 #ifdef __MINGW32__
 # include <tchar.h>
 #endif
-
 
 /* types */
 
@@ -186,12 +185,11 @@ extern "C" {
 #endif
 
 #if !defined(_TINYDIR_MALLOC)
-	#define _TINYDIR_MALLOC(_size) malloc(_size)
-	#define _TINYDIR_FREE(_ptr)    free(_ptr)
+#define _TINYDIR_MALLOC(_size) malloc(_size)
+#define _TINYDIR_FREE(_ptr)    free(_ptr)
 #endif /* !defined(_TINYDIR_MALLOC) */
 
-typedef struct tinydir_file
-{
+typedef struct tinydir_file {
 	_tinydir_char_t path[_TINYDIR_PATH_MAX];
 	_tinydir_char_t name[_TINYDIR_FILENAME_MAX];
 	_tinydir_char_t *extension;
@@ -207,8 +205,7 @@ typedef struct tinydir_file
 #endif
 } tinydir_file;
 
-typedef struct tinydir_dir
-{
+typedef struct tinydir_dir {
 	_tinydir_char_t path[_TINYDIR_PATH_MAX];
 	int has_next;
 	size_t n_files;
@@ -225,7 +222,6 @@ typedef struct tinydir_dir
 #endif
 #endif
 } tinydir_dir;
-
 
 /* declarations */
 
@@ -258,12 +254,10 @@ size_t _tinydir_dirent_buf_size(_TINYDIR_DIR *dirp);
 #endif
 #endif
 
-
 /* definitions*/
 
 _TINYDIR_FUNC
-int tinydir_open(tinydir_dir *dir, const _tinydir_char_t *path)
-{
+int tinydir_open(tinydir_dir *dir, const _tinydir_char_t *path) {
 #ifndef _MSC_VER
 #ifndef _TINYDIR_USE_READDIR
 	int error;
@@ -274,13 +268,11 @@ int tinydir_open(tinydir_dir *dir, const _tinydir_char_t *path)
 #endif
 	_tinydir_char_t *pathp;
 
-	if (dir == NULL || path == NULL || _tinydir_strlen(path) == 0)
-	{
+	if (dir == NULL || path == NULL || _tinydir_strlen(path) == 0) {
 		errno = EINVAL;
 		return -1;
 	}
-	if (_tinydir_strlen(path) + _TINYDIR_PATH_EXTRA >= _TINYDIR_PATH_MAX)
-	{
+	if (_tinydir_strlen(path) + _TINYDIR_PATH_EXTRA >= _TINYDIR_PATH_MAX) {
 		errno = ENAMETOOLONG;
 		return -1;
 	}
@@ -300,8 +292,8 @@ int tinydir_open(tinydir_dir *dir, const _tinydir_char_t *path)
 	_tinydir_strcpy(dir->path, path);
 	/* Remove trailing slashes */
 	pathp = &dir->path[_tinydir_strlen(dir->path) - 1];
-	while (pathp != dir->path && (*pathp == TINYDIR_STRING('\\') || *pathp == TINYDIR_STRING('/')))
-	{
+	while (pathp != dir->path
+			&& (*pathp == TINYDIR_STRING('\\') || *pathp == TINYDIR_STRING('/'))) {
 		*pathp = TINYDIR_STRING('\0');
 		pathp++;
 	}
@@ -318,8 +310,7 @@ int tinydir_open(tinydir_dir *dir, const _tinydir_char_t *path)
 		errno = ENOENT;
 #else
 	dir->_d = _tinydir_opendir(path);
-	if (dir->_d == NULL)
-	{
+	if (dir->_d == NULL) {
 #endif
 		goto bail;
 	}
@@ -339,69 +330,58 @@ int tinydir_open(tinydir_dir *dir, const _tinydir_char_t *path)
 	error = readdir_r(dir->_d, dir->_ep, &dir->_e);
 	if (error != 0) return -1;
 #endif
-	if (dir->_e == NULL)
-	{
+	if (dir->_e == NULL) {
 		dir->has_next = 0;
 	}
 #endif
 
 	return 0;
 
-bail:
-	tinydir_close(dir);
+	bail: tinydir_close(dir);
 	return -1;
 }
 
 _TINYDIR_FUNC
-int tinydir_open_sorted(tinydir_dir *dir, const _tinydir_char_t *path)
-{
+int tinydir_open_sorted(tinydir_dir *dir, const _tinydir_char_t *path) {
 	/* Count the number of files first, to pre-allocate the files array */
 	size_t n_files = 0;
-	if (tinydir_open(dir, path) == -1)
-	{
+	if (tinydir_open(dir, path) == -1) {
 		return -1;
 	}
-	while (dir->has_next)
-	{
+	while (dir->has_next) {
 		n_files++;
-		if (tinydir_next(dir) == -1)
-		{
+		if (tinydir_next(dir) == -1) {
 			goto bail;
 		}
 	}
 	tinydir_close(dir);
 
-	if (n_files == 0 || tinydir_open(dir, path) == -1)
-	{
+	if (n_files == 0 || tinydir_open(dir, path) == -1) {
 		return -1;
 	}
 
 	dir->n_files = 0;
-	dir->_files = (tinydir_file *)_TINYDIR_MALLOC(sizeof *dir->_files * n_files);
-	if (dir->_files == NULL)
-	{
+	dir->_files = (tinydir_file*) _TINYDIR_MALLOC(
+			sizeof *dir->_files * n_files);
+	if (dir->_files == NULL) {
 		goto bail;
 	}
-	while (dir->has_next)
-	{
+	while (dir->has_next) {
 		tinydir_file *p_file;
 		dir->n_files++;
 
 		p_file = &dir->_files[dir->n_files - 1];
-		if (tinydir_readfile(dir, p_file) == -1)
-		{
+		if (tinydir_readfile(dir, p_file) == -1) {
 			goto bail;
 		}
 
-		if (tinydir_next(dir) == -1)
-		{
+		if (tinydir_next(dir) == -1) {
 			goto bail;
 		}
 
 		/* Just in case the number of files has changed between the first and
-		second reads, terminate without writing into unallocated memory */
-		if (dir->n_files == n_files)
-		{
+		 second reads, terminate without writing into unallocated memory */
+		if (dir->n_files == n_files) {
 			break;
 		}
 	}
@@ -410,16 +390,13 @@ int tinydir_open_sorted(tinydir_dir *dir, const _tinydir_char_t *path)
 
 	return 0;
 
-bail:
-	tinydir_close(dir);
+	bail: tinydir_close(dir);
 	return -1;
 }
 
 _TINYDIR_FUNC
-void tinydir_close(tinydir_dir *dir)
-{
-	if (dir == NULL)
-	{
+void tinydir_close(tinydir_dir *dir) {
+	if (dir == NULL) {
 		return;
 	}
 
@@ -435,8 +412,7 @@ void tinydir_close(tinydir_dir *dir)
 	}
 	dir->_h = INVALID_HANDLE_VALUE;
 #else
-	if (dir->_d)
-	{
+	if (dir->_d) {
 		_tinydir_closedir(dir->_d);
 	}
 	dir->_d = NULL;
@@ -449,15 +425,12 @@ void tinydir_close(tinydir_dir *dir)
 }
 
 _TINYDIR_FUNC
-int tinydir_next(tinydir_dir *dir)
-{
-	if (dir == NULL)
-	{
+int tinydir_next(tinydir_dir *dir) {
+	if (dir == NULL) {
 		errno = EINVAL;
 		return -1;
 	}
-	if (!dir->has_next)
-	{
+	if (!dir->has_next) {
 		errno = ENOENT;
 		return -1;
 	}
@@ -496,11 +469,9 @@ int tinydir_next(tinydir_dir *dir)
 }
 
 _TINYDIR_FUNC
-int tinydir_readfile(const tinydir_dir *dir, tinydir_file *file)
-{
+int tinydir_readfile(const tinydir_dir *dir, tinydir_file *file) {
 	const _tinydir_char_t *filename;
-	if (dir == NULL || file == NULL)
-	{
+	if (dir == NULL || file == NULL) {
 		errno = EINVAL;
 		return -1;
 	}
@@ -517,18 +488,16 @@ int tinydir_readfile(const tinydir_dir *dir, tinydir_file *file)
 #ifdef _MSC_VER
 		dir->_f.cFileName;
 #else
-		dir->_e->d_name;
+			dir->_e->d_name;
 #endif
 	if (_tinydir_strlen(dir->path) +
-		_tinydir_strlen(filename) + 1 + _TINYDIR_PATH_EXTRA >=
-		_TINYDIR_PATH_MAX)
-	{
+	_tinydir_strlen(filename) + 1 + _TINYDIR_PATH_EXTRA >=
+	_TINYDIR_PATH_MAX) {
 		/* the path for the file will be too long */
 		errno = ENAMETOOLONG;
 		return -1;
 	}
-	if (_tinydir_strlen(filename) >= _TINYDIR_FILENAME_MAX)
-	{
+	if (_tinydir_strlen(filename) >= _TINYDIR_FILENAME_MAX) {
 		errno = ENAMETOOLONG;
 		return -1;
 	}
@@ -547,7 +516,7 @@ int tinydir_readfile(const tinydir_dir *dir, tinydir_file *file)
 #else
 	if (stat(
 #endif
-		file->path, &file->_s) == -1)
+			file->path, &file->_s) == -1)
 	{
 		return -1;
 	}
@@ -558,7 +527,7 @@ int tinydir_readfile(const tinydir_dir *dir, tinydir_file *file)
 #ifdef _MSC_VER
 		!!(dir->_f.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
 #else
-		S_ISDIR(file->_s.st_mode);
+			S_ISDIR(file->_s.st_mode);
 #endif
 	file->is_reg =
 #ifdef _MSC_VER
@@ -576,22 +545,19 @@ int tinydir_readfile(const tinydir_dir *dir, tinydir_file *file)
 			!(dir->_f.dwFileAttributes & FILE_ATTRIBUTE_OFFLINE) &&
 			!(dir->_f.dwFileAttributes & FILE_ATTRIBUTE_TEMPORARY));
 #else
-		S_ISREG(file->_s.st_mode);
+			S_ISREG(file->_s.st_mode);
 #endif
 
 	return 0;
 }
 
 _TINYDIR_FUNC
-int tinydir_readfile_n(const tinydir_dir *dir, tinydir_file *file, size_t i)
-{
-	if (dir == NULL || file == NULL)
-	{
+int tinydir_readfile_n(const tinydir_dir *dir, tinydir_file *file, size_t i) {
+	if (dir == NULL || file == NULL) {
 		errno = EINVAL;
 		return -1;
 	}
-	if (i >= dir->n_files)
-	{
+	if (i >= dir->n_files) {
 		errno = ENOENT;
 		return -1;
 	}
@@ -603,24 +569,20 @@ int tinydir_readfile_n(const tinydir_dir *dir, tinydir_file *file, size_t i)
 }
 
 _TINYDIR_FUNC
-int tinydir_open_subdir_n(tinydir_dir *dir, size_t i)
-{
+int tinydir_open_subdir_n(tinydir_dir *dir, size_t i) {
 	_tinydir_char_t path[_TINYDIR_PATH_MAX];
-	if (dir == NULL)
-	{
+	if (dir == NULL) {
 		errno = EINVAL;
 		return -1;
 	}
-	if (i >= dir->n_files || !dir->_files[i].is_dir)
-	{
+	if (i >= dir->n_files || !dir->_files[i].is_dir) {
 		errno = ENOENT;
 		return -1;
 	}
 
 	_tinydir_strcpy(path, dir->_files[i].path);
 	tinydir_close(dir);
-	if (tinydir_open_sorted(dir, path) == -1)
-	{
+	if (tinydir_open_sorted(dir, path) == -1) {
 		return -1;
 	}
 
@@ -629,8 +591,7 @@ int tinydir_open_subdir_n(tinydir_dir *dir, size_t i)
 
 /* Open a single file given its path */
 _TINYDIR_FUNC
-int tinydir_file_open(tinydir_file *file, const _tinydir_char_t *path)
-{
+int tinydir_file_open(tinydir_file *file, const _tinydir_char_t *path) {
 	tinydir_dir dir;
 	int result = 0;
 	int found = 0;
@@ -643,13 +604,11 @@ int tinydir_file_open(tinydir_file *file, const _tinydir_char_t *path)
 	_tinydir_char_t ext_buf[_TINYDIR_FILENAME_MAX];
 #endif
 
-	if (file == NULL || path == NULL || _tinydir_strlen(path) == 0)
-	{
+	if (file == NULL || path == NULL || _tinydir_strlen(path) == 0) {
 		errno = EINVAL;
 		return -1;
 	}
-	if (_tinydir_strlen(path) + _TINYDIR_PATH_EXTRA >= _TINYDIR_PATH_MAX)
-	{
+	if (_tinydir_strlen(path) + _TINYDIR_PATH_EXTRA >= _TINYDIR_PATH_MAX) {
 		errno = ENAMETOOLONG;
 		return -1;
 	}
@@ -657,14 +616,14 @@ int tinydir_file_open(tinydir_file *file, const _tinydir_char_t *path)
 	/* Get the parent path */
 #if (defined _MSC_VER || defined __MINGW32__)
 #if ((defined _MSC_VER) && (_MSC_VER >= 1400))
-		errno = _tsplitpath_s(
+	errno = _tsplitpath_s(
 			path,
 			drive_buf, _TINYDIR_DRIVE_MAX,
 			dir_name_buf, _TINYDIR_FILENAME_MAX,
 			file_name_buf, _TINYDIR_FILENAME_MAX,
 			ext_buf, _TINYDIR_FILENAME_MAX);
 #else
-		_tsplitpath(
+	_tsplitpath(
 			path,
 			drive_buf,
 			dir_name_buf,
@@ -672,21 +631,21 @@ int tinydir_file_open(tinydir_file *file, const _tinydir_char_t *path)
 			ext_buf);
 #endif
 
-if (errno)
-{
-	return -1;
-}
+	if (errno)
+	{
+		return -1;
+	}
 
-/* _splitpath_s not work fine with only filename and widechar support */
+	/* _splitpath_s not work fine with only filename and widechar support */
 #ifdef _UNICODE
-		if (drive_buf[0] == L'\xFEFE')
-			drive_buf[0] = '\0';
-		if (dir_name_buf[0] == L'\xFEFE')
-			dir_name_buf[0] = '\0';
+	if (drive_buf[0] == L'\xFEFE')
+	drive_buf[0] = '\0';
+	if (dir_name_buf[0] == L'\xFEFE')
+	dir_name_buf[0] = '\0';
 #endif
 
 	/* Emulate the behavior of dirname by returning "." for dir name if it's
-	empty */
+	 empty */
 	if (drive_buf[0] == '\0' && dir_name_buf[0] == '\0')
 	{
 		_tinydir_strcpy(dir_name_buf, TINYDIR_STRING("."));
@@ -701,63 +660,51 @@ if (errno)
 	_tinydir_strcpy(dir_name_buf, path);
 	dir_name = dirname(dir_name_buf);
 	_tinydir_strcpy(file_name_buf, path);
-	base_name =basename(file_name_buf);
+	base_name = basename(file_name_buf);
 #endif
 
 	/* Open the parent directory */
-	if (tinydir_open(&dir, dir_name) == -1)
-	{
+	if (tinydir_open(&dir, dir_name) == -1) {
 		return -1;
 	}
 
 	/* Read through the parent directory and look for the file */
-	while (dir.has_next)
-	{
-		if (tinydir_readfile(&dir, file) == -1)
-		{
+	while (dir.has_next) {
+		if (tinydir_readfile(&dir, file) == -1) {
 			result = -1;
 			goto bail;
 		}
-		if (_tinydir_strcmp(file->name, base_name) == 0)
-		{
+		if (_tinydir_strcmp(file->name, base_name) == 0) {
 			/* File found */
 			found = 1;
 			break;
 		}
 		tinydir_next(&dir);
 	}
-	if (!found)
-	{
+	if (!found) {
 		result = -1;
 		errno = ENOENT;
 	}
 
-bail:
-	tinydir_close(&dir);
+	bail: tinydir_close(&dir);
 	return result;
 }
 
 _TINYDIR_FUNC
-void _tinydir_get_ext(tinydir_file *file)
-{
+void _tinydir_get_ext(tinydir_file *file) {
 	_tinydir_char_t *period = _tinydir_strrchr(file->name, TINYDIR_STRING('.'));
-	if (period == NULL)
-	{
+	if (period == NULL) {
 		file->extension = &(file->name[_tinydir_strlen(file->name)]);
-	}
-	else
-	{
+	} else {
 		file->extension = period + 1;
 	}
 }
 
 _TINYDIR_FUNC
-int _tinydir_file_cmp(const void *a, const void *b)
-{
-	const tinydir_file *fa = (const tinydir_file *)a;
-	const tinydir_file *fb = (const tinydir_file *)b;
-	if (fa->is_dir != fb->is_dir)
-	{
+int _tinydir_file_cmp(const void *a, const void *b) {
+	const tinydir_file *fa = (const tinydir_file*) a;
+	const tinydir_file *fb = (const tinydir_file*) b;
+	if (fa->is_dir != fb->is_dir) {
 		return -(fa->is_dir - fb->is_dir);
 	}
 	return _tinydir_strncmp(fa->name, fb->name, _TINYDIR_FILENAME_MAX);

@@ -179,7 +179,8 @@ void GraphicsInitialize(GraphicsDevice *g) {
 		}
 
 		CFREE(g->buf);
-		g->buf = static_cast<Uint32*>(calloc(1, GraphicsGetMemSize(&g->cachedConfig)));
+		g->buf = static_cast<Uint32*>(calloc(1,
+				GraphicsGetMemSize(&g->cachedConfig)));
 		if (g->buf == NULL && GraphicsGetMemSize(&g->cachedConfig) > 0) {
 			exit(1);
 		}

@@ -1319,7 +1319,8 @@ void ActorHit(const NThingDamage d) {
 				svec2(RAND_FLOAT(-3, 3), RAND_FLOAT(-3, 3)));
 		// TODO replased the define - check this later
 		for (size_t _ca_index = 0; _ca_index < gParticles.size; _ca_index++) {
-			const Particle *p = static_cast<Particle *>(CArrayGet(&(gParticles), _ca_index));
+			const Particle *p = static_cast<Particle*>(CArrayGet(&(gParticles),
+					_ca_index));
 			if (p->isInUse && p->ActorUID == a->uid) {
 				damage += a->accumulatedDamage;
 				pos = p->Pos;

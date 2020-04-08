@@ -136,7 +136,8 @@ MapObject* IndexMapObject(const int i) {
 	if (i < (int) gMapObjects.Classes.size) {
 		return static_cast<MapObject*>(CArrayGet(&gMapObjects.Classes, i));
 	}
-	return static_cast<MapObject*>(CArrayGet(&gMapObjects.CustomClasses, i - gMapObjects.Classes.size));
+	return static_cast<MapObject*>(CArrayGet(&gMapObjects.CustomClasses,
+			i - gMapObjects.Classes.size));
 }
 int DestructibleMapObjectIndex(const MapObject *mo) {
 	if (mo == NULL) {
@@ -152,7 +153,8 @@ int DestructibleMapObjectIndex(const MapObject *mo) {
 }
 void AddRandomBloodPool(const struct vec2 pos, const color_t mask) {
 	const int idx = rand() % (int) gMapObjects.Bloods.size;
-	const char **name = static_cast<const char **>(CArrayGet(&gMapObjects.Bloods, idx));
+	const char **name = static_cast<const char**>(CArrayGet(&gMapObjects.Bloods,
+			idx));
 	const MapObject *mo = StrMapObject(*name);
 
 	GameEvent e = GameEventNew(GAME_EVENT_MAP_OBJECT_ADD);

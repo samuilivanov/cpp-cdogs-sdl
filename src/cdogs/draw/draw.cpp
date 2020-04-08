@@ -256,8 +256,8 @@ static void DrawObjectiveHighlights(DrawBuffer *b, const struct vec2i offset,
 		if (ti->flags & THING_OBJECTIVE) {
 			// Objective
 			const int objective = ObjectiveFromThing(ti->flags);
-			const Objective *o = static_cast<const Objective *>(CArrayGet(&gMission.missionData->Objectives,
-					objective));
+			const Objective *o = static_cast<const Objective*>(CArrayGet(
+					&gMission.missionData->Objectives, objective));
 			if (o->Flags & OBJECTIVE_HIDDEN) {
 				continue;
 			}
@@ -288,7 +288,8 @@ static void DrawObjectiveHighlights(DrawBuffer *b, const struct vec2i offset,
 				continue;
 			}
 			// Gun pickup
-			const Pickup *p = static_cast<const Pickup *>(CArrayGet(&gPickups, ti->id));
+			const Pickup *p = static_cast<const Pickup*>(CArrayGet(&gPickups,
+					ti->id));
 			if (!PickupIsManual(p)) {
 				continue;
 			}
@@ -325,7 +326,7 @@ static void DrawChatters(DrawBuffer *b, const struct vec2i offset,
 			continue;
 		}
 
-		const TActor *a = static_cast<TActor *>(CArrayGet(&gActors, ti->id));
+		const TActor *a = static_cast<TActor*>(CArrayGet(&gActors, ti->id));
 		// Draw character text
 		if (strlen(a->Chatter) > 0) {
 			const struct vec2i textPos = svec2i(
@@ -353,7 +354,7 @@ static void DrawThing(DrawBuffer *b, const Thing *t,
 	if (t->CPicFunc) {
 		t->CPicFunc(b->g, t->id, picPos);
 	} else if (t->kind == KIND_CHARACTER) {
-		TActor *a = static_cast<TActor *>(CArrayGet(&gActors, t->id));
+		TActor *a = static_cast<TActor*>(CArrayGet(&gActors, t->id));
 		ActorPics pics = GetCharacterPicsFromActor(a);
 		DrawActorPics(&pics, picPos, Rect2iZero());
 		// Draw weapon indicators

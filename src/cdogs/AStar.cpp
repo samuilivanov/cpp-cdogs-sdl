@@ -249,10 +249,12 @@ static Node GetNode(VisitedNodes nodes, void *nodeKey) {
 				nodes->nodeRecordsCapacity
 						* (sizeof(NodeRecord) + nodes->source->nodeSize));
 
-		nodes->nodeRecordsIndex = static_cast<size_t *>(realloc(nodes->nodeRecordsIndex,
+		nodes->nodeRecordsIndex = static_cast<size_t*>(realloc(
+				nodes->nodeRecordsIndex,
 				nodes->nodeRecordsCapacity * sizeof(size_t)));
 
-		if (nodes->nodeRecordsIndex == NULL	&& nodes->nodeRecordsCapacity * sizeof(size_t) > 0) {
+		if (nodes->nodeRecordsIndex == NULL
+				&& nodes->nodeRecordsCapacity * sizeof(size_t) > 0) {
 			exit(1);
 		}
 //		CREALLOC(nodes->nodeRecordsIndex,
