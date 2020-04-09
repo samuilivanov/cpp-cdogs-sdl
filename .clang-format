@@ -1,8 +1,0 @@
-﻿---
-BasedOnStyle: Microsoft
-AlignAfterOpenBracket: AlwaysBreak
-ColumnLimit: '79'
-TabWidth: '4'
-UseTab: Always
-
-...
